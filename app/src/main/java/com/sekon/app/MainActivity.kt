@@ -1,13 +1,9 @@
 package com.sekon.app
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.sekon.app.adapter.StudyRefAdapter
-import com.sekon.app.model.StudyRef
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,6 +24,11 @@ class MainActivity : AppCompatActivity() {
 
                 R.id.bottom_nav_features -> {
                     setupFragment(FeatureFragment())
+                    true
+                }
+
+                R.id.bottom_nav_more -> {
+                    setupFragment(MoreFragment())
                     true
                 }
 
