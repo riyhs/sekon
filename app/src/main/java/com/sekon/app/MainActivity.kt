@@ -3,6 +3,9 @@ package com.sekon.app
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.sekon.app.ui.fragment.main.FeatureFragment
+import com.sekon.app.ui.fragment.main.HomeFragment
+import com.sekon.app.ui.fragment.main.MoreFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +31,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.bottom_nav_more -> {
+//                    setupFragment(MoreFragment())
                     setupFragment(MoreFragment())
                     true
                 }

@@ -3,12 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.main.FeatureFragment">
+    tools:context=".ui.fragment.splash.ViewPagerFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pager_on_boarding"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Feature" />
+        android:layout_height="match_parent"/>
 
 </FrameLayout>
