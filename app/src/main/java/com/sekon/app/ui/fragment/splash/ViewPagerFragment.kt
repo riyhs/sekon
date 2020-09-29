@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.viewpager2.widget.ViewPager2
 import com.sekon.app.R
 import com.sekon.app.adapter.OnBoardingAdapter
-import kotlinx.android.synthetic.main.fragment_view_pager.view.*
+import me.relex.circleindicator.CircleIndicator3
 
 class ViewPagerFragment : Fragment() {
     override fun onCreateView(
@@ -21,7 +22,12 @@ class ViewPagerFragment : Fragment() {
             SecondOnBoardingFragment()
         )
 
-        view.view_pager_on_boarding.adapter = OnBoardingAdapter(fragmentList, requireActivity().supportFragmentManager, lifecycle)
+        val viewPager = view.findViewById<ViewPager2>(R.id.view_pager_on_boarding)
+        viewPager.adapter = OnBoardingAdapter(fragmentList, requireActivity().supportFragmentManager, lifecycle)
+
+        val indicator = view.findViewById<CircleIndicator3>(R.id.indicator)
+        indicator.setViewPager(viewPager)
+
         return view
     }
 }
