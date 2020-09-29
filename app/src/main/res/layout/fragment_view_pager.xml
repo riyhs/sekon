@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragment.splash.ViewPagerFragment">
 
     <androidx.viewpager2.widget.ViewPager2
@@ -15,6 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_gravity="bottom"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        app:ci_drawable="@drawable/ic_indicator_white"
+        app:ci_width="10dp"/>
 
 </FrameLayout>
