@@ -1,6 +1,7 @@
 package com.sekon.app
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.sekon.app.ui.fragment.main.FeatureFragment
@@ -31,7 +32,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.bottom_nav_more -> {
-//                    setupFragment(MoreFragment())
                     setupFragment(MoreFragment())
                     true
                 }

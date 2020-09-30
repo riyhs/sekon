@@ -14,9 +14,9 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment : Fragment() {
 
     private val list = listOf(
-        StudyRef("Google IO", "Google IO adalah acara tahunan yang diselenggarakan oleh Google untuk jogging, yoi mantap!"),
-        StudyRef("Google IO", "Google IO adalah acara tahunan yang diselenggarakan oleh Google untuk jogging, yoi mantap!"),
-        StudyRef("Google IO", "Google IO adalah acara tahunan yang diselenggarakan oleh Google untuk jogging, yoi mantap!")
+        StudyRef("Google IO", "Google IO adalah acara tahunan yang diselenggarakan oleh Google untuk jogging, yoi mantap!, yahaha hayuk mabar anjay mabar anjayani, uzumaki bayu hahaha. Text panjang sekali ini huhuhu."),
+        StudyRef("Google IO", "Google IO adalah acara tahunan yang diselenggarakan oleh Google untuk jogging, yoi mantap!, yahaha hayuk mabar anjay mabar anjayani, uzumaki bayu hahaha. Text panjang sekali ini huhuhu."),
+        StudyRef("Google IO", "Google IO adalah acara tahunan yang diselenggarakan oleh Google untuk jogging, yoi mantap!, yahaha hayuk mabar anjay mabar anjayani, uzumaki bayu hahaha. Text panjang sekali ini huhuhu.")
     )
 
     override fun onCreateView(
