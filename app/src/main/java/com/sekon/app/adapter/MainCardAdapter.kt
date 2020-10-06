@@ -9,7 +9,7 @@ import com.sekon.app.R
 import com.sekon.app.model.StudyRef
 import kotlinx.android.synthetic.main.card_study_ref.view.*
 
-class StudyRefAdapter (private val studyRef: List<StudyRef>) : RecyclerView.Adapter<StudyRefAdapter.StudyRevViewHolder>() {
+class MainCardAdapter (private val studyRef: List<StudyRef>) : RecyclerView.Adapter<MainCardAdapter.StudyRevViewHolder>() {
     inner class StudyRevViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: StudyRef) {
             with(itemView) {

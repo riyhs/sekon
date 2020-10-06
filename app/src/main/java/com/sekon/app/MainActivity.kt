@@ -1,5 +1,6 @@
 package com.sekon.app
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -26,8 +27,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_bar_notification) {
-            Toast.makeText(this, "notification", Toast.LENGTH_SHORT).show()
+        if (item.itemId == R.id.action_bar_announcement) {
+            val intent = Intent(this, AnnouncementActivity::class.java)
+            startActivity(intent)
         }
 
         return true

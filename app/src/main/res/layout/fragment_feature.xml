@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.main.FeatureFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_feature"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Feature" />
-
+        android:layout_height="match_parent"
+        tools:itemCount="3"
+        tools:listitem="@layout/card_feature" />
 </FrameLayout>
