@@ -1,32 +1,36 @@
 package com.sekon.app
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sekon.app.adapter.MainCardAdapter
+import com.sekon.app.adapter.AnnouncementAdapter
 import com.sekon.app.model.Announcement
 import kotlinx.android.synthetic.main.activity_announcement.*
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class AnnouncementActivity : AppCompatActivity() {
-
-    private val list = listOf<Announcement>(
-        Announcement("Pengumuman 1", "Deskripsi pengumuman wkwk hoi hoi saya males nulisnya"),
-        Announcement("Pengumuman 2", "Deskripsi pengumuman wkwk hoi hoi saya males nulisnya"),
-        Announcement("Pengumuman 3", "Deskripsi pengumuman wkwk hoi hoi saya males nulisnya")
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_announcement)
 
-        setupAdapter()
+        val list = listOf(
+            Announcement("Pengumuman 1", "Deskripsi"),
+            Announcement("Pengumuman 2", "Deskripsi"),
+            Announcement("Pengumuman 3", "Deskripsi")
+        )
+
+        if (list.size > 1) {
+            setupAdapter(list)
+        } else {
+            Toast.makeText(this, "Tidak ada pengumuman", Toast.LENGTH_SHORT).show()
+        }
 
     }
 
-    private fun setupAdapter() {
+    private fun setupAdapter(list: List<Announcement>) {
         rv_announcment.setHasFixedSize(true)
         rv_announcment.layoutManager = LinearLayoutManager(this)
-//        rv_announcment.adapter = MainCardAdapter(list)
+        rv_announcment.adapter = AnnouncementAdapter(list)
     }
 }
