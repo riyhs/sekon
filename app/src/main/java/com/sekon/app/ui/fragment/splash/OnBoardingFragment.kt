@@ -10,7 +10,7 @@ import com.sekon.app.R
 import com.sekon.app.adapter.OnBoardingAdapter
 import me.relex.circleindicator.CircleIndicator3
 
-class ViewPagerFragment : Fragment() {
+class OnBoardingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

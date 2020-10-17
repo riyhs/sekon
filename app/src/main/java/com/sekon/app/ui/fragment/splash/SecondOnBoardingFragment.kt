@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.sekon.app.MainActivity
 import com.sekon.app.R
 import kotlinx.android.synthetic.main.fragment_second_on_boarding.view.*
@@ -21,8 +22,7 @@ class SecondOnBoardingFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_second_on_boarding, container, false)
 
         view.tv_swipe2.setOnClickListener {
-            startActivity(Intent(requireContext(), MainActivity::class.java))
-            activity?.finish()
+            findNavController().navigate(R.id.action_viewPagerFragment_to_signInFragment)
             onBoardingFinished()
         }
 

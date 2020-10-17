@@ -15,10 +15,21 @@
             app:destination="@id/viewPagerFragment"
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_splashFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="com.sekon.app.ui.fragment.splash.ViewPagerFragment"
+        android:name="com.sekon.app.ui.fragment.splash.OnBoardingFragment"
         android:label="fragment_view_pager"
-        tools:layout="@layout/fragment_view_pager" />
+        tools:layout="@layout/fragment_view_pager" >
+        <action
+            android:id="@+id/action_viewPagerFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInFragment"
+        android:name="com.sekon.app.ui.fragment.splash.SignInFragment"
+        android:label="SignInFragment" />
 </navigation>

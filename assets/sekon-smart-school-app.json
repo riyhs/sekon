@@ -1,0 +1,945 @@
+{
+	"info": {
+		"_postman_id": "6470cef3-f80f-48ed-9935-fdb05a4c12a6",
+		"name": "smart-school-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "all-db",
+			"item": [
+				{
+					"name": "get-all-siswa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nama\": \"Ade Firmansyah\",\r\n    \"tagline\": \"hohahihe\",\r\n    \"kelas\": \"XI-RPL\",\r\n    \"nis\": 11139,\r\n    \"password\": \"hariini123\",\r\n    \"photo\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://sekon.herokuapp.com/api/v1/siswa",
+							"host": [
+								"http://sekon.herokuapp.com"
+							],
+							
+							"path": [
+								"api",
+								"v1",
+								"siswa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-guru",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://sekon.herokuapp.com/api/v1/guru/",
+							"host": [
+								"http://sekon.herokuapp.com"
+							],
+							
+							"path": [
+								"api",
+								"v1",
+								"guru",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-jadwal",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://sekon.herokuapp.com/api/v1/jadwal",
+							"host": [
+								"http://sekon.herokuapp.com"
+							],
+							
+							"path": [
+								"api",
+								"v1",
+								"jadwal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-pengumuman",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://sekon.herokuapp.com/api/v1/pengumuman/",
+							"host": [
+								"http://sekon.herokuapp.com"
+							],
+							
+							"path": [
+								"api",
+								"v1",
+								"pengumuman",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-pelajaran",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://sekon.herokuapp.com/api/v1/pelajaran/",
+							"host": [
+								"http://sekon.herokuapp.com"
+							],
+							
+							"path": [
+								"api",
+								"v1",
+								"pelajaran",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-saran",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://sekon.herokuapp.com/api/v1/saran/",
+							"host": [
+								"http://sekon.herokuapp.com"
+							],
+							
+							"path": [
+								"api",
+								"v1",
+								"saran",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-absen",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"Kelas\": \"5f81c9d9d291bb1c78c23643\",\r\n    \"Nama\": \"5f81c9d9d291bb1c78c23643\",\r\n    \"Pelajaran\": \"5f86d4aee704064b10159d52\",\r\n    \"Status\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://sekon.herokuapp.com/api/v1/absen/",
+							"host": [
+								"http://sekon.herokuapp.com"
+							],
+							
+							"path": [
+								"api",
+								"v1",
+								"absen",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-referensi",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://sekon.herokuapp.com/api/v1/referensi/",
+							"host": [
+								"http://sekon.herokuapp.com"
+							],
+							
+							"path": [
+								"api",
+								"v1",
+								"referensi",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "db-siswa",
+			"item": [
+				{
+					"name": "jadwal",
+					"item": [
+						{
+							"name": "jadwal-detail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/jadwal/5f86f0dc3fd59a488c7909f7",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"jadwal",
+										"5f86f0dc3fd59a488c7909f7"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "pengumuman",
+					"item": [
+						{
+							"name": "pengumuman-detail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/pengumuman/5f86da8bf97bcf28d817fbc7",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"pengumuman",
+										"5f86da8bf97bcf28d817fbc7"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "siswa",
+					"item": [
+						{
+							"name": "signup",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nama\": \"Hadi Ferdiansyah\",\r\n    \"tagline\": \"awali harimu dengan Rebahan\",\r\n    \"kelas\": \"X_TKJ\",\r\n    \"nis\": 100111,\r\n    \"password\": \"hadi1234\",\r\n    \"photo\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/siswa/signup",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"siswa",
+										"signup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "signin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nis\": 100111,\r\n    \"password\": \"hadi1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/siswa/signin",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"siswa",
+										"signin"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "siswa-detail",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{jwt}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/siswa/5f81c9d9d291bb1c78c23643",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"siswa",
+										"5f81c9d9d291bb1c78c23643"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "siswa-update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"tagline\": \"no game no life\",\r\n    \"photo\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/siswa/5f89afd84fa8731fc8c3551d",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"siswa",
+										"5f89afd84fa8731fc8c3551d"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "pelajaran",
+					"item": [
+						{
+							"name": "pelajaran-detail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/pelajaran/5f86d4aee704064b10159d52",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"pelajaran",
+										"5f86d4aee704064b10159d52"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "saran",
+					"item": [
+						{
+							"name": "saran-detail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/saran/5f86d05ce0fe5253c0bd76d6",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"saran",
+										"5f86d05ce0fe5253c0bd76d6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "post-saran",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"saran\": \"Kursi Rusak\",\r\n    \"deskripsi\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing tristique risus nec feugiat in fermentum posuere urna nec. Sodales ut eu sem integer vitae justo eget.\",\r\n    \"photo\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/saran/",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"saran",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "referensi",
+					"item": [
+						{
+							"name": "referensi-detail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/referensi/5f859830d8f49847fc0a1090",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"referensi",
+										"5f859830d8f49847fc0a1090"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "absen",
+					"item": [
+						{
+							"name": "post-absen",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    {\r\n    \"Kelas\": \"5f81c9d9d291bb1c78c23643\",\r\n    \"Nama\": \"5f81c9d9d291bb1c78c23643\",\r\n    \"Pelajaran\": \"5f86d4aee704064b10159d52\",\r\n    \"Status\": 1\r\n}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/absen/",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"absen",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt_siswa}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "7b77cd68-0bac-4198-baa3-18caeb64246f",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "8251f100-2fb2-4c79-99d5-619b85a22b6d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "db-guru",
+			"item": [
+				{
+					"name": "jadwal",
+					"item": [
+						{
+							"name": "post-jadwal",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"hari\": \"Senin\",\r\n    \"mapel\": \"Matematika\",\r\n    \"jam\": 10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/jadwal",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"jadwal"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "pengumuman",
+					"item": [
+						{
+							"name": "post-pengumuman",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"judul\": \"mau UTS\",\r\n    \"deskripsi\": \"hohaohdoahodwahuoeahfeajifiaejf\",\r\n    \"tanggal\": \"12\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/pengumuman/",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"pengumuman",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "pelajaran",
+					"item": [
+						{
+							"name": "http://sekon.herokuapp.com/api/v1/pelajaran/",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"mapel\": \"IPA\",\r\n    \"jam\": \r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/pelajaran/",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"pelajaran",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "saran",
+					"item": [
+						{
+							"name": "get-all-saran",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/saran/",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"saran",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "referensi",
+					"item": [
+						{
+							"name": "post-referensi",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"role\": \"TKJ\",\r\n    \"judul\": \"Ternak lele yang baik dan benar\",\r\n    \"deskripsi\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing tristique risus nec feugiat in fermentum posuere urna nec. Sodales ut eu sem integer vitae justo eget.\",\r\n    \"photo\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/referensi/",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"referensi",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "guru",
+					"item": [
+						{
+							"name": "signup",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nama\": \"Ahmad Badrul\",\r\n    \"email\": \"ahmad@gmail.com\",\r\n    \"password\": \"ahmad1234\",\r\n    \"photo\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/guru/signup",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"guru",
+										"signup"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "signin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "412b5c65-efde-4cd1-a625-b27eafe926cf",
+										"exec": [
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"jwt_guru\", jsonData.token);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\": \"ironman@gmail.com\",\r\n    \"password\": \"iron1234\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/guru/signin",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"guru",
+										"signin"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "guru-detail",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/guru/5f86fbc5aa44fd5f4c5612d6",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"guru",
+										"5f86fbc5aa44fd5f4c5612d6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "guru-update",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"photo\": \"\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://sekon.herokuapp.com/api/v1/guru/5f86fbc5aa44fd5f4c5612d6",
+									"host": [
+										"http://sekon.herokuapp.com"
+									],
+									
+									"path": [
+										"api",
+										"v1",
+										"guru",
+										"5f86fbc5aa44fd5f4c5612d6"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt-guru}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "030a1e2b-9b60-48de-a1cf-f3e9b780e084",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f6144a5b-872b-4869-91a7-04adbcbc8665",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "3988eaef-8a67-47e9-9194-6f3eb622206d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "7a1dd9e8-37b9-418a-a713-4d881f350502",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
