@@ -23,9 +23,13 @@ class SignInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         onBackPressed()
+        signIn()
+    }
 
+    private fun signIn() {
         bt_sign_in.setOnClickListener {
             if (true) {
+                // Sign In Response Success
                 val intent = Intent(context, MainActivity::class.java)
                 startActivity(intent)
                 activity?.finish()
