@@ -7,10 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.sekon.app.AbsenActivity
-import com.sekon.app.JadwalActivity
-import com.sekon.app.MainActivity
-import com.sekon.app.R
+import com.sekon.app.*
 import com.sekon.app.model.Feature
 import kotlinx.android.synthetic.main.card_feature.view.*
 
@@ -24,6 +21,7 @@ class FeatureAdapter (private val item: List<Feature>) : RecyclerView.Adapter<Fe
                 val intent: Intent = when (item.id) {
                     0 -> Intent(context, AbsenActivity::class.java)
                     1 -> Intent(context, JadwalActivity::class.java)
+                    2 -> Intent(context, SaranActivity::class.java)
                     else -> Intent(context, MainActivity::class.java)
                 }
 

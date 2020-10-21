@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".JadwalActivity"></activity>
+        <activity android:name=".SaranActivity"></activity>
+        <activity android:name=".JadwalActivity" />
         <activity android:name=".AbsenActivity" />
         <activity android:name=".AnnouncementActivity" />
         <activity android:name=".SplashActivity">
