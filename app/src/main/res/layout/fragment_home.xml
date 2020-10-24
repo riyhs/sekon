@@ -154,7 +154,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/button2" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/tv_covid_dead"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
@@ -166,7 +166,7 @@
                         app:layout_constraintTop_toTopOf="@+id/button" />
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/tv_covid_positive"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
@@ -178,16 +178,26 @@
                         app:layout_constraintTop_toTopOf="@+id/button2" />
 
                     <TextView
-                        android:id="@+id/textView7"
+                        android:id="@+id/tv_covid_health"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
-                        android:text="1.000.000"
+                        android:text="0"
                         android:textColor="@color/colorGreenSoft"
                         android:textSize="18sp"
                         app:layout_constraintBottom_toBottomOf="@+id/button3"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/button3" />
+
+                    <ProgressBar
+                        android:id="@+id/pb_covid"
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/button3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/button" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>

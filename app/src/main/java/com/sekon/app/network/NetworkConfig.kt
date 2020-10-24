@@ -27,5 +27,14 @@ class NetworkConfig {
             .build()
     }
 
+    private fun getCovid(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl("https://api.covid19api.com/")
+            .client(getInterceptor())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
     fun getService(): Api = getRetrofit().create(Api::class.java)
+    fun getServiceCovid(): Api = getCovid().create(Api::class.java)
 }
