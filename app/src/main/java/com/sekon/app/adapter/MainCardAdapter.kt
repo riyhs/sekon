@@ -6,18 +6,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sekon.app.R
-import com.sekon.app.model.StudyRef
+import com.sekon.app.model.reference.ReferenceResponseItem
 import kotlinx.android.synthetic.main.card_study_ref.view.*
 
-class MainCardAdapter (private val studyRef: List<StudyRef>) : RecyclerView.Adapter<MainCardAdapter.StudyRevViewHolder>() {
+class MainCardAdapter (private val studyRef: List<ReferenceResponseItem>) : RecyclerView.Adapter<MainCardAdapter.StudyRevViewHolder>() {
     inner class StudyRevViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: StudyRef) {
+        fun bind(item: ReferenceResponseItem) {
             with(itemView) {
-                tv_study_ref_title.text = item.name
-                tv_study_ref_desc.text = item.desc
+                tv_study_ref_title.text = item.judul
+                tv_study_ref_desc.text = item.deskripsi
 
                 Glide.with(itemView.context)
-                    .load("https://pemmzchannel.com/wp-content/uploads/2018/05/Google-IO-2018.png")
+                    .load(item.photo)
                     .centerCrop()
                     .into(iv_study_ref_card)
             }

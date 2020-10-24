@@ -223,14 +223,15 @@
                 android:scrollbars="none">
 
                 <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/cg_referensi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:singleLine="true"
                     app:selectionRequired="true"
+                    app:singleLine="true"
                     app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/chip1"
+                        android:id="@+id/chip_rpl"
                         style="@style/CustomChipChoice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -244,63 +245,63 @@
                         app:chipStartPadding="12dp" />
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/chip2"
+                        android:id="@+id/chip_tbsm"
+                        style="@style/CustomChipChoice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/colorBlueSoft"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:text="TBSM"
-                        android:clickable="true"
-                        android:focusable="true"
-                        style="@style/CustomChipChoice"
                         app:chipEndPadding="12dp"
                         app:chipStartPadding="12dp" />
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/chip3"
+                        android:id="@+id/chip_tei"
+                        style="@style/CustomChipChoice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/colorBlueSoft"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:text="TEI"
-                        android:clickable="true"
-                        android:focusable="true"
-                        style="@style/CustomChipChoice"
                         app:chipEndPadding="12dp"
                         app:chipStartPadding="12dp" />
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/chip4"
+                        android:id="@+id/chip_tkj"
+                        style="@style/CustomChipChoice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/colorBlueSoft"
+                        android:clickable="true"
+                        android:focusable="true"
                         android:text="TKJ"
-                        android:clickable="true"
-                        android:focusable="true"
-                        style="@style/CustomChipChoice"
                         app:chipEndPadding="12dp"
                         app:chipStartPadding="12dp" />
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/chip5"
+                        android:id="@+id/chip_tkro"
+                        style="@style/CustomChipChoice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/colorBlueSoft"
-                        android:text="TKRO"
                         android:clickable="true"
                         android:focusable="true"
-                        style="@style/CustomChipChoice"
+                        android:text="TKRO"
                         app:chipEndPadding="12dp"
                         app:chipStartPadding="12dp" />
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/chip6"
+                        android:id="@+id/chip_tp"
+                        style="@style/CustomChipChoice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:background="@color/colorBlueSoft"
-                        android:text="TP"
                         android:clickable="true"
                         android:focusable="true"
-                        style="@style/CustomChipChoice"
+                        android:text="TP"
                         app:chipEndPadding="12dp"
                         app:chipStartPadding="12dp" />
 
@@ -321,6 +322,17 @@
                 android:nestedScrollingEnabled="false"
                 tools:itemCount="4"
                 tools:listitem="@layout/card_study_ref" />
+
+            <ProgressBar
+                android:id="@+id/pb_referensi"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/chip_container"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="32dp"
+                android:visibility="invisible" />
 
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>

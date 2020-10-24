@@ -7,25 +7,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isGone
+import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sekon.app.R
 import com.sekon.app.adapter.MainCardAdapter
-import com.sekon.app.model.StudyRef
 import com.sekon.app.model.covid.CovidResponseItem
 import com.sekon.app.utils.Preference
 import com.sekon.app.viewmodel.CovidViewModel
+import com.sekon.app.viewmodel.ReferenceViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
-
-    private val list = listOf(
-        StudyRef("Google IO", "Google IO adalah acara tahunan yang diselenggarakan oleh Google untuk jogging, yoi mantap!, yahaha hayuk mabar anjay mabar anjayani, uzumaki bayu hahaha. Text panjang sekali ini huhuhu."),
-        StudyRef("Google IO", "Google IO adalah acara tahunan yang diselenggarakan oleh Google untuk jogging, yoi mantap!, yahaha hayuk mabar anjay mabar anjayani, uzumaki bayu hahaha. Text panjang sekali ini huhuhu."),
-        StudyRef("Google IO", "Google IO adalah acara tahunan yang diselenggarakan oleh Google untuk jogging, yoi mantap!, yahaha hayuk mabar anjay mabar anjayani, uzumaki bayu hahaha. Text panjang sekali ini huhuhu.")
-    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,32 +30,40 @@ class HomeFragment : Fragment() {
     }
 
     private lateinit var covidViewModel: CovidViewModel
+    private lateinit var referenceViewModel: ReferenceViewModel
+    private lateinit var selectedChip: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         showLoading("covid", true)
 
         val sharedPref = Preference.initPref(requireContext(), "onSignIn")
         val nameSiswa = sharedPref.getString("name", "name")
+        tv_home_siswa_name.text = nameSiswa
 
         setupAdapter()
+        chipOnClickListener()
+
+        covidViewModel = ViewModelProvider(requireActivity()).get(CovidViewModel::class.java)
+        referenceViewModel = ViewModelProvider(requireActivity()).get(ReferenceViewModel::class.java)
+        selectedChip = "rpl"
 
         if (isAdded) {
-            setupViewModel()
+            setupCovidViewModel()
+            setupReferenceViewModel(selectedChip)
         }
-
-        tv_home_siswa_name.text = nameSiswa
     }
 
-    private fun setupViewModel() {
-        covidViewModel = ViewModelProvider(requireActivity()).get(CovidViewModel::class.java)
+    private fun setupCovidViewModel() {
         covidViewModel.setCovidInfo("2020-10-17T00:00:00Z", "2020-10-18T00:00:00Z")
-        covidViewModel.getCovidInfo().observe(requireActivity(), {
+        covidViewModel.getCovidInfo().observe(viewLifecycleOwner, {
             try {
                 if (it != null) {
                     setupCovidInfo(it)
                 } else {
-                    Toast.makeText(context, "Gagal mengambil data COVID-19", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Gagal mengambil data COVID-19", Toast.LENGTH_SHORT)
+                        .show()
 
                 }
             } catch (e: Exception) {
@@ -76,11 +79,46 @@ class HomeFragment : Fragment() {
         tv_covid_positive.text = data.Active.toString()
     }
 
+    private fun setupReferenceViewModel(kelas: String) {
+        showLoading("referensi", true)
+        referenceViewModel.setReference(kelas)
+        referenceViewModel.getReference().observe(viewLifecycleOwner, {
+            rv_study_ref.adapter = MainCardAdapter(it.result)
+            showLoading("referensi", false)
+        })
+    }
+
     private fun setupAdapter() {
         rv_study_ref.setHasFixedSize(true)
         rv_study_ref.layoutManager = LinearLayoutManager(context)
-        rv_study_ref.adapter = MainCardAdapter(list)
         rv_study_ref.isNestedScrollingEnabled = false
+    }
+
+    private fun chipOnClickListener() {
+        chip_rpl.setOnClickListener {
+            selectedChip = "rpl"
+            setupReferenceViewModel(selectedChip)
+        }
+        chip_tbsm.setOnClickListener {
+            selectedChip = "tbsm"
+            setupReferenceViewModel(selectedChip)
+        }
+        chip_tei.setOnClickListener {
+            selectedChip = "tei"
+            setupReferenceViewModel(selectedChip)
+        }
+        chip_tkj.setOnClickListener {
+            selectedChip = "tkj"
+            setupReferenceViewModel(selectedChip)
+        }
+        chip_tkro.setOnClickListener {
+            selectedChip = "tkr"
+            setupReferenceViewModel(selectedChip)
+        }
+        chip_tp.setOnClickListener {
+            selectedChip = "tp"
+            setupReferenceViewModel(selectedChip)
+        }
     }
 
     private fun showLoading(name: String, state: Boolean) {
@@ -91,6 +129,12 @@ class HomeFragment : Fragment() {
                     tv_covid_positive.isGone = state
                     tv_covid_dead.isGone = state
                     tv_covid_health.isGone = state
+                }
+            }
+            "referensi" -> {
+                if (pb_referensi != null) {
+                    pb_referensi.isVisible = state
+                    rv_study_ref.isInvisible = state
                 }
             }
         }
