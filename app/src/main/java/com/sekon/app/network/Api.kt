@@ -1,11 +1,11 @@
 package com.sekon.app.network
 
+import com.sekon.app.model.SiswaResponse
 import com.sekon.app.model.signin.DataSignIn
 import com.sekon.app.model.signin.SignInResponse
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
+
 
 interface Api {
     @POST("api/v2/siswa/signin")
@@ -14,4 +14,7 @@ interface Api {
         "No-Authentication: true"
     )
     fun postSignIn(@Body dataSignIn: DataSignIn) : Call<SignInResponse>
+
+    @GET("api/v2/siswa/{id}")
+    fun getSiswa(@Path( "id") id : String) : Call<SiswaResponse>
 }
