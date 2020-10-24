@@ -5,12 +5,18 @@ import okhttp3.Response
 
 class Interceptor(private var token: String) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val finalToken = "Bearer $token"
-        val req = chain.request()
-        val basicReq = req.newBuilder()
-            .addHeader("Authorization", finalToken)
-            .build()
+        var request = chain.request()
 
-        return chain.proceed(basicReq)
+        request = if (request.header("No-Authentication") == null && token.isNotEmpty()) {
+            val finalToken = "Bearer $token"
+            request.newBuilder()
+                .addHeader("Authorization", finalToken)
+                .build()
+        } else {
+            request.newBuilder()
+                .build()
+        }
+
+        return chain.proceed(request)
     }
 }

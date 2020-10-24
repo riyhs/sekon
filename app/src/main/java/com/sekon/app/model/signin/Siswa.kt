@@ -1,12 +1,11 @@
-package com.sekon.app.model.test
+package com.sekon.app.model.signin
 
-data class SiswaResponseTest(
+data class Siswa(
     val __v: Int,
     val _id: String,
     val kelas: String,
     val nama: String,
     val nis: Int,
-    val password: String,
     val photo: String,
     val tagline: String
 )

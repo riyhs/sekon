@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.sekon.app.R
+import com.sekon.app.utils.NetworkInfo.TOKEN_KEY
 
 class SplashFragment : Fragment() {
 
@@ -18,8 +19,12 @@ class SplashFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        onSignInFinished()
+
         Handler(Looper.getMainLooper()).postDelayed({
-            if (onBoardingFinished()) {
+            if (onBoardingFinished() && TOKEN_KEY != "token") {
+                findNavController().navigate(R.id.action_splashFragment_to_mainActivity)
+            } else if (onBoardingFinished()) {
                 findNavController().navigate(R.id.action_splashFragment_to_signInFragment)
             } else {
                 findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
@@ -32,5 +37,10 @@ class SplashFragment : Fragment() {
     private fun onBoardingFinished(): Boolean {
         val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
         return sharedPref.getBoolean("Finished", false)
+    }
+
+    private fun onSignInFinished() {
+        val sharedPref = requireActivity().getSharedPreferences("onSignIn", Context.MODE_PRIVATE)
+        TOKEN_KEY = sharedPref.getString("token", "token").toString()
     }
 }

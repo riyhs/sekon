@@ -2,21 +2,16 @@ package com.sekon.app
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.sekon.app.model.test.SiswaGetResponse
-import com.sekon.app.network.NetworkConfig
 import com.sekon.app.ui.fragment.main.FeatureFragment
 import com.sekon.app.ui.fragment.main.HomeFragment
 import com.sekon.app.ui.fragment.main.MoreFragment
 import com.sekon.app.utils.NetworkInfo.TOKEN_KEY
 import kotlinx.android.synthetic.main.activity_main.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,26 +20,6 @@ class MainActivity : AppCompatActivity() {
 
         setupFragment(HomeFragment())
         bottomNavClick()
-        testRetrofit()
-    }
-
-    private fun testRetrofit() {
-        NetworkConfig()
-            .getService()
-            .getSiswa()
-            .enqueue(object : Callback<SiswaGetResponse>{
-                override fun onResponse(
-                    call: Call<SiswaGetResponse>,
-                    response: Response<SiswaGetResponse>
-                ) {
-                    Log.d("API", response.body()?.result.toString())
-                }
-
-                override fun onFailure(call: Call<SiswaGetResponse>, t: Throwable) {
-                    Log.d("API", t.message.toString())
-                }
-
-            })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

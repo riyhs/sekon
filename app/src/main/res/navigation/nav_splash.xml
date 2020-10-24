@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_splashFragment_to_signInFragment"
             app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
@@ -31,5 +34,14 @@
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.sekon.app.ui.fragment.splash.SignInFragment"
-        android:label="SignInFragment" />
+        android:label="SignInFragment" >
+        <action
+            android:id="@+id/action_signInFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.sekon.app.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 </navigation>
