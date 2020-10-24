@@ -24,7 +24,7 @@
                 android:background="@drawable/ic_background_greeting">
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/tv_home_siswa_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="false"
@@ -39,7 +39,7 @@
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/textView"
+                    android:layout_below="@id/tv_home_siswa_name"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="4dp"
                     android:layout_marginBottom="24dp"
@@ -51,7 +51,7 @@
                     android:id="@+id/imageView"
                     android:layout_width="54dp"
                     android:layout_height="54dp"
-                    android:layout_alignTop="@id/textView"
+                    android:layout_alignTop="@id/tv_home_siswa_name"
                     android:layout_alignBottom="@id/textView2"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="16dp"

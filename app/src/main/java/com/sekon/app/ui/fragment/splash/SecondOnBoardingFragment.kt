@@ -1,16 +1,14 @@
 package com.sekon.app.ui.fragment.splash
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.sekon.app.MainActivity
 import com.sekon.app.R
+import com.sekon.app.utils.Preference
 import kotlinx.android.synthetic.main.fragment_second_on_boarding.view.*
 
 class SecondOnBoardingFragment : Fragment() {
@@ -31,9 +29,6 @@ class SecondOnBoardingFragment : Fragment() {
 
     @SuppressLint("CommitPrefEdits")
     private fun onBoardingFinished() {
-        val sharedPref = requireActivity().getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
-        val editor = sharedPref.edit()
-        editor.putBoolean("Finished", true)
-        editor.apply()
+        Preference.onBoardingFinished(requireContext(), true)
     }
 }

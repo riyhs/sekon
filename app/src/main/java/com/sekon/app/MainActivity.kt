@@ -4,13 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.sekon.app.ui.fragment.main.FeatureFragment
 import com.sekon.app.ui.fragment.main.HomeFragment
 import com.sekon.app.ui.fragment.main.MoreFragment
-import com.sekon.app.utils.NetworkInfo.TOKEN_KEY
+import com.sekon.app.utils.Preference
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.sekon.app.R
 import com.sekon.app.adapter.MainCardAdapter
 import com.sekon.app.model.StudyRef
+import com.sekon.app.utils.Preference
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -29,7 +30,11 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val sharedPref = Preference.initPref(requireContext(), "onSignIn")
+        val nameSiswa = sharedPref.getString("name", "name")
+
         setupAdapter()
+        tv_home_siswa_name.text = nameSiswa
     }
 
     private fun setupAdapter() {
