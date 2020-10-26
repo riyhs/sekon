@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sekon.app.R
 import com.sekon.app.adapter.MainCardAdapter
+import com.sekon.app.model.Resource
 import com.sekon.app.model.covid.CovidResponseItem
 import com.sekon.app.utils.Preference
 import com.sekon.app.viewmodel.CovidViewModel
@@ -85,12 +86,25 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupReferenceViewModel(kelas: String) {
-        Log.d("CHIP", "start setup reference viewmodel")
         referenceViewModel.setReference(kelas)
-        Log.d("CHIP", "set reference")
-        referenceViewModel.getReference().observe(viewLifecycleOwner, {
-            rv_study_ref.adapter = MainCardAdapter(it.result)
-            Log.d("CHIP", "get reference")
+        referenceViewModel.getReference().observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is Resource.Success -> {
+                    response.data?.let {
+                        rv_study_ref.adapter = MainCardAdapter(it)
+                        showLoading("referensi", false)
+                    }
+                }
+                is Resource.Error -> {
+                    response.message?.let {
+                        Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                is Resource.Loading -> {
+                    showLoading("referensi", true)
+                }
+            }
         })
     }
 
@@ -102,12 +116,10 @@ class HomeFragment : Fragment() {
 
     private fun chipOnClickListener() {
         chip_rpl.setOnClickListener {
-            Log.d("CHIP", "click")
             selectedChip = "rpl"
             setupReferenceViewModel(selectedChip)
         }
         chip_tbsm.setOnClickListener {
-            Log.d("CHIP", "click")
             selectedChip = "tbsm"
             setupReferenceViewModel(selectedChip)
         }
