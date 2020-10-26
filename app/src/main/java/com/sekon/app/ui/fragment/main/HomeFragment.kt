@@ -33,6 +33,13 @@ class HomeFragment : Fragment() {
     private lateinit var referenceViewModel: ReferenceViewModel
     private lateinit var selectedChip: String
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        covidViewModel = ViewModelProvider(requireActivity()).get(CovidViewModel::class.java)
+        referenceViewModel = ViewModelProvider(requireActivity()).get(ReferenceViewModel::class.java)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -45,8 +52,6 @@ class HomeFragment : Fragment() {
         setupAdapter()
         chipOnClickListener()
 
-        covidViewModel = ViewModelProvider(requireActivity()).get(CovidViewModel::class.java)
-        referenceViewModel = ViewModelProvider(requireActivity()).get(ReferenceViewModel::class.java)
         selectedChip = "rpl"
 
         if (isAdded) {
@@ -80,11 +85,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupReferenceViewModel(kelas: String) {
-        showLoading("referensi", true)
+        Log.d("CHIP", "start setup reference viewmodel")
         referenceViewModel.setReference(kelas)
+        Log.d("CHIP", "set reference")
         referenceViewModel.getReference().observe(viewLifecycleOwner, {
             rv_study_ref.adapter = MainCardAdapter(it.result)
-            showLoading("referensi", false)
+            Log.d("CHIP", "get reference")
         })
     }
 
@@ -96,10 +102,12 @@ class HomeFragment : Fragment() {
 
     private fun chipOnClickListener() {
         chip_rpl.setOnClickListener {
+            Log.d("CHIP", "click")
             selectedChip = "rpl"
             setupReferenceViewModel(selectedChip)
         }
         chip_tbsm.setOnClickListener {
+            Log.d("CHIP", "click")
             selectedChip = "tbsm"
             setupReferenceViewModel(selectedChip)
         }

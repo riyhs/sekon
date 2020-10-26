@@ -5,10 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sekon.app.model.reference.ReferenceResponse
 import com.sekon.app.network.NetworkConfig
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,11 +12,11 @@ import retrofit2.Response
 class ReferenceViewModel: ViewModel() {
     val referenceResponse = MutableLiveData<ReferenceResponse>()
 
-    private var vmJob = Job()
-    private var scope = CoroutineScope(Dispatchers.Default + vmJob)
+//    private var vmJob = Job()
+//    private var scope = CoroutineScope(Dispatchers.Default + vmJob)
 
     fun setReference(kelas: String) {
-        scope.launch {
+//        scope.launch {
             NetworkConfig()
                 .getService()
                 .getReferensi(kelas)
@@ -37,15 +33,15 @@ class ReferenceViewModel: ViewModel() {
                     }
 
                 })
-        }
+//        }
     }
 
     fun getReference() : MutableLiveData<ReferenceResponse> {
         return referenceResponse
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        vmJob.cancel()
-    }
+//    override fun onCleared() {
+//        super.onCleared()
+//        vmJob.cancel()
+//    }
 }
