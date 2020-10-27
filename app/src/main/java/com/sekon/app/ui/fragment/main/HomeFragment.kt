@@ -20,6 +20,7 @@ import com.sekon.app.utils.Preference
 import com.sekon.app.viewmodel.CovidViewModel
 import com.sekon.app.viewmodel.ReferenceViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
+import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -50,19 +51,22 @@ class HomeFragment : Fragment() {
         val nameSiswa = sharedPref.getString("name", "name")
         tv_home_siswa_name.text = nameSiswa
 
+        val from = getCurrentDate(5)
+        val to = getCurrentDate(0)
+
         setupAdapter()
         chipOnClickListener()
 
         selectedChip = "rpl"
 
         if (isAdded) {
-            setupCovidViewModel()
+            setupCovidViewModel(from, to)
             setupReferenceViewModel(selectedChip)
         }
     }
 
-    private fun setupCovidViewModel() {
-        covidViewModel.setCovidInfo("2020-10-17T00:00:00Z", "2020-10-18T00:00:00Z")
+    private fun setupCovidViewModel(from: String, to: String) {
+        covidViewModel.setCovidInfo(from, to)
         covidViewModel.getCovidInfo().observe(viewLifecycleOwner, {
             try {
                 if (it != null) {
@@ -112,6 +116,16 @@ class HomeFragment : Fragment() {
         rv_study_ref.setHasFixedSize(true)
         rv_study_ref.layoutManager = LinearLayoutManager(context)
         rv_study_ref.isNestedScrollingEnabled = false
+    }
+
+    private fun getCurrentDate(interval: Int) : String {
+        val c = Calendar.getInstance()
+
+        val year = c.get(Calendar.YEAR)
+        val month = c.get(Calendar.MONTH)
+        val day = c.get(Calendar.DAY_OF_MONTH) - interval
+
+        return "$year-$month-$day" + "T00:00:00Z"
     }
 
     private fun chipOnClickListener() {

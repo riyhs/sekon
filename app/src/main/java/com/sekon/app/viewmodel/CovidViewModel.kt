@@ -32,7 +32,8 @@ class CovidViewModel : ViewModel() {
                         response: Response<CovidResponse>
                     ) {
                         Log.d("COVID", response.body().toString())
-                        covidData.postValue(response.body()?.get(0))
+                        val lastIndex = response.body()!!.size - 1
+                        covidData.postValue(response.body()?.get(lastIndex))
                     }
 
                     override fun onFailure(call: Call<CovidResponse>, t: Throwable) {

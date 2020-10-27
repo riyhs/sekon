@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -34,7 +35,11 @@ class MoreFragment : Fragment() {
     private fun setupViewModel() {
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
         mainViewModel.getSiswaDetail().observe(viewLifecycleOwner, {
-            setupLayout(it.result)
+            if (it != null) {
+                setupLayout(it.result)
+            } else {
+                Toast.makeText(context, "Tidak dapat mengambil data siswa", Toast.LENGTH_SHORT).show()
+            }
         })
     }
 
