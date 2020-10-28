@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -49,8 +48,6 @@ class HomeFragment : Fragment() {
 
         val sharedPref = Preference.initPref(requireContext(), "onSignIn")
         val nameSiswa = sharedPref.getString("name", "name")
-        val token = sharedPref.getString("token", "token")
-        Toast.makeText(context, token, Toast.LENGTH_SHORT).show()
         tv_home_siswa_name.text = nameSiswa
 
         val from = getCurrentDate(5)
@@ -76,7 +73,6 @@ class HomeFragment : Fragment() {
                 } else {
                     Toast.makeText(context, "Gagal mengambil data COVID-19", Toast.LENGTH_SHORT)
                         .show()
-
                 }
             } catch (e: Exception) {
                 Log.d("COVID", "Gagal : ${e.message}")
@@ -92,14 +88,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupReferenceViewModel(kelas: String) {
-        Log.d("REFERENSI", "start REFERENSI")
         referenceViewModel.setReference(kelas)
         referenceViewModel.getReference().observe(viewLifecycleOwner, { response ->
             when (response) {
                 is Resource.Success -> {
                     response.data?.let {
-                        rv_study_ref.adapter = MainCardAdapter(it)
-                        showLoading("referensi", false)
+                        if (rv_study_ref != null) {
+                            rv_study_ref.adapter = MainCardAdapter(it)
+                            showLoading("referensi", false)
+                        }
                     }
                 }
                 is Resource.Error -> {
@@ -163,13 +160,13 @@ class HomeFragment : Fragment() {
             "covid" -> {
                 if (pb_covid != null) {
                     pb_covid.isVisible = state
-                    tv_covid_positive.isGone = state
-                    tv_covid_dead.isGone = state
-                    tv_covid_health.isGone = state
+                    tv_covid_positive.isInvisible = state
+                    tv_covid_dead.isInvisible = state
+                    tv_covid_health.isInvisible = state
                 }
             }
             "referensi" -> {
-                if (pb_referensi != null) {
+                if (pb_referensi != null && rv_study_ref != null) {
                     pb_referensi.isVisible = state
                     rv_study_ref.isInvisible = state
                 }
