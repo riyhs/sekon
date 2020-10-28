@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -26,10 +27,15 @@ class SignInFragment : Fragment() {
 
     private lateinit var viewModel : SignInViewModel
 
+    @Suppress("DEPRECATION")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
+
+        requireActivity().window.navigationBarColor = ContextCompat.getColor(requireContext(), android.R.color.white)
+        requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), android.R.color.white)
+        requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
         onBackPressed()
         signIn()

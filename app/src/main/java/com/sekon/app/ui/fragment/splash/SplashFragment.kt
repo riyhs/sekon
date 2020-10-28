@@ -20,7 +20,6 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         onSignInFinished()
-
         Handler(Looper.getMainLooper()).postDelayed({
             if (onBoardingFinished() && TOKEN_KEY != "token") {
                 findNavController().navigate(R.id.action_splashFragment_to_mainActivity)
