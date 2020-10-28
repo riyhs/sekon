@@ -21,9 +21,9 @@ class ReferenceViewModel: ViewModel() {
     private var scope = CoroutineScope(Dispatchers.Default + vmJob)
 
     fun setReference(kelas: String) {
-        scope.launch {
-            referenceResponse.postValue(Resource.Loading())
+        referenceResponse.postValue(Resource.Loading())
 
+        scope.launch {
             NetworkConfig()
                 .getService()
                 .getReferensi(kelas)

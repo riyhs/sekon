@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.sekon.app.R
 import com.sekon.app.model.signin.DataSignIn
+import com.sekon.app.utils.NetworkInfo
 import com.sekon.app.utils.Preference
 import com.sekon.app.viewmodel.SignInViewModel
 import kotlinx.android.synthetic.main.fragment_sign_in.*
@@ -75,6 +76,7 @@ class SignInFragment : Fragment() {
 
     private fun isSignInSuccess(state: Boolean) {
         if (state) {
+            onSignInFinished()
             findNavController().navigate(R.id.action_signInFragment_to_mainActivity)
             activity?.finish()
         } else {
@@ -88,10 +90,15 @@ class SignInFragment : Fragment() {
     }
 
     private fun onBackPressed() {
-        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
+            activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 activity?.finish()
             }
         })
+    }
+
+    private fun onSignInFinished() {
+        val sharedPref = Preference.initPref(requireContext(), "onSignIn")
+        NetworkInfo.TOKEN_KEY = sharedPref.getString("token", "token").toString()
     }
 }

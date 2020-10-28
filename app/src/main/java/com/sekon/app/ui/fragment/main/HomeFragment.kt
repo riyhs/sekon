@@ -49,6 +49,8 @@ class HomeFragment : Fragment() {
 
         val sharedPref = Preference.initPref(requireContext(), "onSignIn")
         val nameSiswa = sharedPref.getString("name", "name")
+        val token = sharedPref.getString("token", "token")
+        Toast.makeText(context, token, Toast.LENGTH_SHORT).show()
         tv_home_siswa_name.text = nameSiswa
 
         val from = getCurrentDate(5)
@@ -90,6 +92,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupReferenceViewModel(kelas: String) {
+        Log.d("REFERENSI", "start REFERENSI")
         referenceViewModel.setReference(kelas)
         referenceViewModel.getReference().observe(viewLifecycleOwner, { response ->
             when (response) {
