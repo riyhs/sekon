@@ -8,10 +8,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.sekon.app.R
+import com.sekon.app.model.Resource
 import com.sekon.app.model.signin.DataSignIn
 import com.sekon.app.utils.NetworkInfo
 import com.sekon.app.utils.Preference
@@ -44,20 +47,32 @@ class SignInFragment : Fragment() {
 
     private fun setupViewModel() {
         viewModel.setSignIn(initData())
-        viewModel.getSignInIsSuccess().observe(viewLifecycleOwner, { isSuccess ->
-            if (isSuccess == true) {
-                viewModel.getToken().observe(viewLifecycleOwner, {token ->
-                    saveToken(token)
-                })
-                viewModel.getSignInResponse().observe(viewLifecycleOwner, {response ->
-                    val nama = response.siswa.nama
-                    val id = response.siswa._id
-                    Preference.saveSiswaName(nama, requireContext())
-                    Preference.saveSiswaId(id, requireContext())
-                })
-                isSignInSuccess(true)
-            } else {
-                isSignInSuccess(false)
+        viewModel.getSignInResponse().observe(viewLifecycleOwner, { response ->
+            when (response) {
+                is Resource.Success -> {
+                    if (response.data != null && response.data.status == "Sukses") {
+                        val nama = response.data.siswa.nama
+                        val id = response.data.siswa._id
+
+                        Preference.saveSiswaName(nama, requireContext())
+                        Preference.saveSiswaId(id, requireContext())
+                        saveToken(response.data.token)
+                        Toast.makeText(context, response.data.message, Toast.LENGTH_SHORT).show()
+                        isSignInSuccess(true)
+                        showLoading(false)
+                    } else {
+                        showLoading(false)
+                        Toast.makeText(context, response.data?.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                is Resource.Loading -> {
+                    showLoading(true)
+                }
+
+                is Resource.Error -> {
+                    Toast.makeText(context, response.message, Toast.LENGTH_LONG).show()
+                }
             }
         })
     }
@@ -79,8 +94,6 @@ class SignInFragment : Fragment() {
             onSignInFinished()
             findNavController().navigate(R.id.action_signInFragment_to_mainActivity)
             activity?.finish()
-        } else {
-            Toast.makeText(requireContext(), "Password / NIS salah", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -89,16 +102,24 @@ class SignInFragment : Fragment() {
         Preference.saveToken(token, requireContext())
     }
 
+    private fun onSignInFinished() {
+        val sharedPref = Preference.initPref(requireContext(), "onSignIn")
+        NetworkInfo.TOKEN_KEY = sharedPref.getString("token", "token").toString()
+    }
+
+    private fun showLoading(state: Boolean) {
+        pb_sign_in.isVisible = state
+        tiSignInNis.isInvisible = state
+        tiSignInPassword.isInvisible = state
+        bt_sign_in.isInvisible = state
+        tv_sign_in.isInvisible = state
+    }
+
     private fun onBackPressed() {
             activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 activity?.finish()
             }
         })
-    }
-
-    private fun onSignInFinished() {
-        val sharedPref = Preference.initPref(requireContext(), "onSignIn")
-        NetworkInfo.TOKEN_KEY = sharedPref.getString("token", "token").toString()
     }
 }

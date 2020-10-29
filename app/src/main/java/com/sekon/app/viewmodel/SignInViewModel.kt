@@ -1,11 +1,14 @@
 package com.sekon.app.viewmodel
 
+import android.os.Build.VERSION_CODES.M
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sekon.app.model.Resource
 import com.sekon.app.model.signin.DataSignIn
 import com.sekon.app.model.signin.SignInResponse
+import com.sekon.app.model.signin.Siswa
 import com.sekon.app.network.NetworkConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,15 +18,18 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
+@Suppress("BlockingMethodInNonBlockingContext")
 class SignInViewModel : ViewModel() {
-    private var signInResponse = MutableLiveData<SignInResponse>()
-    private var tokenResponse = MutableLiveData<String>()
-    private var isSignInSuccess = MutableLiveData<Boolean>()
+    private var signInResponse = MutableLiveData<Resource<SignInResponse>>()
 
     private var vmJob = Job()
     private var scope = CoroutineScope(Dispatchers.Default + vmJob)
+    val errorResponse = SignInResponse(message="Berhasil Masuk", siswa=Siswa(__v=0, _id="0", kelas="", nama="", nis=0, photo="", tagline=""), status="Gagal", token="")
 
     fun setSignIn(data: DataSignIn) {
+        signInResponse.postValue(Resource.Loading())
+
         scope.launch {
             NetworkConfig()
                 .getService()
@@ -33,30 +39,20 @@ class SignInViewModel : ViewModel() {
                         call: Call<SignInResponse>,
                         response: Response<SignInResponse>
                     ) {
-                        isDataValid(response)
+                        if (response.isSuccessful) {
+                            signInResponse.postValue(Resource.Success(response.body()))
+                            Log.d("RESPONSE", response.body().toString())
+                        }
                     }
 
                     override fun onFailure(call: Call<SignInResponse>, t: Throwable) {
-                        Log.d("SIGNIN", "Gagal login ${t.message}")
+                        signInResponse.postValue(Resource.Error("Pastikan kamu terhubung internet"))
                     }
                 })
         }
     }
 
-    private fun isDataValid(response: Response<SignInResponse>) {
-        if (response.body()?.status == "Sukses") {
-            signInResponse.postValue(response.body())
-            tokenResponse.postValue(response.body()?.token)
-            isSignInSuccess.postValue(true)
-
-        } else {
-            isSignInSuccess.postValue(false)
-        }
-    }
-
-    fun getSignInResponse() : LiveData<SignInResponse> = signInResponse
-    fun getToken() : LiveData<String> = tokenResponse
-    fun getSignInIsSuccess() : LiveData<Boolean> = isSignInSuccess
+    fun getSignInResponse() : LiveData<Resource<SignInResponse>> = signInResponse
 
     override fun onCleared() {
         super.onCleared()

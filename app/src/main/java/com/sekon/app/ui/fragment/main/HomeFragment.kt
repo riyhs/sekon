@@ -71,8 +71,7 @@ class HomeFragment : Fragment() {
                 if (it != null) {
                     setupCovidInfo(it)
                 } else {
-                    Toast.makeText(context, "Gagal mengambil data COVID-19", Toast.LENGTH_SHORT)
-                        .show()
+                    Toast.makeText(context, "Gagal mengambil data COVID-19", Toast.LENGTH_SHORT).show()
                 }
             } catch (e: Exception) {
                 Log.d("COVID", "Gagal : ${e.message}")
