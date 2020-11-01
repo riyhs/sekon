@@ -21,9 +21,6 @@ import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
 import com.nbsp.materialfilepicker.MaterialFilePicker
 import com.nbsp.materialfilepicker.ui.FilePickerActivity
-import com.sekon.app.utils.Cloudinary.API_KEY
-import com.sekon.app.utils.Cloudinary.API_SECRET
-import com.sekon.app.utils.Cloudinary.CLOUD_NAME
 import kotlinx.android.synthetic.main.activity_saran.*
 import java.util.regex.Pattern
 
@@ -34,22 +31,12 @@ class SaranActivity : AppCompatActivity() {
         private const val PICK_IMAGE = 664
     }
 
-    private var config: MutableMap<String, String> = HashMap()
     private var url: String? = null
     private var mFilePath: String? = null
-
-
-    private fun configCloudinary() {
-        config["cloud_name"] = CLOUD_NAME
-        config["api_key"] = API_KEY
-        config["api_secret"] = API_SECRET
-        MediaManager.init(this@SaranActivity, config)
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_saran)
-        configCloudinary()
 
         tv_saran_pick_image.setOnClickListener {
             requestPermission()

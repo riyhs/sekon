@@ -11,13 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.core.net.toUri
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.cloudinary.android.MediaManager
-import com.cloudinary.android.callback.ErrorInfo
-import com.cloudinary.android.callback.UploadCallback
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -28,14 +23,14 @@ import com.nbsp.materialfilepicker.MaterialFilePicker
 import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import com.sekon.app.R
 import com.sekon.app.model.SiswaResponseDetail
-import com.sekon.app.utils.Cloudinary
+import com.sekon.app.model.SiswaUpdateBody
 import com.sekon.app.viewmodel.MainViewModel
+import com.sekon.app.viewmodel.MoreViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_more.*
 import java.util.regex.Pattern
 
 class MoreFragment : Fragment() {
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,42 +39,49 @@ class MoreFragment : Fragment() {
     }
 
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var moreViewModel: MoreViewModel
 
     companion object {
         private const val PICK_IMAGE = 665
     }
 
-    private var config: MutableMap<String, String> = HashMap()
-    private var url: String? = null
-    private var mFilePath: String? = null
-
-
-    private fun configCloudinary() {
-        config["cloud_name"] = Cloudinary.CLOUD_NAME
-        config["api_key"] = Cloudinary.API_KEY
-        config["api_secret"] = Cloudinary.API_SECRET
-        MediaManager.init(requireContext(), config)
-    }
+    private var idSiswa: String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        configCloudinary()
-        setupViewModel()
+
+        mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+        moreViewModel = ViewModelProvider(requireActivity()).get(MoreViewModel::class.java)
+
+        getMainViewModel()
         onBackPressed()
 
         tv_change_profile_image.setOnClickListener {
             requestPermission()
         }
-
     }
 
-    private fun setupViewModel() {
-        mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
+    private fun uploadToCloudinary(filePath: String) {
+        moreViewModel.uploadToCloudinary(filePath)
+        moreViewModel.getSiswaUrl().observe(viewLifecycleOwner, {
+            Log.d("PHOTO_URL", it.toString())
+            val siswaUpdateBody = SiswaUpdateBody(it)
+            Log.d("PHOTO_URL", siswaUpdateBody.toString())
+            moreViewModel.setUpdatePhoto(idSiswa.toString(), siswaUpdateBody, requireContext(), iv_profile)
+        })
+    }
+
+    private fun getMainViewModel() {
         mainViewModel.getSiswaDetail().observe(viewLifecycleOwner, {
             if (it != null) {
                 setupLayout(it.result)
+                idSiswa = it.result._id
+
+                moreViewModel.setupGlide(requireContext(), it.result.photo, iv_profile)
+
             } else {
-                Toast.makeText(context, "Tidak dapat mengambil data siswa", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Tidak dapat mengambil data siswa", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
     }
@@ -93,16 +95,22 @@ class MoreFragment : Fragment() {
     }
 
     private fun onBackPressed() {
-        activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                activity?.supportFragmentManager
-                    ?.beginTransaction()
-                    ?.replace(R.id.frame_container, HomeFragment(), HomeFragment::class.java.simpleName)
-                    ?.commit()
+        activity?.onBackPressedDispatcher?.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    activity?.supportFragmentManager
+                        ?.beginTransaction()
+                        ?.replace(
+                            R.id.frame_container,
+                            HomeFragment(),
+                            HomeFragment::class.java.simpleName
+                        )
+                        ?.commit()
 
-                activity?.bottomNavigationView?.selectedItemId = R.id.bottom_nav_home
-            }
-        })
+                    activity?.bottomNavigationView?.selectedItemId = R.id.bottom_nav_home
+                }
+            })
     }
 
     private fun requestPermission() {
@@ -114,10 +122,17 @@ class MoreFragment : Fragment() {
                 }
 
                 override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-                    Toast.makeText(requireContext(), "Tidak bisa memilih gambar", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        requireContext(),
+                        "Tidak bisa memilih gambar",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
 
-                override fun onPermissionRationaleShouldBeShown(p0: PermissionRequest?, p1: PermissionToken?) {
+                override fun onPermissionRationaleShouldBeShown(
+                    p0: PermissionRequest?,
+                    p1: PermissionToken?
+                ) {
                     TODO("Not yet implemented")
                 }
             })
@@ -128,55 +143,26 @@ class MoreFragment : Fragment() {
         val externalStorage = Environment.getExternalStorageDirectory()
 
         MaterialFilePicker()
-            .withActivity(activity)
+            .withSupportFragment(this)
             .withCloseMenu(true)
             .withFilter(Pattern.compile(".*\\.(jpg|jpeg|png)$"))
             .withFilterDirectories(false)
             .withRootPath(externalStorage.absolutePath)
-            .withTitle("Pick a image")
+            .withTitle("Pick a image ds")
             .withRequestCode(PICK_IMAGE)
             .start()
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
             val filePath = data?.getStringExtra(FilePickerActivity.RESULT_FILE_PATH)
 
             if (filePath != null) {
-                getImageFilePath(filePath)
-                mFilePath = filePath
-                uploadToCloudinary(mFilePath)
+                uploadToCloudinary(filePath)
             }
         }
     }
-
-    private fun getImageFilePath(filePath: String?) {
-        iv_profile.setImageURI(filePath?.toUri())
-        iv_profile.isVisible = true
-    }
-
-    private fun uploadToCloudinary(filePath: String?) {
-        MediaManager.get().upload(filePath).callback(object : UploadCallback {
-            override fun onStart(requestId: String) {
-            }
-
-            override fun onProgress(requestId: String, bytes: Long, totalBytes: Long) {
-            }
-
-            override fun onSuccess(requestId: String, resultData: Map<*, *>) {
-                url = resultData["url"].toString()
-                Log.d("URL", url!!)
-                Toast.makeText(requireContext(), url, Toast.LENGTH_SHORT).show()
-
-            }
-
-            override fun onError(requestId: String, error: ErrorInfo) {
-            }
-
-            override fun onReschedule(requestId: String, error: ErrorInfo) {
-            }
-        }).dispatch()
-    }
-
 }
