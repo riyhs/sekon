@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme"
-        android:allowBackup="true">
+        android:allowBackup="true"
+        android:name=".MainApplication">
 
         <activity android:name=".SaranActivity"/>
-        <activity android:name=".InitActivity"/>
         <activity android:name=".JadwalActivity" />
         <activity android:name=".AbsenActivity" />
         <activity android:name=".AnnouncementActivity" />

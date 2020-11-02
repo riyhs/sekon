@@ -121,10 +121,27 @@ class HomeFragment : Fragment() {
         val c = Calendar.getInstance()
 
         val year = c.get(Calendar.YEAR)
-        val month = c.get(Calendar.MONTH)
-        val day = c.get(Calendar.DAY_OF_MONTH) - interval
+        var month = c.get(Calendar.MONTH) + 1
+        var day = c.get(Calendar.DAY_OF_MONTH) - interval
 
-        return "$year-$month-$day" + "T00:00:00Z"
+        val stringDay: String
+        val stringMonth: String
+
+        if (day < 1) {
+            day = 27
+            month -= 1
+        }
+
+        stringMonth = if (month < 10) {
+            "0$month"
+        } else month.toString()
+
+        stringDay = if (day < 10) {
+            "0$day"
+        } else day.toString()
+
+        return "$year-$stringMonth-$stringDay"
+//        + "T00:00:00Z"
     }
 
     private fun chipOnClickListener() {
