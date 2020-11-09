@@ -5,6 +5,9 @@ import com.sekon.app.model.SiswaUpdateBody
 import com.sekon.app.model.announcement.AnnouncementResponse
 import com.sekon.app.model.covid.CovidResponse
 import com.sekon.app.model.reference.ReferenceResponse
+import com.sekon.app.model.saran.PostSaran
+import com.sekon.app.model.saran.PostSaranResponse
+import com.sekon.app.model.saran.SaranResponse
 import com.sekon.app.model.signin.DataSignIn
 import com.sekon.app.model.signin.SignInResponse
 import retrofit2.Call
@@ -36,6 +39,13 @@ interface Api {
     // Pengumuman
     @GET("api/v2/pengumuman/")
     fun getAnnouncement() : Call<AnnouncementResponse>
+
+    // Saran
+    @GET("api/v2/saran/")
+    fun getSaran() : Call<SaranResponse>
+
+    @POST("api/v2/saran/")
+    fun postSaran(@Body postSaran: PostSaran) : Call<PostSaranResponse>
 
     // covid
     @GET("country/indonesia")

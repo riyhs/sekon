@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "22ccf94f-a222-442c-8986-d9515ed98c58",
-		"name": "smart-school-api-sekon",
+		"_postman_id": "9d4486a3-3713-4cd3-b92a-cfa461a7481e",
+		"name": "smart-school-api-sekon-DEV",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -26,11 +26,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:6600/api/v2/siswa",
+							"raw": "{{base_url}}/api/v2/siswa",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "6600",
 							"path": [
 								"api",
 								"v2",
@@ -46,11 +45,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:6600/api/v2/guru/",
+							"raw": "{{base_url}}/api/v2/guru/",
 							"host": [
-								"localhost"
+								"{{base_url}}"
 							],
-							"port": "6600",
 							"path": [
 								"api",
 								"v2",
@@ -63,18 +61,32 @@
 				},
 				{
 					"name": "get-all-jadwal",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hari\": \"Rabu\",\r\n    \"mapel\": \"MTK\",\r\n    \"jamAwal\": \"8\",\r\n    \"jamAkhir\": \"9\",\r\n    \"kelas\": \"X-RPL-2\",\r\n    \"tanggal\": \"12-05-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{base_url}}/api/v1/jadwal",
+							"raw": "{{local}}/api/v2/jadwal/X-RPL-1/",
 							"host": [
-								"{{base_url}}"
+								"{{local}}"
 							],
 							"path": [
 								"api",
-								"v1",
-								"jadwal"
+								"v2",
+								"jadwal",
+								"X-RPL-1",
+								""
 							]
 						}
 					},
@@ -86,9 +98,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/v2/pengumuman/",
+							"raw": "{{local}}/api/v2/pengumuman/",
 							"host": [
-								"{{base_url}}"
+								"{{local}}"
 							],
 							"path": [
 								"api",
@@ -106,10 +118,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/v2/pelajaran/",
+							"raw": "localhost:6600/api/v2/pelajaran/",
 							"host": [
-								"{{base_url}}"
+								"localhost"
 							],
+							"port": "6600",
 							"path": [
 								"api",
 								"v2",
@@ -126,15 +139,16 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{base_url}}/api/v2/saran/",
+							"raw": "{{local}}/api/v2/siswa/5f9ed87c0ce63100176c8ada/saran",
 							"host": [
-								"{{base_url}}"
+								"{{local}}"
 							],
 							"path": [
 								"api",
 								"v2",
-								"saran",
-								""
+								"siswa",
+								"5f9ed87c0ce63100176c8ada",
+								"saran"
 							]
 						}
 					},
@@ -158,13 +172,15 @@
 							}
 						},
 						"url": {
-							"raw": "{{base_url}}/api/v2/absen/",
+							"raw": "{{base_url}}/api/v2/siswa/5f97eddd76e64536581fde69/absen/",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"api",
 								"v2",
+								"siswa",
+								"5f97eddd76e64536581fde69",
 								"absen",
 								""
 							]
@@ -174,13 +190,25 @@
 				},
 				{
 					"name": "get-all-referensi",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"method": "GET",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"judul\": \"Ngengg Ngengg\",\r\n    \"deskripsi\": \"Teknik Kendaraan Ringan adalah ilmu yang mempelajari tentang alat-alat transportasi darat yang menggunakan mesin, terutama mobil yang mulai berkembang sebagai cabang ilmu seiring dengan diciptakannya mesin mobil.\",\r\n    \"src\": \"https://www.ahzaa.net/2018/05/mengenal-jurusan-teknik-kendaraan.html\",\r\n    \"photo\": \"https://www.blackxperience.com/assets/content/blackauto/autotips/mesin-xv.jpg\",\r\n    \"jurusan\": \"tkr\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "{{base_url}}/api/v2/referensi/rpl",
+							"raw": "{{local}}/api/v2/referensi/rpl",
 							"host": [
-								"{{base_url}}"
+								"{{local}}"
 							],
 							"path": [
 								"api",
@@ -207,7 +235,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "871607fc-020e-48fd-b719-2033d17ddc6f",
+						"id": "cb59200f-f0cb-4722-9bd2-92215700f2eb",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -217,7 +245,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a104ba10-8082-465a-97e6-98c42de2b77b",
+						"id": "f99b7c94-56a9-4124-8dd3-aa42b42dc730",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -239,10 +267,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/api/v2/jadwal/rpl",
+									"raw": "localhost:6600/api/v2/jadwal/rpl",
 									"host": [
-										"{{base_url}}"
+										"localhost"
 									],
+									"port": "6600",
 									"path": [
 										"api",
 										"v2",
@@ -266,10 +295,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/api/v2/pengumuman/5f86da8bf97bcf28d817fbc7",
+									"raw": "localhost:6600/api/v2/pengumuman/5f86da8bf97bcf28d817fbc7",
 									"host": [
-										"{{base_url}}"
+										"localhost"
 									],
+									"port": "6600",
 									"path": [
 										"api",
 										"v2",
@@ -291,9 +321,9 @@
 							"name": "signup",
 							"event": [
 								{
-									"listen": "test",
+									"listen": "prerequest",
 									"script": {
-										"id": "1dd451f8-d1c0-49b1-a937-a8c9f1f2dca2",
+										"id": "6ad9c8a0-8956-497d-9082-d2193141d43c",
 										"exec": [
 											""
 										],
@@ -301,12 +331,14 @@
 									}
 								},
 								{
-									"listen": "prerequest",
+									"listen": "test",
 									"script": {
-										"id": "fe327aec-b518-4464-9b4e-cf62a3503943",
+										"id": "73f353a8-31a6-43ef-b873-cb0584d246dd",
 										"exec": [
 											"var jsonData = JSON.parse(responseBody);\r",
-											"postman.setEnvironmentVariable(\"id_siswa\", jsonData.siswa._id);"
+											"postman.setEnvironmentVariable(\"id_siswa\", jsonData.siswa._id);\r",
+											"var jsonData = JSON.parse(responseBody);\r",
+											"postman.setEnvironmentVariable(\"kelas\", jsonData.siswa.kelas);"
 										],
 										"type": "text/javascript"
 									}
@@ -317,7 +349,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nama\": \"Rafi Yulianto\",\r\n    \"tagline\": \"\",\r\n    \"kelas\": \"X-RPL\",\r\n    \"nis\": 10007,\r\n    \"password\": \"tiar1234\",\r\n    \"photo\": \"\",\r\n    \"saran_url\": \"/api/v1/siswa/{{id_siswa}}/saran\",\r\n    \"absen_url\": \"/api/v2/siswa/absen/rpl\",\r\n    \"jadwal_url\": \"/api/v2/jadwal/rpl\"\r\n}",
+									"raw": "{\r\n    \"nama\": \"Hendra Pratama\",\r\n    \"tagline\": \"\",\r\n    \"kelas\": \"XII-TKJ\",\r\n    \"nis\": 10010,\r\n    \"password\": \"hendra1234\",\r\n    \"photo\": \"\",\r\n    \"saran_url\": \"\",\r\n    \"absen_url\": \"\",\r\n    \"jadwal_url\": \"\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -325,10 +357,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v2/siswa/signup",
+									"raw": "localhost:6600/api/v2/siswa/signup",
 									"host": [
-										"{{base_url}}"
+										"localhost"
 									],
+									"port": "6600",
 									"path": [
 										"api",
 										"v2",
@@ -355,10 +388,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/api/v2/siswa/5f81c9d9d291bb1c78c23643",
+									"raw": "localhost:6600/api/v2/siswa/5f81c9d9d291bb1c78c23643",
 									"host": [
-										"{{base_url}}"
+										"localhost"
 									],
+									"port": "6600",
 									"path": [
 										"api",
 										"v2",
@@ -376,7 +410,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"tagline\": \"no game no life\",\r\n    \"photo\": \"\"\r\n}",
+									"raw": "{\r\n    \"tagline\": \"hidup seperti lary\",\r\n    \"photo\": \"https://images.unsplash.com/photo-1456327102063-fb5054efe647?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -384,7 +418,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v2/siswa/5f89afd84fa8731fc8c3551d",
+									"raw": "{{base_url}}/api/v2/siswa/5f9ed87c0ce63100176c8ada",
 									"host": [
 										"{{base_url}}"
 									],
@@ -392,7 +426,7 @@
 										"api",
 										"v2",
 										"siswa",
-										"5f89afd84fa8731fc8c3551d"
+										"5f9ed87c0ce63100176c8ada"
 									]
 								}
 							},
@@ -404,7 +438,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "996a0f4d-afb5-4468-b0d4-5218ba9de04c",
+										"id": "470dbc49-5715-4ef7-ad8e-4c4c634d5785",
 										"exec": [
 											"var jsonData = JSON.parse(responseBody);\r",
 											"postman.setEnvironmentVariable(\"jwt_siswa\", jsonData.token);"
@@ -418,7 +452,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nis\": 10007,\r\n    \"password\": \"rafi1234\"\r\n}",
+									"raw": "{\r\n    \"nis\": 10010,\r\n    \"password\": \"hendra1234\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -426,9 +460,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v2/siswa/signin",
+									"raw": "{{local}}/api/v2/siswa/signin",
 									"host": [
-										"{{base_url}}"
+										"{{local}}"
 									],
 									"path": [
 										"api",
@@ -453,10 +487,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/api/v2/pelajaran/5f86d4aee704064b10159d52",
+									"raw": "localhost:6600/api/v2/pelajaran/5f86d4aee704064b10159d52",
 									"host": [
-										"{{base_url}}"
+										"localhost"
 									],
+									"port": "6600",
 									"path": [
 										"api",
 										"v2",
@@ -480,10 +515,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/api/v2/saran/5f86d05ce0fe5253c0bd76d6",
+									"raw": "localhost:6600/api/v2/saran/5f86d05ce0fe5253c0bd76d6",
 									"host": [
-										"{{base_url}}"
+										"localhost"
 									],
+									"port": "6600",
 									"path": [
 										"api",
 										"v2",
@@ -496,12 +532,15 @@
 						},
 						{
 							"name": "post-saran",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
-								"method": "POST",
+								"method": "GET",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"saran\": \"Kursi Rusak\",\r\n    \"deskripsi\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing tristique risus nec feugiat in fermentum posuere urna nec. Sodales ut eu sem integer vitae justo eget.\",\r\n    \"photo\": \"\"\r\n}",
+									"raw": "{\r\n    \"saran\": \"Ac error\",\r\n    \"deskripsi\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Adipiscing tristique risus nec feugiat in fermentum posuere urna nec. Sodales ut eu sem integer vitae justo eget.\",\r\n    \"photo\": \"\",\r\n    \"nama\": \"5f9ed87c0ce63100176c8ada\",\r\n    \"kelas\": \"5f9ed87c0ce63100176c8ada\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -509,15 +548,16 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v2/saran/",
+									"raw": "{{local}}/api/v2/siswa/5all/saran",
 									"host": [
-										"{{base_url}}"
+										"{{local}}"
 									],
 									"path": [
 										"api",
 										"v2",
-										"saran",
-										""
+										"siswa",
+										"5all",
+										"saran"
 									]
 								}
 							},
@@ -559,12 +599,15 @@
 					"item": [
 						{
 							"name": "post-absen",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
-								"method": "POST",
+								"method": "GET",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    {\r\n    \"Kelas\": \"5f81c9d9d291bb1c78c23643\",\r\n    \"Nama\": \"5f81c9d9d291bb1c78c23643\",\r\n    \"Pelajaran\": \"5f86d4aee704064b10159d52\",\r\n    \"Status\": 1\r\n}\r\n}",
+									"raw": "{\r\n    \"kelas\": \"5f89afd84fa8731fc8c3551d\",\r\n    \"nama\": \"5f89afd84fa8731fc8c3551d\",\r\n    \"mapel\": \"5fa02a86d2aaa96abc5d6944\",\r\n    \"status\": 1\r\n}\r\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -605,7 +648,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "e63143c9-c815-4125-a8f2-83063c031234",
+						"id": "4b50b78d-c822-4af2-a81d-3d6f0c322a2b",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -615,7 +658,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "36ed9bf1-2db5-492e-8db8-c7f5e8c3b6a8",
+						"id": "82479135-b12c-4662-adf7-f1adb4963d42",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -646,10 +689,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v2/jadwal",
+									"raw": "localhost:6600/api/v2/jadwal",
 									"host": [
-										"{{base_url}}"
+										"localhost"
 									],
+									"port": "6600",
 									"path": [
 										"api",
 										"v2",
@@ -668,12 +712,15 @@
 					"item": [
 						{
 							"name": "post-pengumuman",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
-								"method": "POST",
+								"method": "GET",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"judul\": \"mau UTS\",\r\n    \"deskripsi\": \"hohaohdoahodwahuoeahfeajifiaejf\",\r\n    \"tanggal\": \"12\"\r\n}",
+									"raw": "{\r\n    \"judul\": \"Libur 4 Tahun\",\r\n    \"deskripsi\": \"Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.\",\r\n    \"photo\": \"https://www.fileedge.com/wp-content/uploads/2017/05/google-2.jpg\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -681,7 +728,7 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v2/pengumuman/",
+									"raw": "{{base_url}}/api/v2/pengumuman/5f9edaec0ce63100176c8adc",
 									"host": [
 										"{{base_url}}"
 									],
@@ -689,7 +736,7 @@
 										"api",
 										"v2",
 										"pengumuman",
-										""
+										"5f9edaec0ce63100176c8adc"
 									]
 								}
 							},
@@ -717,10 +764,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v2/pelajaran/",
+									"raw": "localhost:6600/api/v2/pelajaran/",
 									"host": [
-										"{{base_url}}"
+										"localhost"
 									],
+									"port": "6600",
 									"path": [
 										"api",
 										"v2",
@@ -744,10 +792,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/api/v2/saran/",
+									"raw": "localhost:6600/api/v2/saran/",
 									"host": [
-										"{{base_url}}"
+										"localhost"
 									],
+									"port": "6600",
 									"path": [
 										"api",
 										"v2",
@@ -780,10 +829,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v2/referensi/referensi_rpl",
+									"raw": "localhost:6600/api/v2/referensi/referensi_rpl",
 									"host": [
-										"{{base_url}}"
+										"localhost"
 									],
+									"port": "6600",
 									"path": [
 										"api",
 										"v2",
@@ -809,10 +859,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v2/referensi",
+									"raw": "localhost:6600/api/v2/referensi",
 									"host": [
-										"{{base_url}}"
+										"localhost"
 									],
+									"port": "6600",
 									"path": [
 										"api",
 										"v2",
@@ -836,7 +887,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"nama\": \"Ahmad Badrul\",\r\n    \"email\": \"ahmad@gmail.com\",\r\n    \"password\": \"ahmad1234\",\r\n    \"photo\": \"\"\r\n}",
+									"raw": "{\r\n    \"nama\": \"Radif Haryanto\",\r\n    \"email\": \"radif@gmail.com\",\r\n    \"password\": \"radif1234\",\r\n    \"photo\": \"\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -864,7 +915,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "bb4c3623-06c4-4cd1-999f-b5bca16bad6d",
+										"id": "698e1a10-2f9b-4069-abc1-fa65c7e4daaa",
 										"exec": [
 											"var jsonData = JSON.parse(responseBody);\r",
 											"postman.setEnvironmentVariable(\"jwt_guru\", jsonData.token);"
@@ -878,7 +929,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"yudit@gmail.com\",\r\n    \"password\": \"yudit1234\"\r\n}",
+									"raw": "{\r\n    \"email\": \"radif@gmail.com\",\r\n    \"password\": \"radif1234\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -886,13 +937,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v1/guru/signin",
+									"raw": "{{base_url}}/api/v2/guru/signin",
 									"host": [
 										"{{base_url}}"
 									],
 									"path": [
 										"api",
-										"v1",
+										"v2",
 										"guru",
 										"signin"
 									]
@@ -906,10 +957,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{base_url}}/api/v2/guru/5f86fbc5aa44fd5f4c5612d6",
+									"raw": "localhost:6600/api/v2/guru/5f86fbc5aa44fd5f4c5612d6",
 									"host": [
-										"{{base_url}}"
+										"localhost"
 									],
+									"port": "6600",
 									"path": [
 										"api",
 										"v2",
@@ -935,10 +987,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{base_url}}/api/v2/guru/5f86fbc5aa44fd5f4c5612d6",
+									"raw": "localhost:6600/api/v2/guru/5f86fbc5aa44fd5f4c5612d6",
 									"host": [
-										"{{base_url}}"
+										"localhost"
 									],
+									"port": "6600",
 									"path": [
 										"api",
 										"v2",
@@ -968,7 +1021,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "17d5f867-c879-4d07-a744-96a97e82012e",
+						"id": "35d56757-b0f8-457e-928d-2a2284ce6186",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -978,7 +1031,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "b4331fab-9df9-4723-9007-56306720ce70",
+						"id": "98a3d794-58ad-4440-a64f-725b920c8d9d",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -993,7 +1046,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "c05ec024-3ada-4435-a713-58e71ef56e4b",
+				"id": "aacc0772-0aa1-4f4a-8221-34dfab21c8f3",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -1003,7 +1056,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "1f8a0e1a-33e3-4c31-86a7-a97758d63066",
+				"id": "1809b88f-2799-4bdc-8ba2-b4f5ea0ae7a5",
 				"type": "text/javascript",
 				"exec": [
 					""

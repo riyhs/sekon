@@ -62,7 +62,7 @@ class SignInFragment : Fragment() {
                         showLoading(false)
                     } else {
                         showLoading(false)
-                        Toast.makeText(context, response.data?.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, response.data?.message, Toast.LENGTH_SHORT).show()
                     }
                 }
 
@@ -71,7 +71,8 @@ class SignInFragment : Fragment() {
                 }
 
                 is Resource.Error -> {
-                    Toast.makeText(context, response.message, Toast.LENGTH_LONG).show()
+                    showLoading(false)
+                    Toast.makeText(activity, response.message, Toast.LENGTH_LONG).show()
                 }
             }
         })

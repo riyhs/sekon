@@ -41,7 +41,7 @@ class SignInViewModel : ViewModel() {
                     }
 
                     override fun onFailure(call: Call<SignInResponse>, t: Throwable) {
-                        signInResponse.postValue(Resource.Error("Pastikan kamu terhubung internet"))
+                        signInResponse.postValue(Resource.Error(t.message))
                     }
                 })
         }
