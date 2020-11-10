@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ececec"
-    tools:context=".JadwalActivity">
+    tools:context=".ui.activity.JadwalActivity">
 
     <HorizontalScrollView
         android:id="@+id/chip_container"

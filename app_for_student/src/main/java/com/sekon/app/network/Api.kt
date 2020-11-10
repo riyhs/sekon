@@ -3,6 +3,8 @@ package com.sekon.app.network
 import com.sekon.app.model.SiswaResponse
 import com.sekon.app.model.SiswaUpdateBody
 import com.sekon.app.model.announcement.AnnouncementResponse
+import com.sekon.app.model.announcement.AnnouncementPostModel
+import com.sekon.app.model.announcement.AnnouncementPostResponse
 import com.sekon.app.model.covid.CovidResponse
 import com.sekon.app.model.reference.ReferenceResponse
 import com.sekon.app.model.saran.PostSaran
@@ -39,6 +41,9 @@ interface Api {
     // Pengumuman
     @GET("api/v2/pengumuman/")
     fun getAnnouncement() : Call<AnnouncementResponse>
+
+    @POST("api/v2/pengumuman/")
+    fun postPengumuman(@Body postPengumuman: AnnouncementPostModel) : Call<AnnouncementPostResponse>
 
     // Saran
     @GET("api/v2/saran/")

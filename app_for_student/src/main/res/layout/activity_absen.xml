@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ECECEC"
-    tools:context=".AbsenActivity">
+    tools:context=".ui.activity.AbsenActivity">
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_absen"

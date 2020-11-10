@@ -7,6 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.sekon.app.*
 import com.sekon.app.model.Feature
+import com.sekon.app.ui.activity.AbsenActivity
+import com.sekon.app.ui.activity.JadwalActivity
+import com.sekon.app.ui.activity.MainActivity
+import com.sekon.app.ui.activity.SaranActivity
 import kotlinx.android.synthetic.main.card_feature.view.*
 
 class FeatureAdapter (private val item: List<Feature>) : RecyclerView.Adapter<FeatureAdapter.FeatureViewHolder>() {

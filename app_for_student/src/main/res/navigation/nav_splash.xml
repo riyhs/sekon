@@ -41,7 +41,7 @@
     </fragment>
     <activity
         android:id="@+id/mainActivity"
-        android:name="com.sekon.app.MainActivity"
+        android:name="com.sekon.app.ui.activity.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
 </navigation>
