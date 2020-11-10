@@ -19,5 +19,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SaranActivity::class.java)
             startActivity(intent)
         }
+
+        bt_pengumuman.setOnClickListener {
+            val intent = Intent(this, PengumumanActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
