@@ -15,27 +15,27 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.sekon.app.R
 import com.sekon.app.model.Resource
-import com.sekon.app.model.signin.DataSignIn
+import com.sekon.app.model.signin.DataSignInTeacher
 import com.sekon.app.utils.NetworkInfo
 import com.sekon.app.utils.Preference
-import com.sekon.app.viewmodel.SignInViewModel
-import kotlinx.android.synthetic.main.fragment_sign_in.*
+import com.sekon.app.viewmodel.SignInTeacherViewModel
+import kotlinx.android.synthetic.main.fragment_sign_in_teacher.*
 
-class SignInFragment : Fragment() {
+class SignInTeacherFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_sign_in, container, false)
+        return inflater.inflate(R.layout.fragment_sign_in_teacher, container, false)
     }
 
-    private lateinit var viewModel : SignInViewModel
+    private lateinit var viewModel : SignInTeacherViewModel
 
     @Suppress("DEPRECATION")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(SignInTeacherViewModel::class.java)
 
         requireActivity().window.navigationBarColor = ContextCompat.getColor(requireContext(), android.R.color.white)
         requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), android.R.color.white)
@@ -51,8 +51,8 @@ class SignInFragment : Fragment() {
             when (response) {
                 is Resource.Success -> {
                     if (response.data != null && response.data.status == "Sukses") {
-                        val nama = response.data.siswa.nama
-                        val id = response.data.siswa._id
+                        val nama = response.data.guru.nama
+                        val id = response.data.guru._id
 
                         Preference.saveSiswaName(nama, requireContext())
                         Preference.saveSiswaId(id, requireContext())
@@ -79,15 +79,15 @@ class SignInFragment : Fragment() {
     }
 
     private fun signIn() {
-        bt_sign_in.setOnClickListener {
+        bt_sign_in_teacher.setOnClickListener {
             setupViewModel()
         }
     }
 
-    private fun initData(): DataSignIn {
-        val nis = etSignInNis.text.toString().toInt()
-        val password = etSignInPassword.text.toString()
-        return DataSignIn(nis, password)
+    private fun initData(): DataSignInTeacher {
+        val email = et_sign_in_email_teacher.text.toString()
+        val password = et_sign_in_password_teacher.text.toString()
+        return DataSignInTeacher(email, password)
     }
 
     private fun isSignInSuccess(state: Boolean) {
@@ -109,11 +109,12 @@ class SignInFragment : Fragment() {
     }
 
     private fun showLoading(state: Boolean) {
-        pb_sign_in.isVisible = state
-        tiSignInNis.isInvisible = state
-        tiSignInPassword.isInvisible = state
-        bt_sign_in.isInvisible = state
-        tv_sign_in.isInvisible = state
+        pb_sign_in_teacher.isVisible = state
+        ti_sign_in_email_teacher.isInvisible = state
+        ti_sign_in_password_teacher.isInvisible = state
+        bt_sign_in_teacher.isInvisible = state
+        tv_sign_in_teacher.isInvisible = state
+        tv_sign_is_as_student.isInvisible = state
     }
 
     private fun onBackPressed() {

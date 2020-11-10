@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.sekon.app.ui.fragment.splash.SignInFragment"
+        android:name="com.sekon.app.ui.fragment.splash.SignInStudentFragment"
         android:label="SignInFragment" >
         <action
             android:id="@+id/action_signInFragment_to_mainActivity"

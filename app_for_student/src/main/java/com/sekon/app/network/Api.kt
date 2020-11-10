@@ -2,16 +2,18 @@ package com.sekon.app.network
 
 import com.sekon.app.model.SiswaResponse
 import com.sekon.app.model.SiswaUpdateBody
-import com.sekon.app.model.announcement.AnnouncementResponse
 import com.sekon.app.model.announcement.AnnouncementPostModel
 import com.sekon.app.model.announcement.AnnouncementPostResponse
+import com.sekon.app.model.announcement.AnnouncementResponse
 import com.sekon.app.model.covid.CovidResponse
 import com.sekon.app.model.reference.ReferenceResponse
 import com.sekon.app.model.saran.PostSaran
 import com.sekon.app.model.saran.PostSaranResponse
 import com.sekon.app.model.saran.SaranResponse
 import com.sekon.app.model.signin.DataSignIn
+import com.sekon.app.model.signin.DataSignInTeacher
 import com.sekon.app.model.signin.SignInResponse
+import com.sekon.app.model.signin.SignInResponseTeacher
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -24,6 +26,13 @@ interface Api {
         "No-Authentication: true"
     )
     fun postSignIn(@Body dataSignIn: DataSignIn) : Call<SignInResponse>
+
+    @POST("api/v2/guru/signin")
+    @Headers(
+        "Content-Type: application/json",
+        "No-Authentication: true"
+    )
+    fun postSignInTeacher(@Body dataSignInTeacher: DataSignInTeacher) : Call<SignInResponseTeacher>
 
     // Siswa
     @GET("api/v2/siswa/{id}")
