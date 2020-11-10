@@ -1,2 +1,3 @@
-include ':app'
+include ':app_for_teacher'
+include ':app_for_student'
 rootProject.name = "Sekon"

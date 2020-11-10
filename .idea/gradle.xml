@@ -12,7 +12,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app_for_student" />
+            <option value="$PROJECT_DIR$/app_for_teacher" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
