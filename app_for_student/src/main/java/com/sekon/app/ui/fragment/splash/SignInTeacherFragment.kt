@@ -93,7 +93,7 @@ class SignInTeacherFragment : Fragment() {
     private fun isSignInSuccess(state: Boolean) {
         if (state) {
             onSignInFinished()
-            findNavController().navigate(R.id.action_signInFragment_to_mainActivity)
+            findNavController().navigate(R.id.action_signInTeacherFragment_to_dashboardActivity)
             activity?.finish()
         }
     }

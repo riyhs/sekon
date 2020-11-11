@@ -16,6 +16,9 @@
         android:allowBackup="true"
         android:name=".ui.activity.MainApplication">
 
+        <activity android:name=".ui.activity.DashboardActivity"/>
+        <activity android:name=".ui.activity.DashboardSaranActivity"/>
+        <activity android:name=".ui.activity.DashboardAnnouncementActivity"/>
         <activity android:name=".ui.activity.SaranActivity"/>
         <activity android:name=".ui.activity.JadwalActivity" />
         <activity android:name=".ui.activity.AbsenActivity" />
