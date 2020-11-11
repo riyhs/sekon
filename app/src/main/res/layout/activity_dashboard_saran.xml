@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.DashboardSaranActivity">
+    tools:context=".ui.activity.dashboard.DashboardSaranActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_saran"

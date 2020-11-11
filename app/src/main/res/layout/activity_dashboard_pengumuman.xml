@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.DashboardAnnouncementActivity">
+    tools:context=".ui.activity.dashboard.DashboardAnnouncementActivity">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ti_judul_pengumuman"

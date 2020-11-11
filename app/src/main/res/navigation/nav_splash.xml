@@ -69,7 +69,7 @@
     </fragment>
     <activity
         android:id="@+id/dashboardActivity"
-        android:name="com.sekon.app.ui.activity.DashboardActivity"
+        android:name="com.sekon.app.ui.activity.dashboard.DashboardActivity"
         android:label="activity_dashboard"
         tools:layout="@layout/activity_dashboard" />
 </navigation>

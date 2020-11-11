@@ -1,4 +1,4 @@
-package com.sekon.app.ui.activity
+package com.sekon.app.ui.activity.dashboard
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
