@@ -20,7 +20,7 @@ class SecondOnBoardingFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_second_on_boarding, container, false)
 
         view.tv_swipe2.setOnClickListener {
-            findNavController().navigate(R.id.action_viewPagerFragment_to_signInFragment)
+            findNavController().navigate(R.id.action_viewPagerFragment_to_signInAsFragment)
             onBoardingFinished()
         }
 

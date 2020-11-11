@@ -5,9 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sekon.app.model.Resource
-import com.sekon.app.model.signin.DataSignIn
 import com.sekon.app.model.signin.DataSignInTeacher
-import com.sekon.app.model.signin.SignInResponse
 import com.sekon.app.model.signin.SignInResponseTeacher
 import com.sekon.app.network.NetworkConfig
 import kotlinx.coroutines.CoroutineScope

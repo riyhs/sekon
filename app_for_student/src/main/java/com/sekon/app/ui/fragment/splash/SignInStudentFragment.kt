@@ -19,7 +19,7 @@ import com.sekon.app.model.signin.DataSignIn
 import com.sekon.app.utils.NetworkInfo
 import com.sekon.app.utils.Preference
 import com.sekon.app.viewmodel.SignInViewModel
-import kotlinx.android.synthetic.main.fragment_sign_in.*
+import kotlinx.android.synthetic.main.fragment_sign_in_student.*
 
 class SignInStudentFragment : Fragment() {
     override fun onCreateView(

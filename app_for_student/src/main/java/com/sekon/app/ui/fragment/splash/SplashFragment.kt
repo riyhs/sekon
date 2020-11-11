@@ -25,7 +25,7 @@ class SplashFragment : Fragment() {
                 findNavController().navigate(R.id.action_splashFragment_to_mainActivity)
                 activity?.finish()
             } else if (onBoardingFinished()) {
-                findNavController().navigate(R.id.action_splashFragment_to_signInFragment)
+                findNavController().navigate(R.id.action_splashFragment_to_signInAsFragment)
             } else {
                 findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
             }

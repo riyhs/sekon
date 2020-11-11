@@ -16,11 +16,11 @@
             app:popUpTo="@id/splashFragment"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_splashFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
-        <action
             android:id="@+id/action_splashFragment_to_mainActivity"
             app:destination="@id/mainActivity" />
+        <action
+            android:id="@+id/action_splashFragment_to_signInAsFragment"
+            app:destination="@id/signInAsFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
@@ -28,13 +28,13 @@
         android:label="fragment_view_pager"
         tools:layout="@layout/fragment_view_pager" >
         <action
-            android:id="@+id/action_viewPagerFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
+            android:id="@+id/action_viewPagerFragment_to_signInAsFragment"
+            app:destination="@id/signInAsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/signInFragment"
+        android:id="@+id/signInStudentFragment"
         android:name="com.sekon.app.ui.fragment.splash.SignInStudentFragment"
-        android:label="SignInFragment" >
+        android:label="SignInStudentFragment">
         <action
             android:id="@+id/action_signInFragment_to_mainActivity"
             app:destination="@id/mainActivity" />
@@ -44,4 +44,24 @@
         android:name="com.sekon.app.ui.activity.MainActivity"
         android:label="activity_main"
         tools:layout="@layout/activity_main" />
+    <fragment
+        android:id="@+id/signInTeacherFragment"
+        android:name="com.sekon.app.ui.fragment.splash.SignInTeacherFragment"
+        android:label="SignInTeacherFragment" >
+        <action
+            android:id="@+id/action_signInTeacherFragment_to_mainActivity"
+            app:destination="@id/mainActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInAsFragment"
+        android:name="com.sekon.app.ui.fragment.splash.SignInAsFragment"
+        android:label="fragment_sign_in_as"
+        tools:layout="@layout/fragment_sign_in_as" >
+        <action
+            android:id="@+id/action_signInAsFragment_to_signInFragmentStudent"
+            app:destination="@id/signInStudentFragment" />
+        <action
+            android:id="@+id/action_signInAsFragment_to_signInTeacherFragment"
+            app:destination="@id/signInTeacherFragment" />
+    </fragment>
 </navigation>
