@@ -54,8 +54,8 @@ class SignInTeacherFragment : Fragment() {
                         val nama = response.data.guru.nama
                         val id = response.data.guru._id
 
-                        Preference.saveSiswaName(nama, requireContext())
-                        Preference.saveSiswaId(id, requireContext())
+                        Preference.saveName(nama, requireContext())
+                        Preference.saveId(id, requireContext())
                         saveToken(response.data.token)
                         Toast.makeText(context, response.data.message, Toast.LENGTH_SHORT).show()
                         isSignInSuccess(true)
@@ -100,6 +100,7 @@ class SignInTeacherFragment : Fragment() {
 
     @SuppressLint("CommitPrefEdits")
     private fun saveToken(token: String) {
+        Preference.saveStatus("teacher", requireContext())
         Preference.saveToken(token, requireContext())
     }
 

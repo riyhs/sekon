@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.sekon.app.R
+import com.sekon.app.utils.NetworkInfo.STATUS
 import com.sekon.app.utils.NetworkInfo.TOKEN_KEY
 import com.sekon.app.utils.Preference
 
@@ -22,8 +23,13 @@ class SplashFragment : Fragment() {
         onSignInFinished()
         Handler(Looper.getMainLooper()).postDelayed({
             if (onBoardingFinished() && TOKEN_KEY != "token") {
-                findNavController().navigate(R.id.action_splashFragment_to_mainActivity)
-                activity?.finish()
+                if (STATUS == "student") {
+                    findNavController().navigate(R.id.action_splashFragment_to_mainActivity)
+                    activity?.finish()
+                } else {
+                    findNavController().navigate(R.id.action_splashFragment_to_dashboardActivity)
+                    activity?.finish()
+                }
             } else if (onBoardingFinished()) {
                 findNavController().navigate(R.id.action_splashFragment_to_signInAsFragment)
             } else {
@@ -42,5 +48,6 @@ class SplashFragment : Fragment() {
     private fun onSignInFinished() {
         val sharedPref = Preference.initPref(requireContext(), "onSignIn")
         TOKEN_KEY = sharedPref.getString("token", "token").toString()
+        STATUS = sharedPref.getString("status", "status").toString()
     }
 }

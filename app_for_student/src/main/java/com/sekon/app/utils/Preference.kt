@@ -22,15 +22,21 @@ object Preference {
         editor.apply()
     }
 
-    fun saveSiswaName(name: String, context: Context) {
+    fun saveName(name: String, context: Context) {
         val editor = editorPreference(context, "onSignIn")
         editor.putString("name", name)
         editor.apply()
     }
 
-    fun saveSiswaId(id: String, context: Context) {
+    fun saveId(id: String, context: Context) {
         val editor = editorPreference(context, "onSignIn")
         editor.putString("id", id)
+        editor.apply()
+    }
+
+    fun saveStatus(status: String, context: Context) {
+        val editor = editorPreference(context, "onSignIn")
+        editor.putString("status", status)
         editor.apply()
     }
 
