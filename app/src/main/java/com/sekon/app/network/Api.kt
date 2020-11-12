@@ -6,6 +6,8 @@ import com.sekon.app.model.announcement.AnnouncementPostModel
 import com.sekon.app.model.announcement.AnnouncementPostResponse
 import com.sekon.app.model.announcement.AnnouncementResponse
 import com.sekon.app.model.covid.CovidResponse
+import com.sekon.app.model.reference.PostReferenceBody
+import com.sekon.app.model.reference.PostReferenceResponse
 import com.sekon.app.model.reference.ReferenceResponse
 import com.sekon.app.model.saran.PostSaran
 import com.sekon.app.model.saran.PostSaranResponse
@@ -46,6 +48,9 @@ interface Api {
     // Referensi
     @GET("api/v2/referensi/{kelas}")
     fun getReferensi(@Path( "kelas") kelas : String) : Call<ReferenceResponse>
+
+    @POST("api/v2/referensi")
+    fun postReferensi(@Body postReferenceBody: PostReferenceBody) : Call<PostReferenceResponse>
 
     // Pengumuman
     @GET("api/v2/pengumuman/")

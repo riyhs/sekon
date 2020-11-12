@@ -25,5 +25,10 @@ class DashboardActivity : AppCompatActivity() {
             val intent = Intent(this, DashboardAnnouncementActivity::class.java)
             startActivity(intent)
         }
+
+        bt_referensi.setOnClickListener {
+            val intent = Intent(this, DashboardReferenceActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
