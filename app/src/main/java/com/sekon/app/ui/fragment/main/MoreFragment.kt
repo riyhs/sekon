@@ -6,9 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
@@ -30,6 +28,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_more.*
 import java.util.regex.Pattern
 
+@Suppress("DEPRECATION")
 class MoreFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +47,7 @@ class MoreFragment : Fragment() {
     private var idSiswa: String? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
         super.onViewCreated(view, savedInstanceState)
 
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
@@ -59,6 +59,24 @@ class MoreFragment : Fragment() {
         tv_change_profile_image.setOnClickListener {
             requestPermission()
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.action_bar_nav_profile, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_bar_log_out -> {
+                Toast.makeText(context, "Log Out", Toast.LENGTH_SHORT).show()
+            }
+
+            R.id.action_edit_profile -> {
+                Toast.makeText(context, "Edit Profile", Toast.LENGTH_SHORT).show()
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun uploadToCloudinary(filePath: String) {
