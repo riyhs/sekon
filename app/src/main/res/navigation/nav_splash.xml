@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_signInFragment_to_mainActivity"
             app:destination="@id/mainActivity" />
+        <action
+            android:id="@+id/action_signInStudentFragment_to_signInAsFragment"
+            app:destination="@id/signInAsFragment" />
     </fragment>
     <activity
         android:id="@+id/mainActivity"
@@ -54,6 +57,9 @@
         <action
             android:id="@+id/action_signInTeacherFragment_to_dashboardActivity"
             app:destination="@id/dashboardActivity" />
+        <action
+            android:id="@+id/action_signInTeacherFragment_to_signInAsFragment"
+            app:destination="@id/signInAsFragment" />
     </fragment>
     <fragment
         android:id="@+id/signInAsFragment"
@@ -62,10 +68,12 @@
         tools:layout="@layout/fragment_sign_in_as" >
         <action
             android:id="@+id/action_signInAsFragment_to_signInFragmentStudent"
-            app:destination="@id/signInStudentFragment" />
+            app:destination="@id/signInStudentFragment"
+            app:popUpTo="@id/signInAsFragment" />
         <action
             android:id="@+id/action_signInAsFragment_to_signInTeacherFragment"
-            app:destination="@id/signInTeacherFragment" />
+            app:destination="@id/signInTeacherFragment"
+            app:popUpTo="@id/signInAsFragment" />
     </fragment>
     <activity
         android:id="@+id/dashboardActivity"

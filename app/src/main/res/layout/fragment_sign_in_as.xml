@@ -48,6 +48,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:text="Masuk untuk mendapatkan pengalaman terbaik di aplikasi Sekon"
+            android:textColor="@android:color/background_light"
             android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@+id/bt_im_teacher"
             app:layout_constraintEnd_toEndOf="parent"

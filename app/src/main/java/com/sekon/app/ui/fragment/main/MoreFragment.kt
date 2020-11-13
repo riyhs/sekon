@@ -22,6 +22,8 @@ import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import com.sekon.app.R
 import com.sekon.app.model.SiswaResponseDetail
 import com.sekon.app.model.SiswaUpdateBody
+import com.sekon.app.ui.activity.SplashActivity
+import com.sekon.app.utils.Preference
 import com.sekon.app.viewmodel.MainViewModel
 import com.sekon.app.viewmodel.MoreViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -70,6 +72,11 @@ class MoreFragment : Fragment() {
         when (item.itemId) {
             R.id.action_bar_log_out -> {
                 Toast.makeText(context, "Log Out", Toast.LENGTH_SHORT).show()
+                Preference.logOut(requireContext())
+                startActivity(
+                    Intent(activity?.applicationContext, SplashActivity::class.java)
+                )
+                activity?.finish()
             }
 
             R.id.action_edit_profile -> {

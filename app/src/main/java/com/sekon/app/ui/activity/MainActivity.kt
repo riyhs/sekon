@@ -43,19 +43,19 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.setSiswaDetail(id)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.action_bar_nav, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_bar_announcement) {
-            val intent = Intent(this, AnnouncementActivity::class.java)
-            startActivity(intent)
-        }
-
-        return true
-    }
+//    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+//        menuInflater.inflate(R.menu.action_bar_nav, menu)
+//        return true
+//    }
+//
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        if (item.itemId == R.id.action_bar_announcement) {
+//            val intent = Intent(this, AnnouncementActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        return true
+//    }
 
     private fun bottomNavClick() {
         bottomNavigationView.setOnNavigationItemSelectedListener {

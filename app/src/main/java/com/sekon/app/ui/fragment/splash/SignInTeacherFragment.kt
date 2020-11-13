@@ -37,11 +37,11 @@ class SignInTeacherFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(SignInTeacherViewModel::class.java)
 
-        requireActivity().window.navigationBarColor = ContextCompat.getColor(requireContext(), android.R.color.white)
+//        requireActivity().window.navigationBarColor = ContextCompat.getColor(requireContext(), android.R.color.white)
         requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), android.R.color.white)
         requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
-        onBackPressed()
+//        onBackPressed()
         signIn()
     }
 
