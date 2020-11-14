@@ -37,11 +37,9 @@ class SignInTeacherFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(SignInTeacherViewModel::class.java)
 
-//        requireActivity().window.navigationBarColor = ContextCompat.getColor(requireContext(), android.R.color.white)
         requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), android.R.color.white)
         requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
-//        onBackPressed()
         signIn()
     }
 
@@ -50,7 +48,7 @@ class SignInTeacherFragment : Fragment() {
         viewModel.getSignInResponse().observe(viewLifecycleOwner, { response ->
             when (response) {
                 is Resource.Success -> {
-                    if (response.data != null && response.data.status == "Sukses") {
+                    if (response.data != null && response.data.status == "sukses") {
                         val nama = response.data.guru.nama
                         val id = response.data.guru._id
 

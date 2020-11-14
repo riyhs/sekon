@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -81,6 +82,7 @@ class MoreFragment : Fragment() {
 
             R.id.action_edit_profile -> {
                 Toast.makeText(context, "Edit Profile", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_moreFragment_to_editProfileFragment)
             }
         }
         return super.onOptionsItemSelected(item)

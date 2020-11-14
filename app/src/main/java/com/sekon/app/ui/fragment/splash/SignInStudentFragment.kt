@@ -2,6 +2,7 @@ package com.sekon.app.ui.fragment.splash
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,11 +38,9 @@ class SignInStudentFragment : Fragment() {
 
         viewModel = ViewModelProvider(this).get(SignInViewModel::class.java)
 
-//        requireActivity().window.navigationBarColor = ContextCompat.getColor(requireContext(), android.R.color.white)
         requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), android.R.color.white)
         requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 
-//        onBackPressed()
         signIn()
     }
 
@@ -50,7 +49,7 @@ class SignInStudentFragment : Fragment() {
         viewModel.getSignInResponse().observe(viewLifecycleOwner, { response ->
             when (response) {
                 is Resource.Success -> {
-                    if (response.data != null && response.data.status == "Sukses") {
+                    if (response.data != null && response.data.status == "sukses") {
                         val nama = response.data.siswa.nama
                         val id = response.data.siswa._id
 
@@ -93,7 +92,7 @@ class SignInStudentFragment : Fragment() {
     private fun isSignInSuccess(state: Boolean) {
         if (state) {
             onSignInFinished()
-            findNavController().navigate(R.id.action_signInFragment_to_mainActivity)
+            findNavController().navigate(R.id.action_signInStudentFragment_to_mainActivity)
             activity?.finish()
         }
     }

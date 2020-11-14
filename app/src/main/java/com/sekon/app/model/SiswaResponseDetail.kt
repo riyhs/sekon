@@ -8,9 +8,5 @@ data class SiswaResponseDetail(
     val nis: Int,
     val password: String,
     val photo: String,
-    val tagline: String,
-    val saran_url: String,
-    val absen_url: String,
-    val pelajaran_url: String,
-    val jadwal_url: String
+    val tagline: String
 )
