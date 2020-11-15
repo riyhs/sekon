@@ -94,7 +94,7 @@ class MoreFragment : Fragment() {
         moreViewModel.uploadToCloudinary(filePath)
         moreViewModel.getSiswaUrl().observe(viewLifecycleOwner, {
             Log.d("PHOTO_URL", it.toString())
-            val siswaUpdateBody = SiswaUpdateBody(it)
+            val siswaUpdateBody = SiswaUpdateBody(it, "")
             Log.d("PHOTO_URL", siswaUpdateBody.toString())
             moreViewModel.setUpdatePhoto(idSiswa.toString(), siswaUpdateBody, requireContext(), iv_profile)
         })
