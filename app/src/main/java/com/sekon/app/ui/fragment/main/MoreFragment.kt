@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -23,6 +22,7 @@ import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import com.sekon.app.R
 import com.sekon.app.model.SiswaResponseDetail
 import com.sekon.app.model.SiswaUpdateBody
+import com.sekon.app.ui.activity.EditProfileActivity
 import com.sekon.app.ui.activity.SplashActivity
 import com.sekon.app.utils.Preference
 import com.sekon.app.viewmodel.MainViewModel
@@ -82,7 +82,9 @@ class MoreFragment : Fragment() {
 
             R.id.action_edit_profile -> {
                 Toast.makeText(context, "Edit Profile", Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_moreFragment_to_editProfileFragment)
+                activity?.startActivity(
+                    Intent(context, EditProfileActivity::class.java)
+                )
             }
         }
         return super.onOptionsItemSelected(item)
