@@ -23,12 +23,12 @@ import com.sekon.app.model.SiswaUpdateBody
 import com.sekon.app.utils.Preference
 import com.sekon.app.viewmodel.EditProfileViewModel
 import kotlinx.android.synthetic.main.activity_edit_profile.*
-import kotlinx.android.synthetic.main.fragment_more.*
 
 class EditProfileActivity : AppCompatActivity() {
 
     private lateinit var editProfileViewModel: EditProfileViewModel
     private var filePath: String = "filepath"
+    private var urlPhoto: String = "urlPhoto"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +38,7 @@ class EditProfileActivity : AppCompatActivity() {
 
         val id = getId(this)
         if (id != null) {
-            getUrlProfileImage(id)
+            setSiswaDetail(id)
         }
 
         floatingActionButton.setOnClickListener {
@@ -48,15 +48,26 @@ class EditProfileActivity : AppCompatActivity() {
         bt_save_edit.setOnClickListener {
             Toast.makeText(this, filePath, Toast.LENGTH_SHORT).show()
             if (id != null) {
-                uploadToCloudinary(filePath, id)
+                if (filePath == "filepath") {
+                    editTagLineOnly(id)
+                } else {
+                    uploadToCloudinary(filePath, id)
+                }
             }
         }
+    }
+
+    private fun editTagLineOnly(id: String) {
+        val tagline = et_edit_tagline.text.toString()
+        val body = SiswaUpdateBody(urlPhoto, tagline)
+
+        editProfileViewModel.setUpdatePhoto(id, body)
     }
 
     private fun pickImage() {
         ImagePicker.with(this)
             .crop(1f, 1f)	    			//Crop image(Optional), Check Customization for more option
-            .compress(1024)			//Final image size will be less than 1 MB(Optional)
+            .compress(736)			//Final image size will be less than 1 MB(Optional)
             .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
             .galleryMimeTypes(  //Exclude gif images
                 mimeTypes = arrayOf(
@@ -112,9 +123,9 @@ class EditProfileActivity : AppCompatActivity() {
             .check()
     }
 
-    private fun getUrlProfileImage(id: String) {
+    private fun setSiswaDetail(id: String) {
         editProfileViewModel.setProfileUrl(id)
-        editProfileViewModel.getProfileUrl().observe(this, {
+        editProfileViewModel.getSiswa().observe(this, {
             when (it) {
                 is Resource.Loading -> {
                     showLoading(true)
@@ -127,8 +138,12 @@ class EditProfileActivity : AppCompatActivity() {
 
                 is Resource.Success -> {
                     Glide.with(this)
-                        .load(it.data)
+                        .load(it.data?.photo)
                         .into(iv_edit_profile)
+
+                    et_edit_tagline.setText(it.data?.tagline)
+
+                    urlPhoto = it.data?.photo.toString()
 
                     showLoading(false)
                 }

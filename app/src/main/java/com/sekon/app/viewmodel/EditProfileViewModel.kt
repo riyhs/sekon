@@ -8,6 +8,7 @@ import com.cloudinary.android.callback.ErrorInfo
 import com.cloudinary.android.callback.UploadCallback
 import com.sekon.app.model.Resource
 import com.sekon.app.model.SiswaResponse
+import com.sekon.app.model.SiswaResponseDetail
 import com.sekon.app.model.SiswaUpdateBody
 import com.sekon.app.network.NetworkConfig
 import kotlinx.coroutines.CoroutineScope
@@ -19,14 +20,14 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class EditProfileViewModel: ViewModel() {
-    private val profileUrl = MutableLiveData<Resource<String>>()
+    private val siswa = MutableLiveData<Resource<SiswaResponseDetail>>()
     private var postUrl = MutableLiveData<Resource<String>>()
 
     private val vmJob = Job()
     private val scope = CoroutineScope(Dispatchers.Default + vmJob)
 
     fun setProfileUrl(id: String) = scope.launch {
-        profileUrl.postValue(Resource.Loading())
+        siswa.postValue(Resource.Loading())
 
         NetworkConfig()
             .getService()
@@ -36,19 +37,18 @@ class EditProfileViewModel: ViewModel() {
                     call: Call<SiswaResponse>,
                     response: Response<SiswaResponse>
                 ) {
-                    val url = response.body()?.result?.photo
-                    profileUrl.postValue(Resource.Success(url))
+                    siswa.postValue(Resource.Success(response.body()?.result))
                 }
 
                 override fun onFailure(call: Call<SiswaResponse>, t: Throwable) {
-                    profileUrl.postValue(Resource.Error(t.message))
+                    siswa.postValue(Resource.Error(t.message))
                 }
 
             })
     }
 
-    fun getProfileUrl(): MutableLiveData<Resource<String>> {
-        return profileUrl
+    fun getSiswa(): MutableLiveData<Resource<SiswaResponseDetail>> {
+        return siswa
     }
 
     // cloudinary
@@ -85,6 +85,7 @@ class EditProfileViewModel: ViewModel() {
 
     // update
     fun setUpdatePhoto(idSiswa: String, siswaUpdateBody: SiswaUpdateBody) {
+        siswa.postValue(Resource.Loading())
         scope.launch {
             NetworkConfig()
                 .getService()
@@ -95,10 +96,11 @@ class EditProfileViewModel: ViewModel() {
                         response: Response<SiswaResponse>
                     ) {
                         Log.d("PHOTO_URL", response.body()?.result?.photo.toString())
+                        siswa.postValue(Resource.Success(response.body()?.result))
                     }
 
                     override fun onFailure(call: Call<SiswaResponse>, t: Throwable) {
-                        Log.d("PHOTO_URL", "Gagal get SISWA photo URL${t.message}")
+                        siswa.postValue(Resource.Error(t.message))
                     }
                 })
         }
