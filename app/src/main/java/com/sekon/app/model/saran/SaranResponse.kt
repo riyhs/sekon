@@ -1,6 +1,6 @@
 package com.sekon.app.model.saran
 
 data class SaranResponse(
-    val post: List<SaranResponseDetail>,
+    val result: List<SaranResponseDetail>,
     val status: String
 )

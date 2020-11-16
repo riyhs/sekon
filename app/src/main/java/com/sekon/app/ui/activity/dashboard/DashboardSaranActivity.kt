@@ -33,7 +33,7 @@ class DashboardSaranActivity : AppCompatActivity() {
             when(it) {
                 is Resource.Success -> {
                     if (it.data != null) {
-                        setupAdapter(it.data.post)
+                        setupAdapter(it.data.result)
                         showLoading(false)
                     }
                 }
