@@ -46,7 +46,7 @@
             android:id="@+id/et_edit_tagline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="hint" />
+            android:hint="Tagline" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <ProgressBar
