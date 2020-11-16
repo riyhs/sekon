@@ -2,6 +2,8 @@ package com.sekon.app.network
 
 import com.sekon.app.model.SiswaResponse
 import com.sekon.app.model.SiswaUpdateBody
+import com.sekon.app.model.absen.PostAbsenResponse
+import com.sekon.app.model.absen.PostAbsenBody
 import com.sekon.app.model.announcement.AnnouncementPostModel
 import com.sekon.app.model.announcement.AnnouncementPostResponse
 import com.sekon.app.model.announcement.AnnouncementResponse
@@ -65,6 +67,10 @@ interface Api {
 
     @POST("api/v2/saran/")
     fun postSaran(@Body postSaran: PostSaran) : Call<PostSaranResponse>
+
+    // Absen
+    @POST("api/v2/absen/")
+    fun postAbsen(@Body postAbsen: PostAbsenBody) : Call<PostAbsenResponse>
 
     // covid
     @GET("country/indonesia")

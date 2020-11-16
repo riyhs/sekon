@@ -7,6 +7,19 @@
     android:background="#ECECEC"
     tools:context=".ui.activity.AbsenActivity">
 
+    <ProgressBar
+        android:id="@+id/pb_absen"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_absen"
         android:layout_width="match_parent"
@@ -50,13 +63,14 @@
             </RadioGroup>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:hint="Deskripsi">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_deskripsi_absen"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="start"
@@ -69,11 +83,11 @@
     </com.google.android.material.card.MaterialCardView>
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/bt_post_absen"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Button"
+        android:text="ABSEN"
         app:layout_constraintEnd_toEndOf="@+id/card_absen"
         app:layout_constraintStart_toStartOf="@+id/card_absen"
         app:layout_constraintTop_toBottomOf="@+id/card_absen" />
