@@ -66,9 +66,9 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun pickImage() {
         ImagePicker.with(this)
-            .crop(1f, 1f)	    			//Crop image(Optional), Check Customization for more option
-            .compress(736)			//Final image size will be less than 1 MB(Optional)
-            .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+            .crop(1f, 1f)
+            .compress(256)
+            .maxResultSize(512, 512)
             .galleryMimeTypes(  //Exclude gif images
                 mimeTypes = arrayOf(
                     "image/png",

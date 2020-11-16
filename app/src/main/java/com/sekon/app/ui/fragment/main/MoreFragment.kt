@@ -16,7 +16,6 @@ import com.sekon.app.ui.activity.EditProfileActivity
 import com.sekon.app.ui.activity.SplashActivity
 import com.sekon.app.utils.Preference
 import com.sekon.app.viewmodel.MainViewModel
-import com.sekon.app.viewmodel.MoreViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_more.*
 
@@ -29,15 +28,32 @@ class MoreFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_more, container, false)
     }
 
+    override fun onResume() {
+        super.onResume()
+        getId(requireActivity())?.let { mainViewModel.setSiswaDetail(it) }
+        mainViewModel.getSiswaDetail().observe(viewLifecycleOwner, {
+            if (it != null) {
+                setupLayout(it.result)
+
+                Glide.with(this)
+                    .load(it.result.photo)
+                    .centerCrop()
+                    .into(iv_profile)
+
+            } else {
+                Toast.makeText(context, "Tidak dapat mengambil data siswa", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
+    }
+
     private lateinit var mainViewModel: MainViewModel
-    private lateinit var moreViewModel: MoreViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setHasOptionsMenu(true)
         super.onViewCreated(view, savedInstanceState)
 
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
-        moreViewModel = ViewModelProvider(requireActivity()).get(MoreViewModel::class.java)
 
         val idSiswa: String = getId(requireContext()).toString()
 
@@ -74,6 +90,7 @@ class MoreFragment : Fragment() {
     private fun getMainViewModel(id: String) {
         mainViewModel.setSiswaDetail(id)
         mainViewModel.getSiswaDetail().observe(viewLifecycleOwner, {
+
             if (it != null) {
                 setupLayout(it.result)
 
@@ -81,6 +98,7 @@ class MoreFragment : Fragment() {
                     .load(it.result.photo)
                     .centerCrop()
                     .into(iv_profile)
+
             } else {
                 Toast.makeText(context, "Tidak dapat mengambil data siswa", Toast.LENGTH_SHORT)
                     .show()
