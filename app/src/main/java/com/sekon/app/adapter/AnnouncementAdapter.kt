@@ -4,16 +4,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.sekon.app.R
-import com.sekon.app.model.Announcement
+import com.sekon.app.model.announcement.AnnouncementResponseDetail
 import kotlinx.android.synthetic.main.card_feature.view.*
 
-class AnnouncementAdapter (private val announcement: List<Announcement>) : RecyclerView.Adapter<AnnouncementAdapter.AnnouncementViewHolder>() {
+class AnnouncementAdapter(private val announcement: List<AnnouncementResponseDetail>?) : RecyclerView.Adapter<AnnouncementAdapter.AnnouncementViewHolder>() {
     inner class AnnouncementViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(item: Announcement) {
+        fun bind(item: AnnouncementResponseDetail) {
             with(itemView) {
-                tv_feature_title.text = item.title
-                tv_feature_desc.text = item.desc
+                tv_feature_title.text = item.judul
+                tv_feature_desc.text = item.deskripsi
+
+                Glide
+                    .with(itemView.context)
+                    .load(item.photo)
+                    .into(iv_feature_card)
             }
         }
     }
@@ -24,8 +30,8 @@ class AnnouncementAdapter (private val announcement: List<Announcement>) : Recyc
     }
 
     override fun onBindViewHolder(holder: AnnouncementViewHolder, position: Int) {
-        holder.bind(announcement[position])
+        holder.bind(announcement!![position])
     }
 
-    override fun getItemCount(): Int = announcement.size
+    override fun getItemCount(): Int = announcement?.size!!
 }

@@ -1,16 +1,14 @@
 package com.sekon.app.network
 
-import com.sekon.app.utils.NetworkInfo
 import com.sekon.app.utils.NetworkInfo.BASE_URL
 import com.sekon.app.utils.NetworkInfo.TOKEN_KEY
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 class NetworkConfig {
-    fun getInterceptor(): OkHttpClient {
+    private fun getInterceptor(): OkHttpClient {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
 
@@ -29,5 +27,14 @@ class NetworkConfig {
             .build()
     }
 
+    private fun getCovid(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl("https://api.covid19api.com/")
+            .client(getInterceptor())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
     fun getService(): Api = getRetrofit().create(Api::class.java)
+    fun getServiceCovid(): Api = getCovid().create(Api::class.java)
 }

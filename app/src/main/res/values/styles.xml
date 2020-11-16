@@ -12,4 +12,8 @@
         <item name="android:textColor">@color/text_color_chip_state</item>
     </style>
 
+    <style name="SplashScreen" parent="AppTheme">
+        <item name="colorPrimaryDark">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorAccent</item>
+    </style>
 </resources>

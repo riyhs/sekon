@@ -18,6 +18,7 @@ class FeatureFragment : Fragment() {
     private val features = listOf(
         Feature(0, "Absen", "Deskripsi"),
         Feature(1, "Jadwal", "Deskripsi"),
+        Feature(2, "Saran", "Deskripsi")
     )
 
     override fun onCreateView(
