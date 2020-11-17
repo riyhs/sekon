@@ -1,5 +1,6 @@
 package com.sekon.app.ui.fragment.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
@@ -18,6 +19,9 @@ import com.sekon.app.adapter.MarginItemDecoration
 import com.sekon.app.model.Resource
 import com.sekon.app.model.covid.CovidResponseItem
 import com.sekon.app.model.reference.ReferenceResponseItem
+import com.sekon.app.ui.activity.AbsenActivity
+import com.sekon.app.ui.activity.JadwalActivity
+import com.sekon.app.ui.activity.SaranActivity
 import com.sekon.app.utils.Preference
 import com.sekon.app.viewmodel.CovidViewModel
 import com.sekon.app.viewmodel.ReferenceViewModel
@@ -60,12 +64,30 @@ class HomeFragment : Fragment() {
         val to = getCurrentDate(0)
 
         chipOnClickListener()
+        menuOnClick()
 
         selectedChip = "rpl"
 
         if (isAdded) {
             setupCovidViewModel(from, to)
             setupReferenceViewModel(selectedChip)
+        }
+    }
+
+    private fun menuOnClick() {
+        card_menu_absen.setOnClickListener {
+            val intent = Intent(activity, AbsenActivity::class.java)
+            startActivity(intent)
+        }
+
+        card_menu_jadwal.setOnClickListener {
+            val intent = Intent(activity, JadwalActivity::class.java)
+            startActivity(intent)
+        }
+
+        card_menu_saran.setOnClickListener {
+            val intent = Intent(activity, SaranActivity::class.java)
+            startActivity(intent)
         }
     }
 
