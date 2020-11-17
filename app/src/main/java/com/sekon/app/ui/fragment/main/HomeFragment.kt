@@ -2,6 +2,7 @@ package com.sekon.app.ui.fragment.main
 
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sekon.app.R
 import com.sekon.app.adapter.MainCardAdapter
+import com.sekon.app.adapter.MarginItemDecoration
 import com.sekon.app.model.Resource
 import com.sekon.app.model.covid.CovidResponseItem
 import com.sekon.app.utils.Preference
@@ -112,8 +114,15 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupAdapter() {
+        val layoutManager = LinearLayoutManager(context)
+        val margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, resources.displayMetrics)
+
+        layoutManager.orientation = LinearLayoutManager.HORIZONTAL
         rv_study_ref.setHasFixedSize(true)
-        rv_study_ref.layoutManager = LinearLayoutManager(context)
+        rv_study_ref.layoutManager = layoutManager
+        rv_study_ref.addItemDecoration(MarginItemDecoration(margin.toInt()))
+
+
         rv_study_ref.isNestedScrollingEnabled = false
     }
 

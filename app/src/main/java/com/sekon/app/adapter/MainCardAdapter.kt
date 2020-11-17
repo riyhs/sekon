@@ -9,7 +9,7 @@ import com.sekon.app.R
 import com.sekon.app.model.reference.ReferenceResponseItem
 import kotlinx.android.synthetic.main.card_study_ref.view.*
 
-class MainCardAdapter (private val studyRef: List<ReferenceResponseItem>) : RecyclerView.Adapter<MainCardAdapter.StudyRevViewHolder>() {
+class MainCardAdapter(private val studyRef: List<ReferenceResponseItem>) : RecyclerView.Adapter<MainCardAdapter.StudyRevViewHolder>() {
     inner class StudyRevViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(item: ReferenceResponseItem) {
             with(itemView) {
@@ -25,7 +25,17 @@ class MainCardAdapter (private val studyRef: List<ReferenceResponseItem>) : Recy
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudyRevViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.card_study_ref, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.card_study_ref,
+            parent,
+            false
+        )
+
+        val layoutParams: ViewGroup.LayoutParams = view.layoutParams
+        layoutParams.width = (parent.width * 0.8).toInt()
+        view.layoutParams = layoutParams
+
+
         return StudyRevViewHolder(view)
     }
 
