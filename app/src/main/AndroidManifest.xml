@@ -22,7 +22,6 @@
         <activity android:name=".ui.activity.SaranActivity" />
         <activity android:name=".ui.activity.JadwalActivity" />
         <activity android:name=".ui.activity.AbsenActivity" />
-        <activity android:name=".ui.activity.AnnouncementActivity" />
         <activity
             android:name=".ui.activity.SplashActivity"
             android:theme="@style/SplashScreen">

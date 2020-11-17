@@ -1,12 +1,12 @@
 package com.sekon.app.ui.activity
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.sekon.app.R
+import com.sekon.app.ui.fragment.main.AnnouncementFragment
 import com.sekon.app.ui.fragment.main.HomeFragment
 import com.sekon.app.ui.fragment.main.MoreFragment
 import com.sekon.app.utils.Preference
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.bottom_nav_announcement -> {
-                    startActivity(Intent(this, AnnouncementActivity::class.java))
+                    setupFragment(AnnouncementFragment())
                     true
                 }
 
