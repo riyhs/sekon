@@ -17,6 +17,7 @@ import com.sekon.app.adapter.MainCardAdapter
 import com.sekon.app.adapter.MarginItemDecoration
 import com.sekon.app.model.Resource
 import com.sekon.app.model.covid.CovidResponseItem
+import com.sekon.app.model.reference.ReferenceResponseItem
 import com.sekon.app.utils.Preference
 import com.sekon.app.viewmodel.CovidViewModel
 import com.sekon.app.viewmodel.ReferenceViewModel
@@ -46,6 +47,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupAdapter()
+        rv_study_ref.adapter = MainCardAdapter(listOf(ReferenceResponseItem(0, "", "", "", "", "")))
+
         showLoading("covid", true)
 
         val sharedPref = Preference.initPref(requireContext(), "onSignIn")
@@ -55,7 +59,6 @@ class HomeFragment : Fragment() {
         val from = getCurrentDate(5)
         val to = getCurrentDate(0)
 
-        setupAdapter()
         chipOnClickListener()
 
         selectedChip = "rpl"
@@ -118,12 +121,10 @@ class HomeFragment : Fragment() {
         val margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, resources.displayMetrics)
 
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+
         rv_study_ref.setHasFixedSize(true)
         rv_study_ref.layoutManager = layoutManager
         rv_study_ref.addItemDecoration(MarginItemDecoration(margin.toInt()))
-
-
-        rv_study_ref.isNestedScrollingEnabled = false
     }
 
     private fun getCurrentDate(interval: Int) : String {
