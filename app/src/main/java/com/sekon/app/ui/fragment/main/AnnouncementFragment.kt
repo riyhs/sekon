@@ -1,17 +1,19 @@
 package com.sekon.app.ui.fragment.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sekon.app.R
 import com.sekon.app.adapter.AnnouncementAdapter
+import com.sekon.app.adapter.decoration.MarginItemDecorationVertical
 import com.sekon.app.model.Resource
 import com.sekon.app.model.announcement.AnnouncementResponseDetail
 import com.sekon.app.viewmodel.AnnouncementViewModel
@@ -76,6 +78,9 @@ class AnnouncementFragment : Fragment() {
     }
 
     private fun setupAdapter(list: List<AnnouncementResponseDetail>?) {
+        val margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, resources.displayMetrics)
+
+        rv_announcment.addItemDecoration(MarginItemDecorationVertical(margin.toInt()))
         rv_announcment.setHasFixedSize(true)
         rv_announcment.layoutManager = LinearLayoutManager(context)
         rv_announcment.adapter = AnnouncementAdapter(list)
