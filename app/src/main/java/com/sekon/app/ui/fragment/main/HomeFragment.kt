@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.sekon.app.R
 import com.sekon.app.adapter.MainCardAdapter
-import com.sekon.app.adapter.MarginItemDecoration
+import com.sekon.app.adapter.decoration.MarginItemDecorationHorizontal
 import com.sekon.app.model.Resource
 import com.sekon.app.model.covid.CovidResponseItem
 import com.sekon.app.model.reference.ReferenceResponseItem
@@ -163,7 +163,7 @@ class HomeFragment : Fragment() {
 
         rv_study_ref.setHasFixedSize(true)
         rv_study_ref.layoutManager = layoutManager
-        rv_study_ref.addItemDecoration(MarginItemDecoration(margin.toInt()))
+        rv_study_ref.addItemDecoration(MarginItemDecorationHorizontal(margin.toInt()))
     }
 
     private fun getSiswaName(): String {

@@ -1,6 +1,7 @@
 package com.sekon.app.ui.fragment.saran
 
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sekon.app.R
 import com.sekon.app.adapter.SaranAdapter
+import com.sekon.app.adapter.decoration.MarginItemDecorationVertical
 import com.sekon.app.model.Resource
 import com.sekon.app.model.saran.SaranResponseDetail
 import com.sekon.app.viewmodel.SaranViewModel
@@ -31,7 +33,7 @@ class SaranFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         showLoading(true)
 
-        fab_add_saran.setOnClickListener {
+        bt_ajukan_saran.setOnClickListener {
             setupFragment(AddSaranFragment())
         }
 
@@ -40,9 +42,13 @@ class SaranFragment : Fragment() {
     }
 
     private fun setupAdapter(listSaran: List<SaranResponseDetail>) {
+        val margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, resources.displayMetrics)
+
         rv_saran.setHasFixedSize(true)
+        rv_saran.addItemDecoration(MarginItemDecorationVertical(margin.toInt()))
         rv_saran.layoutManager = LinearLayoutManager(context)
         rv_saran.adapter = SaranAdapter(listSaran)
+        rv_saran.isNestedScrollingEnabled = false
     }
 
     private fun setupFragment(fragment: Fragment) {
@@ -78,6 +84,6 @@ class SaranFragment : Fragment() {
     private fun showLoading(state: Boolean) {
         pb_saran_main.isVisible = state
         rv_saran.isInvisible = state
-        fab_add_saran.isInvisible = state
+        bt_ajukan_saran.isInvisible = state
     }
 }
