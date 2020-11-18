@@ -13,6 +13,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.sekon.app.R
 import com.sekon.app.adapter.MainCardAdapter
 import com.sekon.app.adapter.MarginItemDecoration
@@ -24,6 +25,7 @@ import com.sekon.app.ui.activity.JadwalActivity
 import com.sekon.app.ui.activity.SaranActivity
 import com.sekon.app.utils.Preference
 import com.sekon.app.viewmodel.CovidViewModel
+import com.sekon.app.viewmodel.MainViewModel
 import com.sekon.app.viewmodel.ReferenceViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import java.util.*
@@ -39,6 +41,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var covidViewModel: CovidViewModel
     private lateinit var referenceViewModel: ReferenceViewModel
+    private lateinit var mainViewModel: MainViewModel
     private lateinit var selectedChip: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +49,7 @@ class HomeFragment : Fragment() {
 
         covidViewModel = ViewModelProvider(requireActivity()).get(CovidViewModel::class.java)
         referenceViewModel = ViewModelProvider(requireActivity()).get(ReferenceViewModel::class.java)
+        mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,8 +60,7 @@ class HomeFragment : Fragment() {
 
         showLoading("covid", true)
 
-        val sharedPref = Preference.initPref(requireContext(), "onSignIn")
-        val nameSiswa = sharedPref.getString("name", "name")
+        val nameSiswa = getSiswaName()
         tv_home_siswa_name.text = nameSiswa
 
         val from = getCurrentDate(5)
@@ -71,7 +74,21 @@ class HomeFragment : Fragment() {
         if (isAdded) {
             setupCovidViewModel(from, to)
             setupReferenceViewModel(selectedChip)
+            setupMainViewModel(getSiswaId())
         }
+    }
+
+    private fun setupMainViewModel(id: String) {
+        mainViewModel.setSiswaDetail(id)
+        mainViewModel.getSiswaDetail().observe(viewLifecycleOwner, {
+            val siswa = it.result
+
+            Glide
+                .with(requireContext())
+                .load(siswa.photo)
+                .centerCrop()
+                .into(iv_mini_profile)
+        })
     }
 
     private fun menuOnClick() {
@@ -147,6 +164,16 @@ class HomeFragment : Fragment() {
         rv_study_ref.setHasFixedSize(true)
         rv_study_ref.layoutManager = layoutManager
         rv_study_ref.addItemDecoration(MarginItemDecoration(margin.toInt()))
+    }
+
+    private fun getSiswaName(): String {
+        val sharedPref = Preference.initPref(requireContext(), "onSignIn")
+        return sharedPref.getString("name", "name").toString()
+    }
+
+    private fun getSiswaId(): String {
+        val sharedPref = Preference.initPref(requireContext(), "onSignIn")
+        return sharedPref.getString("id", "id").toString()
     }
 
     private fun getCurrentDate(interval: Int) : String {

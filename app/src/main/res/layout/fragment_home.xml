@@ -127,15 +127,15 @@
                     android:textColor="@android:color/primary_text_dark"
                     android:textSize="14sp" />
 
-                <ImageView
-                    android:id="@+id/imageView"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/iv_mini_profile"
                     android:layout_width="54dp"
                     android:layout_height="54dp"
                     android:layout_alignTop="@id/tv_home_siswa_name"
                     android:layout_alignBottom="@id/textView2"
                     android:layout_alignParentEnd="true"
                     android:layout_marginEnd="16dp"
-                    android:src="@drawable/ic_launcher_foreground" />
+                    android:src="@drawable/ic_account_circle" />
             </RelativeLayout>
 
             <com.google.android.material.card.MaterialCardView
