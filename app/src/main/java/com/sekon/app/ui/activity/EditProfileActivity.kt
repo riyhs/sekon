@@ -67,8 +67,8 @@ class EditProfileActivity : AppCompatActivity() {
     private fun pickImage() {
         ImagePicker.with(this)
             .crop(1f, 1f)
-            .compress(256)
-            .maxResultSize(512, 512)
+            .compress(50)
+            .maxResultSize(256, 256)
             .galleryMimeTypes(  //Exclude gif images
                 mimeTypes = arrayOf(
                     "image/png",

@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.os.Environment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -15,21 +14,19 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.single.PermissionListener
-import com.nbsp.materialfilepicker.MaterialFilePicker
-import com.nbsp.materialfilepicker.ui.FilePickerActivity
 import com.sekon.app.R
 import com.sekon.app.model.Resource
 import com.sekon.app.model.saran.PostSaran
 import com.sekon.app.utils.Preference
 import com.sekon.app.viewmodel.SaranViewModel
 import kotlinx.android.synthetic.main.fragment_add_saran.*
-import java.util.regex.Pattern
 
 @Suppress("DEPRECATION")
 class AddSaranFragment : Fragment() {
@@ -41,12 +38,9 @@ class AddSaranFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_add_saran, container, false)
     }
 
-    companion object {
-        private const val PICK_IMAGE = 664
-    }
-
-    private var mFilePath: String? = null
     private lateinit var saranViewModel: SaranViewModel
+    private var filePath: String = "filepath"
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -59,10 +53,10 @@ class AddSaranFragment : Fragment() {
 
         bt_saran_upload.setOnClickListener {
             showLoading(true)
-            if (mFilePath == null) {
+            if (filePath == "filepath") {
                 postSaran(url = "", initId(requireContext())!!)
             } else {
-                uploadToCloudinary(mFilePath.toString(), initId(requireContext())!!)
+                uploadToCloudinary(filePath, initId(requireContext())!!)
             }
         }
 
@@ -85,8 +79,6 @@ class AddSaranFragment : Fragment() {
         if (judul != null && deskripsi != null) {
             if (judul.isNotEmpty() && deskripsi.isNotEmpty()) {
 
-                Log.d("SARAN", "masuk")
-
                 val saran = PostSaran(
                     saran = judul.toString(),
                     deskripsi = deskripsi.toString(),
@@ -101,17 +93,14 @@ class AddSaranFragment : Fragment() {
                         is Resource.Success -> {
                             showLoading(false)
                             Toast.makeText(activity?.applicationContext, "berhasil", Toast.LENGTH_SHORT).show()
-                            Log.d("SARAN", "berhasil")
                         }
                         is Resource.Loading -> {
                             showLoading(true)
                             Toast.makeText(activity?.applicationContext, "loading", Toast.LENGTH_SHORT).show()
-                            Log.d("SARAN", "loading")
                         }
                         is Resource.Error -> {
                             showLoading(false)
                             Toast.makeText(activity?.applicationContext, it.message.toString(), Toast.LENGTH_SHORT).show()
-                            Log.d("SARAN", "error")
                         }
                     }
                 })
@@ -148,32 +137,38 @@ class AddSaranFragment : Fragment() {
     }
 
     private fun pickImage() {
-        val externalStorage = Environment.getExternalStorageDirectory()
-
-        MaterialFilePicker()
-            .withSupportFragment(this)
-            .withCloseMenu(true)
-            .withFilter(Pattern.compile(".*\\.(jpg|jpeg|png)$"))
-            .withFilterDirectories(false)
-            .withRootPath(externalStorage.absolutePath)
-            .withTitle("Pick a image")
-            .withRequestCode(PICK_IMAGE)
+        ImagePicker.with(this)
+            .crop()
+            .compress(256)
+            .maxResultSize(746, 746)
+            .galleryMimeTypes(  //Exclude gif images
+                mimeTypes = arrayOf(
+                    "image/png",
+                    "image/jpg",
+                    "image/jpeg"
+                )
+            )
             .start()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == PICK_IMAGE && resultCode == Activity.RESULT_OK) {
-            val filePath = data?.getStringExtra(FilePickerActivity.RESULT_FILE_PATH)
+        when (resultCode) {
+            Activity.RESULT_OK -> {
+                filePath = ImagePicker.getFilePath(data)!!
 
-            if (filePath != null) {
-                getImageFilePath(filePath)
-                mFilePath = filePath
+                showImageSelected(filePath)
+            }
+            ImagePicker.RESULT_ERROR -> {
+                Toast.makeText(context, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+            }
+            else -> {
+                Toast.makeText(context, "Task Cancelled", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun getImageFilePath(filePath: String?) {
+    private fun showImageSelected(filePath: String?) {
         iv_saran.setImageURI(filePath?.toUri())
         iv_saran.isVisible = true
     }

@@ -44,7 +44,7 @@ class SaranFragment : Fragment() {
     private fun setupAdapter(listSaran: List<SaranResponseDetail>) {
         val margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, resources.displayMetrics)
 
-        rv_saran.setHasFixedSize(true)
+        rv_saran.setHasFixedSize(false)
         rv_saran.addItemDecoration(MarginItemDecorationVertical(margin.toInt()))
         rv_saran.layoutManager = LinearLayoutManager(context)
         rv_saran.adapter = SaranAdapter(listSaran)
@@ -74,6 +74,7 @@ class SaranFragment : Fragment() {
                 is Resource.Success -> {
                     if (it.data != null) {
                         setupAdapter(it.data.result)
+                        Toast.makeText(context, it.data.result.size.toString(), Toast.LENGTH_SHORT).show()
                     }
                     showLoading(false)
                 }

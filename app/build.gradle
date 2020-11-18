@@ -66,9 +66,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.6.4'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.4'
     implementation "com.squareup.okhttp3:logging-interceptor:4.2.0"
-    
-    // filepicker
-    implementation 'com.nbsp:materialfilepicker:1.9.1'
 
     // dexter request permission
     implementation 'com.karumi:dexter:6.2.1'
