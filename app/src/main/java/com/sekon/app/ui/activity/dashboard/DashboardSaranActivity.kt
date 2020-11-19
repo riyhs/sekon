@@ -1,16 +1,17 @@
 package com.sekon.app.ui.activity.dashboard
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.TypedValue
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sekon.app.R
 import com.sekon.app.adapter.SaranAdapter
+import com.sekon.app.adapter.decoration.MarginItemDecorationVertical
 import com.sekon.app.model.Resource
-import com.sekon.app.model.saran.SaranResponseDetail
 import com.sekon.app.viewmodel.DashboardSaranViewModel
 import kotlinx.android.synthetic.main.activity_dashboard_saran.*
 
@@ -22,9 +23,10 @@ class DashboardSaranActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard_saran)
 
+        setupAdapter()
+
         dashboardSaranViewModel = ViewModelProvider(this).get(DashboardSaranViewModel::class.java)
         setupViewModel()
-
     }
 
     private fun setupViewModel() {
@@ -33,7 +35,7 @@ class DashboardSaranActivity : AppCompatActivity() {
             when(it) {
                 is Resource.Success -> {
                     if (it.data != null) {
-                        setupAdapter(it.data.result)
+                        rv_saran.adapter = SaranAdapter(it.data.result)
                         showLoading(false)
                     }
                 }
@@ -55,9 +57,15 @@ class DashboardSaranActivity : AppCompatActivity() {
         rv_saran.isInvisible = state
     }
 
-    private fun setupAdapter(post: List<SaranResponseDetail>) {
+    private fun setupAdapter() {
+        val margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, resources.displayMetrics)
+        val layoutManager = LinearLayoutManager(this)
+
+        layoutManager.stackFromEnd = true
+        layoutManager.reverseLayout = true
+
         rv_saran.setHasFixedSize(true)
-        rv_saran.layoutManager = LinearLayoutManager(this)
-        rv_saran.adapter = SaranAdapter(post)
+        rv_saran.layoutManager = layoutManager
+        rv_saran.addItemDecoration(MarginItemDecorationVertical(margin.toInt(), true))
     }
 }

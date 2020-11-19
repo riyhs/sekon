@@ -59,13 +59,6 @@ class SaranFragment : Fragment() {
         rv_saran.isNestedScrollingEnabled = false
     }
 
-    private fun setupFragment(fragment: Fragment) {
-        activity?.supportFragmentManager
-            ?.beginTransaction()
-            ?.replace(R.id.fragment_saran, fragment, fragment::class.java.simpleName)
-            ?.commit()
-    }
-
     private fun setupViewModel() {
         saranViewModel.setSaran()
         saranViewModel.getSaranResponse().observe(viewLifecycleOwner, {

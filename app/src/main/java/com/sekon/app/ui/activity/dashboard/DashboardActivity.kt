@@ -1,11 +1,11 @@
 package com.sekon.app.ui.activity.dashboard
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.sekon.app.R
 import com.sekon.app.ui.activity.SplashActivity
 import com.sekon.app.utils.Preference
@@ -22,6 +22,9 @@ class DashboardActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.action_bar_nav_profile, menu)
+        if (menu != null) {
+            menu.findItem(R.id.action_edit_profile)?.isVisible = false
+        }
         return true
     }
 
