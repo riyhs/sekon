@@ -10,44 +10,52 @@ import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sekon.app.R
 import com.sekon.app.adapter.SaranAdapter
 import com.sekon.app.adapter.decoration.MarginItemDecorationVertical
 import com.sekon.app.model.Resource
-import com.sekon.app.model.saran.SaranResponseDetail
 import com.sekon.app.viewmodel.SaranViewModel
 import kotlinx.android.synthetic.main.fragment_saran.*
 
 class SaranFragment : Fragment() {
+
+    private lateinit var saranViewModel: SaranViewModel
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_saran, container, false)
-    }
+        val view = inflater.inflate(R.layout.fragment_saran, container, false)
 
-    private lateinit var saranViewModel: SaranViewModel
+        saranViewModel = ViewModelProvider(requireActivity()).get(SaranViewModel::class.java)
+
+        return view
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showLoading(true)
 
         bt_ajukan_saran.setOnClickListener {
-            setupFragment(AddSaranFragment())
+            findNavController().navigate(R.id.action_saranFragment_to_addSaranFragment)
         }
 
-        saranViewModel = ViewModelProvider(this).get(SaranViewModel::class.java)
+        setupAdapter()
         setupViewModel()
     }
 
-    private fun setupAdapter(listSaran: List<SaranResponseDetail>) {
+    private fun setupAdapter() {
         val margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, resources.displayMetrics)
+        val layoutManager = LinearLayoutManager(context)
+
+        layoutManager.stackFromEnd = true
+        layoutManager.reverseLayout = true
 
         rv_saran.setHasFixedSize(false)
-        rv_saran.addItemDecoration(MarginItemDecorationVertical(margin.toInt()))
-        rv_saran.layoutManager = LinearLayoutManager(context)
-        rv_saran.adapter = SaranAdapter(listSaran)
+        rv_saran.addItemDecoration(MarginItemDecorationVertical(margin.toInt(), true))
+        rv_saran.layoutManager = layoutManager
         rv_saran.isNestedScrollingEnabled = false
     }
 
@@ -73,7 +81,7 @@ class SaranFragment : Fragment() {
 
                 is Resource.Success -> {
                     if (it.data != null) {
-                        setupAdapter(it.data.result)
+                        rv_saran.adapter = SaranAdapter(it.data.result)
                         Toast.makeText(context, it.data.result.size.toString(), Toast.LENGTH_SHORT).show()
                     }
                     showLoading(false)

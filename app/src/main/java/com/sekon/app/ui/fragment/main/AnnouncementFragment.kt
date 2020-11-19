@@ -80,7 +80,7 @@ class AnnouncementFragment : Fragment() {
     private fun setupAdapter(list: List<AnnouncementResponseDetail>?) {
         val margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, resources.displayMetrics)
 
-        rv_announcment.addItemDecoration(MarginItemDecorationVertical(margin.toInt()))
+        rv_announcment.addItemDecoration(MarginItemDecorationVertical(margin.toInt(), false))
         rv_announcment.setHasFixedSize(true)
         rv_announcment.layoutManager = LinearLayoutManager(context)
         rv_announcment.adapter = AnnouncementAdapter(list)

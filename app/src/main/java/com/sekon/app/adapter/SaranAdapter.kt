@@ -3,10 +3,12 @@ package com.sekon.app.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sekon.app.R
 import com.sekon.app.model.saran.SaranResponseDetail
+import com.sekon.app.ui.fragment.saran.SaranFragmentDirections
 import kotlinx.android.synthetic.main.card_feature.view.*
 
 class SaranAdapter(private val saran: List<SaranResponseDetail>) : RecyclerView.Adapter<SaranAdapter.SaranViewHolder>() {
@@ -21,6 +23,11 @@ class SaranAdapter(private val saran: List<SaranResponseDetail>) : RecyclerView.
                         .with(itemView.context)
                         .load(saran.photo)
                         .into(iv_feature_card)
+                }
+
+                itemView.setOnClickListener {
+                    val action = SaranFragmentDirections.actionSaranFragmentToSaranClickedFragment(saran)
+                    itemView.findNavController().navigate(action)
                 }
             }
         }

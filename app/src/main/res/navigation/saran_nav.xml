@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_saran"
+    app:startDestination="@id/saranFragment">
+
+    <fragment
+        android:id="@+id/saranFragment"
+        android:name="com.sekon.app.ui.fragment.saran.SaranFragment"
+        android:label="fragment_saran"
+        tools:layout="@layout/fragment_saran" >
+        <action
+            android:id="@+id/action_saranFragment_to_addSaranFragment"
+            app:destination="@id/addSaranFragment" />
+        <action
+            android:id="@+id/action_saranFragment_to_saranClickedFragment"
+            app:destination="@id/saranClickedFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addSaranFragment"
+        android:name="com.sekon.app.ui.fragment.saran.AddSaranFragment"
+        android:label="fragment_add_saran"
+        tools:layout="@layout/fragment_add_saran" />
+    <fragment
+        android:id="@+id/saranClickedFragment"
+        android:name="com.sekon.app.ui.fragment.saran.SaranClickedFragment"
+        android:label="fragment_saran_clicked"
+        tools:layout="@layout/fragment_saran_clicked" >
+        <argument
+            android:name="saran"
+            app:argType="com.sekon.app.model.saran.SaranResponseDetail" />
+    </fragment>
+</navigation>

@@ -1,5 +1,9 @@
 package com.sekon.app.model.saran
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class SaranResponseDetail(
     val __v: Int,
     val _id: String,
@@ -10,4 +14,4 @@ data class SaranResponseDetail(
     val photo: String,
     val saran: String,
     val updatedAt: String
-)
+) : Parcelable
