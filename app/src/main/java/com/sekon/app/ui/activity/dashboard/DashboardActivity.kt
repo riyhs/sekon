@@ -17,7 +17,6 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dashboard)
 
         btOnClick()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
