@@ -8,6 +8,7 @@ import com.sekon.app.model.announcement.AnnouncementPostModel
 import com.sekon.app.model.announcement.AnnouncementPostResponse
 import com.sekon.app.model.announcement.AnnouncementResponse
 import com.sekon.app.model.covid.CovidResponse
+import com.sekon.app.model.jadwal.JadwalResponse
 import com.sekon.app.model.reference.PostReferenceBody
 import com.sekon.app.model.reference.PostReferenceResponse
 import com.sekon.app.model.reference.ReferenceResponse
@@ -71,6 +72,13 @@ interface Api {
     // Absen
     @POST("api/v2/absen/")
     fun postAbsen(@Body postAbsen: PostAbsenBody) : Call<PostAbsenResponse>
+
+    // Jadwal
+    @GET("api/v2/jadwal/{kelas}/{hari}/")
+    fun getJadwal(
+        @Path("kelas") kelas: String,
+        @Path("hari") hari: String
+    ) : Call<JadwalResponse>
 
     // covid
     @GET("country/indonesia")
