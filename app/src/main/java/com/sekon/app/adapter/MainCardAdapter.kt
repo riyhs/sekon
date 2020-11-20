@@ -1,5 +1,6 @@
 package com.sekon.app.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.sekon.app.R
 import com.sekon.app.model.reference.ReferenceResponseItem
+import com.sekon.app.ui.activity.RefWebActivity
 import kotlinx.android.synthetic.main.card_study_ref.view.*
 
 class MainCardAdapter(private val studyRef: List<ReferenceResponseItem>) : RecyclerView.Adapter<MainCardAdapter.StudyRevViewHolder>() {
@@ -20,6 +22,14 @@ class MainCardAdapter(private val studyRef: List<ReferenceResponseItem>) : Recyc
                     .load(item.photo)
                     .centerCrop()
                     .into(iv_study_ref_card)
+
+                itemView.setOnClickListener {
+                    val intent = Intent(context, RefWebActivity::class.java)
+                    intent.putExtra("url", item.src)
+                    intent.putExtra("name", item.judul)
+
+                    context.startActivity(intent)
+                }
             }
         }
     }

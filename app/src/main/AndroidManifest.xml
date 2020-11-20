@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.sekon.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,8 +14,11 @@
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ui.activity.EditProfileActivity"/>
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup">
+        <activity android:name=".ui.activity.RefWebActivity"/>
+        <activity android:name=".ui.activity.EditProfileActivity" />
         <activity android:name=".ui.activity.dashboard.DashboardReferenceActivity" />
         <activity android:name=".ui.activity.dashboard.DashboardActivity" />
         <activity android:name=".ui.activity.dashboard.DashboardSaranActivity" />
