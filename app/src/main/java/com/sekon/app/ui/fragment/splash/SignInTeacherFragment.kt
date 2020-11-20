@@ -18,7 +18,7 @@ import com.sekon.app.model.Resource
 import com.sekon.app.model.signin.DataSignInTeacher
 import com.sekon.app.utils.NetworkInfo
 import com.sekon.app.utils.Preference
-import com.sekon.app.viewmodel.SignInTeacherViewModel
+import com.sekon.app.viewmodel.DashboardSignInViewModel
 import kotlinx.android.synthetic.main.fragment_sign_in_teacher.*
 
 class SignInTeacherFragment : Fragment() {
@@ -29,13 +29,13 @@ class SignInTeacherFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_sign_in_teacher, container, false)
     }
 
-    private lateinit var viewModel : SignInTeacherViewModel
+    private lateinit var viewModel : DashboardSignInViewModel
 
     @Suppress("DEPRECATION")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this).get(SignInTeacherViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(DashboardSignInViewModel::class.java)
 
         requireActivity().window.statusBarColor = ContextCompat.getColor(requireContext(), android.R.color.white)
         requireActivity().window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
