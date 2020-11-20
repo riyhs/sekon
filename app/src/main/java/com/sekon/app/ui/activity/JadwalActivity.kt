@@ -27,7 +27,7 @@ class JadwalActivity : AppCompatActivity() {
     }
 
     private fun setupAdapter() {
-        val margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, resources.displayMetrics)
+        val margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8f, resources.displayMetrics)
         val layoutManager = LinearLayoutManager(this)
 
         rv_jadwal.setHasFixedSize(true)
