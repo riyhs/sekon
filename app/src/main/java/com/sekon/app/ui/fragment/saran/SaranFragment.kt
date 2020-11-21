@@ -75,7 +75,6 @@ class SaranFragment : Fragment() {
                 is Resource.Success -> {
                     if (it.data != null) {
                         rv_saran.adapter = SaranAdapter(it.data.result)
-                        Toast.makeText(context, it.data.result.size.toString(), Toast.LENGTH_SHORT).show()
                     }
                     showLoading(false)
                 }
