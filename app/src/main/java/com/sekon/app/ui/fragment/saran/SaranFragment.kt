@@ -74,7 +74,7 @@ class SaranFragment : Fragment() {
 
                 is Resource.Success -> {
                     if (it.data != null) {
-                        rv_saran.adapter = SaranAdapter(it.data.result)
+                        rv_saran.adapter = SaranAdapter(it.data.result, false)
                     }
                     showLoading(false)
                 }

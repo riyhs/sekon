@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dashboard_saran_nav"
+    app:startDestination="@id/dashboardSaranFragment">
+
+    <fragment
+        android:id="@+id/dashboardSaranFragment"
+        android:name="com.sekon.app.ui.fragment.dashboard.DashboardSaranFragment"
+        android:label="fragment_dashboard_saran"
+        tools:layout="@layout/fragment_dashboard_saran" >
+        <action
+            android:id="@+id/action_dashboardSaranFragment_to_saranClickedFragment2"
+            app:destination="@id/saranClickedFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/saranClickedFragment2"
+        android:name="com.sekon.app.ui.fragment.saran.SaranClickedFragment"
+        android:label="fragment_saran_clicked"
+        tools:layout="@layout/fragment_saran_clicked" >
+        <argument
+            android:name="saran"
+            app:argType="com.sekon.app.model.saran.SaranResponseDetail" />
+    </fragment>
+</navigation>
