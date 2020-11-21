@@ -79,10 +79,14 @@ class AnnouncementFragment : Fragment() {
 
     private fun setupAdapter(list: List<AnnouncementResponseDetail>?) {
         val margin = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 16f, resources.displayMetrics)
+        val layoutManager = LinearLayoutManager(context)
 
-        rv_announcment.addItemDecoration(MarginItemDecorationVertical(margin.toInt(), false))
+        layoutManager.stackFromEnd = true
+        layoutManager.reverseLayout = true
+
+        rv_announcment.addItemDecoration(MarginItemDecorationVertical(margin.toInt(), true))
         rv_announcment.setHasFixedSize(true)
-        rv_announcment.layoutManager = LinearLayoutManager(context)
+        rv_announcment.layoutManager = layoutManager
         rv_announcment.adapter = AnnouncementAdapter(list)
     }
 }
