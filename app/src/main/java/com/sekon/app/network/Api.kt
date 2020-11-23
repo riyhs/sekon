@@ -8,6 +8,8 @@ import com.sekon.app.model.announcement.AnnouncementPostModel
 import com.sekon.app.model.announcement.AnnouncementPostResponse
 import com.sekon.app.model.announcement.AnnouncementResponse
 import com.sekon.app.model.covid.CovidResponse
+import com.sekon.app.model.fcm.PostFCMBody
+import com.sekon.app.model.fcm.PostFCMResponse
 import com.sekon.app.model.jadwal.JadwalResponse
 import com.sekon.app.model.reference.PostReferenceBody
 import com.sekon.app.model.reference.PostReferenceResponse
@@ -84,4 +86,9 @@ interface Api {
     @GET("country/indonesia")
     @Headers("No-Authentication: true")
     fun getCovidInfo(@Query("from") from : String, @Query("to") to : String) : Call<CovidResponse>
+
+    // FCM
+    @POST("fcm/send")
+    @Headers("Content-Type: application/json")
+    fun postFCM(@Body postFCM: PostFCMBody) : Call<PostFCMResponse>
 }

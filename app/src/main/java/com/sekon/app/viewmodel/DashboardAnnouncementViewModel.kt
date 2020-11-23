@@ -9,6 +9,8 @@ import com.cloudinary.android.callback.UploadCallback
 import com.sekon.app.model.Resource
 import com.sekon.app.model.announcement.AnnouncementPostModel
 import com.sekon.app.model.announcement.AnnouncementPostResponse
+import com.sekon.app.model.fcm.PostFCMBody
+import com.sekon.app.model.fcm.PostFCMResponse
 import com.sekon.app.network.NetworkConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +23,7 @@ import retrofit2.Response
 class DashboardAnnouncementViewModel: ViewModel() {
     private val pengumumanResponse = MutableLiveData<Resource<AnnouncementPostResponse>>()
     private val photoUrl = MutableLiveData<Resource<String>>()
+    private val isFCMSent = MutableLiveData<Resource<Boolean>>()
 
     private var vmJob = Job()
     private var scope = CoroutineScope(Dispatchers.Default + vmJob)
@@ -82,6 +85,31 @@ class DashboardAnnouncementViewModel: ViewModel() {
 
     fun getPhotoUrl(): MutableLiveData<Resource<String>> {
         return photoUrl
+    }
+
+    // FCM
+    fun setFCM(bodyFCM: PostFCMBody) = scope.launch {
+        isFCMSent.postValue(Resource.Loading())
+
+        NetworkConfig()
+            .getServiceFCM()
+            .postFCM(bodyFCM)
+            .enqueue(object : Callback<PostFCMResponse> {
+                override fun onResponse(
+                    call: Call<PostFCMResponse>,
+                    response: Response<PostFCMResponse>
+                ) {
+                    isFCMSent.postValue(Resource.Success(true))
+                }
+
+                override fun onFailure(call: Call<PostFCMResponse>, t: Throwable) {
+                    isFCMSent.postValue(Resource.Error(t.message.toString()))
+                }
+            })
+    }
+
+    fun getFCM(): MutableLiveData<Resource<Boolean>> {
+        return isFCMSent
     }
 
     override fun onCleared() {

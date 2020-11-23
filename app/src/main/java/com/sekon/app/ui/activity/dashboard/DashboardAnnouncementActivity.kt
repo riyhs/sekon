@@ -18,6 +18,8 @@ import com.karumi.dexter.listener.single.PermissionListener
 import com.sekon.app.R
 import com.sekon.app.model.Resource
 import com.sekon.app.model.announcement.AnnouncementPostModel
+import com.sekon.app.model.fcm.PostFCMBody
+import com.sekon.app.model.fcm.PostFCMBodyDetail
 import com.sekon.app.viewmodel.DashboardAnnouncementViewModel
 import kotlinx.android.synthetic.main.activity_dashboard_pengumuman.*
 
@@ -88,9 +90,16 @@ class DashboardAnnouncementActivity : AppCompatActivity() {
             when(it) {
                 is Resource.Success -> {
                     if (it.data != null) {
+                        val fcmBody = PostFCMBody(to = "/topics/pengumuman", notification = PostFCMBodyDetail(
+                            body = it.data.result.deskripsi,
+                            title = it.data.result.judul
+                        ))
+
+                        postFCM(fcmBody)
+
                         Toast.makeText(this, "Sukses Menambah Pengumuman", Toast.LENGTH_SHORT).show()
-                        showLoading(false)
                         resetInputText()
+                        showLoading(false)
                     }
                 }
 
@@ -100,6 +109,24 @@ class DashboardAnnouncementActivity : AppCompatActivity() {
 
                 is Resource.Error -> {
                     Toast.makeText(this, "Gagal : ${it.message}", Toast.LENGTH_SHORT).show()
+                    showLoading(false)
+                }
+            }
+        })
+    }
+
+    private fun postFCM(fcmBody: PostFCMBody) {
+        dashboardAnnouncementViewModel.setFCM(fcmBody)
+        dashboardAnnouncementViewModel.getFCM().observe(this, {
+            when(it) {
+                is Resource.Success -> {
+                    showLoading(false)
+                }
+                is Resource.Loading -> {
+                    showLoading(true)
+                }
+                is Resource.Error -> {
+                    Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
                     showLoading(false)
                 }
             }
