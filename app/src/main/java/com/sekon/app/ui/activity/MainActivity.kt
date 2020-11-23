@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.firebase.messaging.FirebaseMessaging
 import com.sekon.app.R
 import com.sekon.app.ui.fragment.main.AnnouncementFragment
 import com.sekon.app.ui.fragment.main.HomeFragment
@@ -20,6 +21,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        FirebaseMessaging.getInstance().subscribeToTopic("pengumuman")
 
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
