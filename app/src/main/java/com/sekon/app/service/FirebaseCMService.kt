@@ -9,6 +9,7 @@ import android.media.RingtoneManager
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import com.bumptech.glide.Glide
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.sekon.app.R
@@ -27,35 +28,51 @@ class FirebaseCMService: FirebaseMessagingService() {
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         super.onMessageReceived(remoteMessage)
 
-        remoteMessage.notification.let {
-            if (it != null) {
-                sendNotification(it)
-            }
-        }
-
+        sendNotification(remoteMessage)
     }
 
-    private fun sendNotification(message: RemoteMessage.Notification?) {
+    private fun sendNotification(message: RemoteMessage) {
         val channelId = getString(R.string.default_notification_channel_id)
         val channelName = getString(R.string.default_notification_channel_name)
 
         val intent = Intent(this, MainActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        intent.putExtra("fragment", "pengumuman")
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
 
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
             .setSmallIcon(R.drawable.ic_s_blue_logo)
-            .setContentText(message?.body)
-            .setContentTitle(message?.title)
+            .setContentText(message.data["title"])
+            .setContentTitle(message.data["body"])
             .setAutoCancel(true)
             .setSound(defaultSoundUri)
             .setContentIntent(pendingIntent)
 
         val mNotificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
+        val futureTarget = Glide.with(this)
+            .asBitmap()
+            .load(message.data["image"].toString())
+            .submit()
+
+        val bitmap = futureTarget.get()
+
+        notificationBuilder.setLargeIcon(bitmap)
+        notificationBuilder.setStyle(
+            NotificationCompat.BigPictureStyle()
+                .bigPicture(bitmap)
+                .bigLargeIcon(null)
+        )
+
+        Glide.with(this).clear(futureTarget)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT)
+            val channel = NotificationChannel(
+                channelId,
+                channelName,
+                NotificationManager.IMPORTANCE_DEFAULT
+            )
             notificationBuilder.setChannelId(channelId)
             mNotificationManager.createNotificationChannel(channel)
         }

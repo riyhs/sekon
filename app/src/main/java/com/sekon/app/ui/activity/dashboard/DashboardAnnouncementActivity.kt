@@ -92,7 +92,8 @@ class DashboardAnnouncementActivity : AppCompatActivity() {
                     if (it.data != null) {
                         val fcmBody = PostFCMBody(to = "/topics/pengumuman", notification = PostFCMBodyDetail(
                             body = it.data.result.deskripsi,
-                            title = it.data.result.judul
+                            title = it.data.result.judul,
+                            image = it.data.result.photo
                         ))
 
                         postFCM(fcmBody)

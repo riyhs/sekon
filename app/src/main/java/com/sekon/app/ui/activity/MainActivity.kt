@@ -2,6 +2,7 @@ package com.sekon.app.ui.activity
 
 import android.content.Context
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -20,6 +21,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val pengumumanFragment = intent.getStringExtra("fragment")
+
         setContentView(R.layout.activity_main)
 
         FirebaseMessaging.getInstance().subscribeToTopic("pengumuman")
@@ -30,8 +34,16 @@ class MainActivity : AppCompatActivity() {
         if (id != null) {
             setupMainViewModel(id)
         }
-        setupFragment(HomeFragment())
-        bottomNavClick()
+
+        if (pengumumanFragment != null) {
+            setupFragment(AnnouncementFragment())
+            Toast.makeText(this, "ada intent $pengumumanFragment", Toast.LENGTH_SHORT).show()
+            bottomNavClick(true)
+        } else {
+            setupFragment(HomeFragment())
+            Toast.makeText(this, "Tidak ada intent $pengumumanFragment", Toast.LENGTH_SHORT).show()
+            bottomNavClick(false)
+        }
     }
 
     private fun initId(context: Context): String? {
@@ -43,7 +55,12 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.setSiswaDetail(id)
     }
 
-    private fun bottomNavClick() {
+    private fun bottomNavClick(isFromNotification: Boolean) {
+
+        if (isFromNotification) {
+            bottomNavigationView.selectedItemId = R.id.bottom_nav_announcement
+        }
+
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.bottom_nav_home -> {
