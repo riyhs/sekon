@@ -113,7 +113,6 @@ class SignInTeacherFragment : Fragment() {
         ti_sign_in_password_teacher.isInvisible = state
         bt_sign_in_teacher.isInvisible = state
         tv_sign_in_teacher.isInvisible = state
-        tv_sign_is_as_student.isInvisible = state
     }
 
     private fun onBackPressed() {
