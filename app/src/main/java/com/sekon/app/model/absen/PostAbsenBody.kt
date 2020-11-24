@@ -4,5 +4,5 @@ data class PostAbsenBody(
     val kelas: String,
     val nama: String,
     val deskripsi: String,
-    val status: Int
+    val status: String
 )

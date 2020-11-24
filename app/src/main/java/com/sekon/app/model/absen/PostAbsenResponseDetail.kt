@@ -8,6 +8,6 @@ data class PostAbsenResponseDetail(
     val deskripsi: String,
     val kelas: String,
     val nama: String,
-    val status: Int,
+    val status: String,
     val updatedAt: String
 )

@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_absen.*
 class AbsenActivity : AppCompatActivity() {
 
     private lateinit var absenViewModel: AbsenViewModel
-    private var absenId = 0
+    private var absenStatus = "alpha"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class AbsenActivity : AppCompatActivity() {
             val deskripsi = et_deskripsi_absen.text.toString()
 
             if (id != null) {
-                val absenBody = PostAbsenBody(id, id, deskripsi, absenId)
+                val absenBody = PostAbsenBody(id, id, deskripsi, absenStatus)
                 postAbsen(absenBody)
             } else {
                 Toast.makeText(this, "Tidak dapat absen, coba keluar aplikasi, lalu masuk lagi", Toast.LENGTH_LONG).show()
@@ -73,15 +73,15 @@ class AbsenActivity : AppCompatActivity() {
             val radio: RadioButton = findViewById(checkedId)
             when (radio) {
                 rb_hadir -> {
-                    absenId = 1
+                    absenStatus = "Hadir"
                 }
 
                 rb_sakit -> {
-                    absenId = 2
+                    absenStatus = "Sakit"
                 }
 
                 rb_izin -> {
-                    absenId = 3
+                    absenStatus = "Izin"
                 }
             }
         }
