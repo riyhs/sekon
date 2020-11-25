@@ -16,7 +16,6 @@ isi video
 3. Penyelesaian masalah (solusi yang didapat dari aplikasi)
 	untuk menyelesaikan masalah tersebut, kami membuat sebuah platform untuk memudahkan siswa 
 	dan guru berkomunikasi dalam 1 tempat yang terorganisir dan mudah dijangkau
-	Siswa lebih mudah mendapatkan 
 
 4. Pengenalan Fitur2 & manfaat nya
 	- referensi belajar ( fitur ini memberikan referensi belajar dari internet untuk siswa sesuai jurusan nya
@@ -51,3 +50,22 @@ isi video
 		
 	2. Aplikasi Guru
 6. Penutupan biasa
+
+pertama kita bisa login sebagai guru atau siswa , kali ini saya akan login sebagai siswa.
+
+di login sebagai siswa kita memasukan nis siswa dan password yang sudah di
+
+
+absen (di fitur absen ini terdapat tiga jenis absen yaitu hadir sakit dan ijin dan kita bisa membirakan diskripsi atau alasan jiki kita ijin atau sakit)
+
+jadwal ( di fitur jadwal ini kita bisa melihat jadwal sesuai kelas dan hari )
+
+sarab ( di fitur saran ini kita bisa mengirimkan keluhan siswa kepada guru) 
+
+pengumuman (di fitur pengumuman kita bisa melihat pengumuman atau info dari guru
+
+dan juga ada fitur tambahan yaitu referensi belajar dan info covid
+
+Referensi ( di fitur referensi kita bisa melihat referensi belajar dari internet sesuai jurusan)
+
+info covid (di fitur info covid kita bisa melihat informasi tentang covu=id 19)

@@ -2,7 +2,6 @@ package com.sekon.app.ui.fragment.splash
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -52,9 +51,13 @@ class SignInStudentFragment : Fragment() {
                     if (response.data != null && response.data.status == "sukses") {
                         val nama = response.data.siswa.nama
                         val id = response.data.siswa._id
+                        val nis = response.data.siswa.nis
+                        val kelas = response.data.siswa.kelas
 
                         Preference.saveName(nama, requireContext())
                         Preference.saveId(id, requireContext())
+                        Preference.saveNis(nis, requireContext())
+                        Preference.saveKelas(kelas, requireContext())
                         saveToken(response.data.token)
                         Toast.makeText(context, response.data.message, Toast.LENGTH_SHORT).show()
                         isSignInSuccess(true)
