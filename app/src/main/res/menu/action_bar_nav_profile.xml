@@ -4,10 +4,10 @@
     <group android:menuCategory="container">
         <item
             android:id="@+id/action_edit_profile"
-            android:title="Edit Profile" />
+            android:title="Edit Profil" />
 
         <item
             android:id="@+id/action_bar_log_out"
-            android:title="Log Out"/>
+            android:title="Keluar" />
     </group>
 </menu>
