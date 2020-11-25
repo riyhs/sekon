@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
@@ -117,13 +116,6 @@ class SignInStudentFragment : Fragment() {
         tiSignInPassword.isInvisible = state
         bt_sign_in.isInvisible = state
         tv_sign_in.isInvisible = state
-    }
-
-    private fun onBackPressed() {
-            activity?.onBackPressedDispatcher?.addCallback(viewLifecycleOwner, object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                activity?.finish()
-            }
-        })
+        imageView5.isInvisible = state
     }
 }
