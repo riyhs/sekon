@@ -137,9 +137,9 @@ class DashboardAnnouncementActivity : AppCompatActivity() {
     // image
     private fun pickImage() {
         ImagePicker.with(this)
-            .crop(3f, 2f)
+            .crop()
             .compress(100)
-            .maxResultSize(1440, 1440)
+            .maxResultSize(1080, 1920)
             .galleryMimeTypes(
                 mimeTypes = arrayOf(
                     "image/png",
