@@ -41,7 +41,6 @@ class AnnouncementFragment : Fragment() {
 
         Preference.addNotif(0, requireContext())
         activity?.bottomNavigationView?.removeBadge(R.id.bottom_nav_announcement)
-        bottomNavigationView.removeBadge(R.id.bottom_nav_announcement)
     }
 
     private fun setupViewModel() {
