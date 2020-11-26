@@ -2,7 +2,7 @@
 Sekon adalah sebuah platform yang berguna untuk memudahkan komunikasi antara Siswa dengan Guru di masa Pandemi atau Pembelajaran Jarak Jauh
 
 ## Download
-[Download Sekon](https://github.com/riyhs/sekon/blob/master/app/build/outputs/apk/debug/app-debug.apk)
+[Download Sekon](https://github.com/riyhs/sekon/raw/master/app/build/outputs/apk/debug/app-debug.apk)
 
 ## How To Use
 - Download Aplikasinya
