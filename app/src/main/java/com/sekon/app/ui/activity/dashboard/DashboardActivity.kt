@@ -47,17 +47,17 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun btOnClick() {
-        bt_saran.setOnClickListener {
+        mcv_saran.setOnClickListener {
             val intent = Intent(this, DashboardSaranActivity::class.java)
             startActivity(intent)
         }
 
-        bt_pengumuman.setOnClickListener {
+        mcv_pengumuman.setOnClickListener {
             val intent = Intent(this, DashboardAnnouncementActivity::class.java)
             startActivity(intent)
         }
 
-        bt_referensi.setOnClickListener {
+        mcv_referensi.setOnClickListener {
             val intent = Intent(this, DashboardReferenceActivity::class.java)
             startActivity(intent)
         }
