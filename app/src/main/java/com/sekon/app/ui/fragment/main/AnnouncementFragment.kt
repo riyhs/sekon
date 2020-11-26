@@ -16,7 +16,9 @@ import com.sekon.app.adapter.AnnouncementAdapter
 import com.sekon.app.adapter.decoration.MarginItemDecorationVertical
 import com.sekon.app.model.Resource
 import com.sekon.app.model.announcement.AnnouncementResponseDetail
+import com.sekon.app.utils.Preference
 import com.sekon.app.viewmodel.AnnouncementViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_announcement.*
 
 class AnnouncementFragment : Fragment() {
@@ -36,6 +38,10 @@ class AnnouncementFragment : Fragment() {
         announcementViewModel = ViewModelProvider(this).get(AnnouncementViewModel::class.java)
 
         setupViewModel()
+
+        Preference.addNotif(0, requireContext())
+        activity?.bottomNavigationView?.removeBadge(R.id.bottom_nav_announcement)
+        bottomNavigationView.removeBadge(R.id.bottom_nav_announcement)
     }
 
     private fun setupViewModel() {

@@ -14,6 +14,8 @@ import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.sekon.app.R
 import com.sekon.app.ui.activity.MainActivity
+import com.sekon.app.utils.Preference
+
 
 class FirebaseCMService: FirebaseMessagingService() {
     companion object {
@@ -29,6 +31,17 @@ class FirebaseCMService: FirebaseMessagingService() {
         super.onMessageReceived(remoteMessage)
 
         sendNotification(remoteMessage)
+        countNotif()
+    }
+
+    private fun countNotif() {
+        val sharedPref = Preference.initPref(this, "notification")
+        val oldTotalNotif = sharedPref.getInt("total", 0)
+        val total = oldTotalNotif + 1
+
+        Preference.addNotif(total, this)
+
+        Log.d("BADGETOT", "======== ADD BAGDETOT $total ========")
     }
 
     private fun sendNotification(message: RemoteMessage) {

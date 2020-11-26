@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.badge.BadgeDrawable
 import com.google.firebase.messaging.FirebaseMessaging
 import com.sekon.app.R
 import com.sekon.app.ui.fragment.main.AnnouncementFragment
@@ -41,6 +42,8 @@ class MainActivity : AppCompatActivity() {
             setupFragment(HomeFragment())
             bottomNavClick(false)
         }
+
+        showNotifBadge()
     }
 
     private fun initId(context: Context): String? {
@@ -77,6 +80,22 @@ class MainActivity : AppCompatActivity() {
 
                 else -> false
             }
+        }
+    }
+
+    private fun addBadge(count : Int) {
+        val badge: BadgeDrawable = bottomNavigationView.getOrCreateBadge(
+            R.id.bottom_nav_announcement)
+        badge.number = count
+        badge.isVisible = true
+    }
+
+    private fun showNotifBadge() {
+        val sharedPref = Preference.initPref(this, "notification")
+        val oldTotalNotif = sharedPref.getInt("total", 0)
+
+        if (oldTotalNotif != 0) {
+            addBadge(oldTotalNotif)
         }
     }
 
