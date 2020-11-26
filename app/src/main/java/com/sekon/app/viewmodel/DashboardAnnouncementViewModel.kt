@@ -1,10 +1,16 @@
 package com.sekon.app.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.cloudinary.android.MediaManager
+import com.cloudinary.android.callback.ErrorInfo
+import com.cloudinary.android.callback.UploadCallback
 import com.sekon.app.model.Resource
 import com.sekon.app.model.announcement.AnnouncementPostModel
 import com.sekon.app.model.announcement.AnnouncementPostResponse
+import com.sekon.app.model.fcm.PostFCMBody
+import com.sekon.app.model.fcm.PostFCMResponse
 import com.sekon.app.network.NetworkConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,6 +22,8 @@ import retrofit2.Response
 
 class DashboardAnnouncementViewModel: ViewModel() {
     private val pengumumanResponse = MutableLiveData<Resource<AnnouncementPostResponse>>()
+    private val photoUrl = MutableLiveData<Resource<String>>()
+    private val isFCMSent = MutableLiveData<Resource<Boolean>>()
 
     private var vmJob = Job()
     private var scope = CoroutineScope(Dispatchers.Default + vmJob)
@@ -45,6 +53,63 @@ class DashboardAnnouncementViewModel: ViewModel() {
 
     fun getPengumuman(): MutableLiveData<Resource<AnnouncementPostResponse>> {
         return pengumumanResponse
+    }
+
+    // cloudinary
+    fun uploadToCloudinary(filePath: String?) {
+        MediaManager.get().upload(filePath).callback(object : UploadCallback {
+            override fun onStart(requestId: String) {
+                Log.d("PHOTO_URL", "starting")
+                photoUrl.postValue(Resource.Loading())
+            }
+
+            override fun onProgress(requestId: String, bytes: Long, totalBytes: Long) {
+                photoUrl.postValue(Resource.Loading())
+            }
+
+            override fun onSuccess(requestId: String, resultData: Map<*, *>) {
+                photoUrl.postValue(Resource.Success(resultData["secure_url"].toString()))
+                Log.d("PHOTO_URL", resultData["secure_url"].toString())
+            }
+
+            override fun onError(requestId: String, error: ErrorInfo) {
+                Log.d("PHOTO_URL", "error ${error.description}")
+                photoUrl.postValue(Resource.Error(error.description))
+            }
+
+            override fun onReschedule(requestId: String, error: ErrorInfo) {
+                Log.d("PHOTO_URL", "reschecule")
+            }
+        }).dispatch()
+    }
+
+    fun getPhotoUrl(): MutableLiveData<Resource<String>> {
+        return photoUrl
+    }
+
+    // FCM
+    fun setFCM(bodyFCM: PostFCMBody) = scope.launch {
+        isFCMSent.postValue(Resource.Loading())
+
+        NetworkConfig()
+            .getServiceFCM()
+            .postFCM(bodyFCM)
+            .enqueue(object : Callback<PostFCMResponse> {
+                override fun onResponse(
+                    call: Call<PostFCMResponse>,
+                    response: Response<PostFCMResponse>
+                ) {
+                    isFCMSent.postValue(Resource.Success(true))
+                }
+
+                override fun onFailure(call: Call<PostFCMResponse>, t: Throwable) {
+                    isFCMSent.postValue(Resource.Error(t.message.toString()))
+                }
+            })
+    }
+
+    fun getFCM(): MutableLiveData<Resource<Boolean>> {
+        return isFCMSent
     }
 
     override fun onCleared() {

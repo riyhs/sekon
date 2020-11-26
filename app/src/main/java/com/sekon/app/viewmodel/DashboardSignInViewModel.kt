@@ -17,7 +17,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 @Suppress("BlockingMethodInNonBlockingContext")
-class SignInTeacherViewModel : ViewModel() {
+class DashboardSignInViewModel : ViewModel() {
     private var signInResponse = MutableLiveData<Resource<SignInResponseTeacher>>()
 
     private var vmJob = Job()

@@ -1,0 +1,71 @@
+latar belakang pembuatan aplikasi
+fitur2
+cara penggunaan
+manfaat
+
+SEKON - Sekolah Online
+
+isi video
+0. Opening
+1. Perkenalan Anggota 
+	(perkenalan 1 1)
+	
+2. Latar belakang pembuatan aplikasi
+	Memudahkan siswa berkomunikasi dengan guru di kala pandemi / saat pembelajaran jarak jauh
+ 
+3. Penyelesaian masalah (solusi yang didapat dari aplikasi)
+	untuk menyelesaikan masalah tersebut, kami membuat sebuah platform untuk memudahkan siswa 
+	dan guru berkomunikasi dalam 1 tempat yang terorganisir dan mudah dijangkau
+
+4. Pengenalan Fitur2 & manfaat nya
+	- referensi belajar ( fitur ini memberikan referensi belajar dari internet untuk siswa sesuai jurusan nya
+	- absen ( memudahkan absen siswa saat pembelajaran jarak jauh 
+	- jadwal ( memudahkan siswa untuk melihat jadwal mata pelajaran
+	- saran ( memudahkan siswa memberikan saran / laporan kepada guru atas permasalahan yang perlu di ketahui guru, dan juga siswa melihat laporan lain dan memberikan ide nya untuk 
+		masalah tsb ( kotak saran online )
+	- pengumuman ( memudahkan guru memberikan pengumuman kepada siswa [masalah : memberikan pengumuman lewat wa sering di abaikan karena tenggelam dari chat]
+		- fitur tambahan ( covid = memberikan info terbaru tentang covid 19
+		
+5. Cara Penggunaan aplikasi 
+	1. Aplikasi Siswa
+		- login
+		- absen
+			- pilih kehadiran
+			- isi form
+			- klik tombol absen (cara kerja back end - improvisasi)
+			
+		- jadwal
+			-masuk menu jadwal
+			-pilih hari (nek iso hari otomatis)
+			
+		- saran
+			- masuk menu saran
+			- pencet tombol ajukan saran
+			- isi form dan data dengan benar
+			- klis tombol save
+			
+		- pengumuman 
+			- buka menu pengumuman - improvisasi
+			
+		
+	2. Aplikasi Guru
+6. Penutupan biasa
+
+pertama kita bisa login sebagai guru atau siswa , kali ini saya akan login sebagai siswa.
+
+di login sebagai siswa kita memasukan nis siswa dan password yang sudah di
+
+
+absen (di fitur absen ini terdapat tiga jenis absen yaitu hadir sakit dan ijin dan kita bisa membirakan diskripsi atau alasan jiki kita ijin atau sakit)
+
+jadwal ( di fitur jadwal ini kita bisa melihat jadwal sesuai kelas dan hari )
+
+sarab ( di fitur saran ini kita bisa mengirimkan keluhan siswa kepada guru) 
+
+pengumuman (di fitur pengumuman kita bisa melihat pengumuman atau info dari guru
+
+dan juga ada fitur tambahan yaitu referensi belajar dan info covid
+
+Referensi ( di fitur referensi kita bisa melihat referensi belajar dari internet sesuai jurusan)
+
+info covid (di fitur info covid kita bisa melihat informasi tentang covu=id 19)

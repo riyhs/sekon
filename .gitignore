@@ -14,3 +14,4 @@
 .cxx
 /app/src/main/java/com/sekon/app/utils/
 /app/src/main/java/com/sekon/app/utils/NetworkInfo.kt
+/app/google-services.json

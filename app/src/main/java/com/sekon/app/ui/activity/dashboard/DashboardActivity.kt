@@ -1,11 +1,11 @@
 package com.sekon.app.ui.activity.dashboard
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.sekon.app.R
 import com.sekon.app.ui.activity.SplashActivity
 import com.sekon.app.utils.Preference
@@ -17,11 +17,13 @@ class DashboardActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dashboard)
 
         btOnClick()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.action_bar_nav_profile, menu)
+        if (menu != null) {
+            menu.findItem(R.id.action_edit_profile)?.isVisible = false
+        }
         return true
     }
 
@@ -45,17 +47,17 @@ class DashboardActivity : AppCompatActivity() {
     }
 
     private fun btOnClick() {
-        bt_saran.setOnClickListener {
+        mcv_saran.setOnClickListener {
             val intent = Intent(this, DashboardSaranActivity::class.java)
             startActivity(intent)
         }
 
-        bt_pengumuman.setOnClickListener {
+        mcv_pengumuman.setOnClickListener {
             val intent = Intent(this, DashboardAnnouncementActivity::class.java)
             startActivity(intent)
         }
 
-        bt_referensi.setOnClickListener {
+        mcv_referensi.setOnClickListener {
             val intent = Intent(this, DashboardReferenceActivity::class.java)
             startActivity(intent)
         }

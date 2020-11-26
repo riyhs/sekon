@@ -46,7 +46,6 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         bt_save_edit.setOnClickListener {
-            Toast.makeText(this, filePath, Toast.LENGTH_SHORT).show()
             if (id != null) {
                 if (filePath == "filepath") {
                     editTagLineOnly(id)
@@ -67,8 +66,8 @@ class EditProfileActivity : AppCompatActivity() {
     private fun pickImage() {
         ImagePicker.with(this)
             .crop(1f, 1f)
-            .compress(256)
-            .maxResultSize(512, 512)
+            .compress(50)
+            .maxResultSize(256, 256)
             .galleryMimeTypes(  //Exclude gif images
                 mimeTypes = arrayOf(
                     "image/png",
@@ -92,7 +91,6 @@ class EditProfileActivity : AppCompatActivity() {
                 Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
             }
             else -> {
-                Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
             }
         }
     }

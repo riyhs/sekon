@@ -4,17 +4,17 @@
         android:id="@+id/bottom_nav_home"
         android:icon="@drawable/ic_home"
         android:menuCategory="secondary"
-        android:title="Home" />
+        android:title="Beranda" />
 
     <item
-        android:id="@+id/bottom_nav_features"
-        android:icon="@drawable/ic_widgets"
+        android:id="@+id/bottom_nav_announcement"
+        android:icon="@drawable/ic_notifications"
         android:menuCategory="secondary"
-        android:title="Feature" />
+        android:title="Pengumuman" />
 
     <item
         android:id="@+id/bottom_nav_more"
         android:icon="@drawable/ic_account_box"
         android:menuCategory="secondary"
-        android:title="More" />
+        android:title="Profil" />
 </menu>

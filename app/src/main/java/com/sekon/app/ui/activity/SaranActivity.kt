@@ -12,7 +12,6 @@ class SaranActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_saran)
 
-        setupFragment(SaranFragment())
     }
 
     private fun setupFragment(fragment: Fragment) {

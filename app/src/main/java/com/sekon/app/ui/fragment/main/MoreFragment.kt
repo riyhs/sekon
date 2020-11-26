@@ -10,6 +10,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.google.firebase.messaging.FirebaseMessaging
 import com.sekon.app.R
 import com.sekon.app.model.SiswaResponseDetail
 import com.sekon.app.ui.activity.EditProfileActivity
@@ -69,8 +70,8 @@ class MoreFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_bar_log_out -> {
-                Toast.makeText(context, "Log Out", Toast.LENGTH_SHORT).show()
                 Preference.logOut(requireContext())
+                FirebaseMessaging.getInstance().unsubscribeFromTopic("pengumuman")
                 startActivity(
                     Intent(activity?.applicationContext, SplashActivity::class.java)
                 )
@@ -78,7 +79,6 @@ class MoreFragment : Fragment() {
             }
 
             R.id.action_edit_profile -> {
-                Toast.makeText(context, "Edit Profile", Toast.LENGTH_SHORT).show()
                 activity?.startActivity(
                     Intent(context, EditProfileActivity::class.java)
                 )

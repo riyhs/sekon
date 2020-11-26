@@ -26,6 +26,7 @@
         android:contentDescription="Edit Foto"
         android:focusable="true"
         android:src="@drawable/ic_person"
+        app:tint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="@+id/iv_edit_profile"
         app:layout_constraintEnd_toEndOf="@+id/iv_edit_profile" />
 
@@ -65,12 +66,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="32dp"
         android:text="Simpan"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ti_edit_tagline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

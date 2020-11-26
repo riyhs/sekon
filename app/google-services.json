@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "222423630976",
+    "firebase_url": "https://sekon-app.firebaseio.com",
+    "project_id": "sekon-app",
+    "storage_bucket": "sekon-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222423630976:android:3b2b021c379b2327531265",
+        "android_client_info": {
+          "package_name": "com.sekon.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "222423630976-uclcosnsursnub83qvkcho8rv4gdagq5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDybP7JNonTzj-6f8Tij8p4JI6e8ZxzsDQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "222423630976-uclcosnsursnub83qvkcho8rv4gdagq5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

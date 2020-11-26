@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_absen.*
 class AbsenActivity : AppCompatActivity() {
 
     private lateinit var absenViewModel: AbsenViewModel
-    private var absenId = 0
+    private var absenStatus = "alpha"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,11 +29,16 @@ class AbsenActivity : AppCompatActivity() {
         getCheckedRadioButton()
 
         bt_post_absen.setOnClickListener {
-            val id = getId(this)
             val deskripsi = et_deskripsi_absen.text.toString()
 
-            if (id != null) {
-                val absenBody = PostAbsenBody(id, id, deskripsi, absenId)
+            if (getData("id", this, false) != null) {
+                val absenBody = PostAbsenBody(
+                    nama = getData("name", this, false).toString(),
+                    kelas = getData("kelas", this, false).toString(),
+                    nis = getData("nis", this, true) as Int,
+                    deskripsi = deskripsi,
+                    status = absenStatus
+                )
                 postAbsen(absenBody)
             } else {
                 Toast.makeText(this, "Tidak dapat absen, coba keluar aplikasi, lalu masuk lagi", Toast.LENGTH_LONG).show()
@@ -73,22 +78,26 @@ class AbsenActivity : AppCompatActivity() {
             val radio: RadioButton = findViewById(checkedId)
             when (radio) {
                 rb_hadir -> {
-                    absenId = 1
+                    absenStatus = "Hadir"
                 }
 
                 rb_sakit -> {
-                    absenId = 2
+                    absenStatus = "Sakit"
                 }
 
                 rb_izin -> {
-                    absenId = 3
+                    absenStatus = "Izin"
                 }
             }
         }
     }
 
-    private fun getId(context: Context): String? {
+    private fun getData(name: String ,context: Context, isInt: Boolean): Any? {
         val sharedPref = Preference.initPref(context, "onSignIn")
-        return sharedPref.getString("id", "id")
+        return if (isInt) {
+            sharedPref.getInt(name, 0)
+        } else {
+            sharedPref.getString(name, name)
+        }
     }
 }
