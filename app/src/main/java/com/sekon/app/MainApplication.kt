@@ -1,4 +1,4 @@
-package com.sekon.app.ui.activity
+package com.sekon.app
 
 import android.app.Application
 import com.cloudinary.android.MediaManager
