@@ -200,7 +200,6 @@ class HomeFragment : Fragment() {
         } else day.toString()
 
         return "$year-$stringMonth-$stringDay"
-//        + "T00:00:00Z"
     }
 
     private fun chipOnClickListener() {

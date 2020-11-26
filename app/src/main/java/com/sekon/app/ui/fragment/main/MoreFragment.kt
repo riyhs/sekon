@@ -70,7 +70,6 @@ class MoreFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_bar_log_out -> {
-                Toast.makeText(context, "Log Out", Toast.LENGTH_SHORT).show()
                 Preference.logOut(requireContext())
                 FirebaseMessaging.getInstance().unsubscribeFromTopic("pengumuman")
                 startActivity(
@@ -80,7 +79,6 @@ class MoreFragment : Fragment() {
             }
 
             R.id.action_edit_profile -> {
-                Toast.makeText(context, "Edit Profile", Toast.LENGTH_SHORT).show()
                 activity?.startActivity(
                     Intent(context, EditProfileActivity::class.java)
                 )

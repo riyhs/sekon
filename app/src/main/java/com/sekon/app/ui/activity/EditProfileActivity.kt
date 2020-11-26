@@ -46,7 +46,6 @@ class EditProfileActivity : AppCompatActivity() {
         }
 
         bt_save_edit.setOnClickListener {
-            Toast.makeText(this, filePath, Toast.LENGTH_SHORT).show()
             if (id != null) {
                 if (filePath == "filepath") {
                     editTagLineOnly(id)
@@ -92,7 +91,6 @@ class EditProfileActivity : AppCompatActivity() {
                 Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
             }
             else -> {
-                Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
             }
         }
     }

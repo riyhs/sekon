@@ -2,7 +2,6 @@ package com.sekon.app.ui.activity
 
 import android.content.Context
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -37,11 +36,9 @@ class MainActivity : AppCompatActivity() {
 
         if (pengumumanFragment != null) {
             setupFragment(AnnouncementFragment())
-            Toast.makeText(this, "ada intent $pengumumanFragment", Toast.LENGTH_SHORT).show()
             bottomNavClick(true)
         } else {
             setupFragment(HomeFragment())
-            Toast.makeText(this, "Tidak ada intent $pengumumanFragment", Toast.LENGTH_SHORT).show()
             bottomNavClick(false)
         }
     }
