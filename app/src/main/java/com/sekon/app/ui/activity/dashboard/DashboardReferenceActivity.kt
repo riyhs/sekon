@@ -133,18 +133,14 @@ class DashboardReferenceActivity : AppCompatActivity() {
                 }
 
                 override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-                    Toast.makeText(
-                        this@DashboardReferenceActivity,
-                        "Tidak bisa memilih gambar",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this@DashboardReferenceActivity, "Izinkan Aplikasi mengakses Penyimpanan melalui pengaturan", Toast.LENGTH_LONG).show()
                 }
 
                 override fun onPermissionRationaleShouldBeShown(
                     p0: PermissionRequest?,
                     p1: PermissionToken?
                 ) {
-                    TODO("Not yet implemented")
+                    p1?.continuePermissionRequest()
                 }
             })
             .check()

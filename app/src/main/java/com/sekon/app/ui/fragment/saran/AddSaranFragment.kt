@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -70,11 +69,8 @@ class AddSaranFragment : Fragment() {
     }
 
     private fun postSaran(url: String, id: String) {
-
         val judul = ti_judul_saran.text
         val deskripsi = ti_deskripsi_saran.text
-
-        Log.d("SARAN", "post Saran")
 
         if (judul != null && deskripsi != null) {
             if (judul.isNotEmpty() && deskripsi.isNotEmpty()) {
@@ -105,7 +101,6 @@ class AddSaranFragment : Fragment() {
                     }
                 })
             } else {
-                Log.d("SARAN", "else")
                 showLoading(false)
                 Toast.makeText(activity?.applicationContext, "kosong", Toast.LENGTH_SHORT).show()
             }
@@ -126,11 +121,11 @@ class AddSaranFragment : Fragment() {
                 }
 
                 override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
-                    Toast.makeText(requireContext(), "Tidak bisa memilih gambar", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Izinkan Aplikasi mengakses Penyimpanan melalui pengaturan", Toast.LENGTH_SHORT).show()
                 }
 
                 override fun onPermissionRationaleShouldBeShown(p0: PermissionRequest?, p1: PermissionToken?) {
-                    TODO("Not yet implemented")
+                    p1?.continuePermissionRequest()
                 }
             })
             .check()

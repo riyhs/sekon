@@ -106,7 +106,7 @@ class EditProfileActivity : AppCompatActivity() {
                 override fun onPermissionDenied(p0: PermissionDeniedResponse?) {
                     Toast.makeText(
                         this@EditProfileActivity,
-                        "Tidak bisa memilih gambar",
+                        "Izinkan Aplikasi mengakses Penyimpanan melalui pengaturan",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -115,7 +115,7 @@ class EditProfileActivity : AppCompatActivity() {
                     p0: PermissionRequest?,
                     p1: PermissionToken?
                 ) {
-                    TODO("Not yet implemented")
+                    p1?.continuePermissionRequest()
                 }
             })
             .check()

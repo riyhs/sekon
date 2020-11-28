@@ -41,7 +41,11 @@ class AbsenActivity : AppCompatActivity() {
                 )
                 postAbsen(absenBody)
             } else {
-                Toast.makeText(this, "Tidak dapat absen, coba keluar aplikasi, lalu masuk lagi", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "Tidak dapat absen, coba keluar aplikasi, lalu masuk lagi",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }
@@ -74,7 +78,7 @@ class AbsenActivity : AppCompatActivity() {
     }
 
     private fun getCheckedRadioButton() {
-        rg_absen.setOnCheckedChangeListener{_, checkedId ->
+        rg_absen.setOnCheckedChangeListener{ _, checkedId ->
             val radio: RadioButton = findViewById(checkedId)
             when (radio) {
                 rb_hadir -> {
@@ -92,7 +96,7 @@ class AbsenActivity : AppCompatActivity() {
         }
     }
 
-    private fun getData(name: String ,context: Context, isInt: Boolean): Any? {
+    private fun getData(name: String, context: Context, isInt: Boolean): Any? {
         val sharedPref = Preference.initPref(context, "onSignIn")
         return if (isInt) {
             sharedPref.getInt(name, 0)

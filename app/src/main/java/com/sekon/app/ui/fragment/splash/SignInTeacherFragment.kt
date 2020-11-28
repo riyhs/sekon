@@ -59,7 +59,7 @@ class SignInTeacherFragment : Fragment() {
                         showLoading(false)
                     } else {
                         showLoading(false)
-                        Toast.makeText(activity, response.data?.message, Toast.LENGTH_SHORT).show()
+                        isSignInSuccess(false)
                     }
                 }
 
@@ -92,6 +92,8 @@ class SignInTeacherFragment : Fragment() {
             onSignInFinished()
             findNavController().navigate(R.id.action_signInTeacherFragment_to_dashboardActivity)
             activity?.finish()
+        } else {
+            Toast.makeText(context, "E-Mail / Password Salah", Toast.LENGTH_LONG).show()
         }
     }
 
