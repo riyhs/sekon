@@ -49,9 +49,8 @@
         tools:layout="@layout/activity_main" >
         <argument
             android:name="fromNotif"
-            app:argType="string"
-            app:nullable="true"
-            android:defaultValue="@null" />
+            app:argType="boolean"
+            android:defaultValue="false" />
     </activity>
     <fragment
         android:id="@+id/signInTeacherFragment"

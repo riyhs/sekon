@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             setupMainViewModel(id)
         }
 
-        if (args.fromNotif == "true") {
+        if (args.fromNotif) {
             setupFragment(AnnouncementFragment())
             bottomNavClick(true)
         } else {

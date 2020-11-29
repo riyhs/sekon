@@ -4,11 +4,9 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.sekon.app.R
@@ -30,11 +28,11 @@ class SplashFragment : Fragment() {
             if (onBoardingFinished() && TOKEN_KEY != "token") {
                 if (STATUS == "student") {
                     if (isFromNotif != null && isFromNotif == "pengumuman") {
-                        val action = SplashFragmentDirections.actionSplashFragmentToMainActivity("true")
+                        val action = SplashFragmentDirections.actionSplashFragmentToMainActivity(true)
                         findNavController().navigate(action)
                         activity?.finish()
                     } else {
-                        val action = SplashFragmentDirections.actionSplashFragmentToMainActivity("false")
+                        val action = SplashFragmentDirections.actionSplashFragmentToMainActivity(false)
                         findNavController().navigate(action)
                         activity?.finish()
                     }
