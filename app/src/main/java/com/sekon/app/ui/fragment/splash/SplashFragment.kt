@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.sekon.app.R
@@ -21,11 +23,21 @@ class SplashFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         onSignInFinished()
+
+        val isFromNotif = activity?.intent?.getStringExtra("fragment")
+
         Handler(Looper.getMainLooper()).postDelayed({
             if (onBoardingFinished() && TOKEN_KEY != "token") {
                 if (STATUS == "student") {
-                    findNavController().navigate(R.id.action_splashFragment_to_mainActivity)
-                    activity?.finish()
+                    if (isFromNotif != null && isFromNotif == "pengumuman") {
+                        val action = SplashFragmentDirections.actionSplashFragmentToMainActivity("true")
+                        findNavController().navigate(action)
+                        activity?.finish()
+                    } else {
+                        val action = SplashFragmentDirections.actionSplashFragmentToMainActivity("false")
+                        findNavController().navigate(action)
+                        activity?.finish()
+                    }
                 } else {
                     findNavController().navigate(R.id.action_splashFragment_to_dashboardActivity)
                     activity?.finish()

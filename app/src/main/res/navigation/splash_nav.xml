@@ -46,7 +46,13 @@
         android:id="@+id/mainActivity"
         android:name="com.sekon.app.ui.activity.MainActivity"
         android:label="activity_main"
-        tools:layout="@layout/activity_main" />
+        tools:layout="@layout/activity_main" >
+        <argument
+            android:name="fromNotif"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </activity>
     <fragment
         android:id="@+id/signInTeacherFragment"
         android:name="com.sekon.app.ui.fragment.splash.SignInTeacherFragment"

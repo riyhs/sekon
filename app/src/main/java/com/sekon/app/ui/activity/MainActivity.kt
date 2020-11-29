@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.navArgs
 import com.google.android.material.badge.BadgeDrawable
 import com.google.firebase.messaging.FirebaseMessaging
 import com.sekon.app.R
@@ -18,15 +19,14 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mainViewModel: MainViewModel
+    private val args: MainActivityArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val pengumumanFragment = intent.getStringExtra("fragment")
-
         setContentView(R.layout.activity_main)
 
         FirebaseMessaging.getInstance().subscribeToTopic("pengumuman")
+//        FirebaseMessaging.getInstance().subscribeToTopic("testing")
 
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             setupMainViewModel(id)
         }
 
-        if (pengumumanFragment != null) {
+        if (args.fromNotif == "true") {
             setupFragment(AnnouncementFragment())
             bottomNavClick(true)
         } else {

@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import com.sekon.app.R
-import com.sekon.app.ui.activity.MainActivity
+import com.sekon.app.ui.activity.SplashActivity
 import com.sekon.app.utils.Preference
 
 
@@ -40,15 +40,13 @@ class FirebaseCMService: FirebaseMessagingService() {
         val total = oldTotalNotif + 1
 
         Preference.addNotif(total, this)
-
-        Log.d("BADGETOT", "======== ADD BAGDETOT $total ========")
     }
 
     private fun sendNotification(message: RemoteMessage) {
         val channelId = getString(R.string.default_notification_channel_id)
         val channelName = getString(R.string.default_notification_channel_name)
 
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, SplashActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         intent.putExtra("fragment", "pengumuman")
         val pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT)
