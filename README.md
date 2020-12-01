@@ -15,6 +15,17 @@ Sekon adalah sebuah platform yang berguna untuk memudahkan komunikasi antara Sis
   - Login Sebagai Guru
     - E-Mail = radif@gmail.com
     - Password = radif1234
+- Beranda (Siswa)
+  - Absen
+    - Pilih menu `Absen` di halaman Beranda
+    - Pilih kategori absen
+    - Isi deskripsi bila perlu
+    - Tekan tombol Absen
+  - Jadwal
+    - Pilih menu `Jadwal` di halaman Beranda
+    - Pilih hari untuk menampilkan jadwal
+  - Saran
+  
     
 ## How To Contribute
 Jika kamu menemukan bug / masalah pada aplikasi, kamu bisa menambahkan `Issues` di Repository ini, Terima Kasih.
