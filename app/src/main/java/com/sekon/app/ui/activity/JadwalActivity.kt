@@ -35,7 +35,12 @@ class JadwalActivity : AppCompatActivity() {
         selectedChip = getDay()
         val kelas = getData("kelas", this)
 
-        setupJadwal(kelas, selectedChip)
+        if (selectedChip != "libur") {
+            setupJadwal(kelas, selectedChip)
+        } else {
+            setupJadwal(kelas, "senin")
+        }
+
         chipOnClickListener(kelas)
     }
 
@@ -44,21 +49,27 @@ class JadwalActivity : AppCompatActivity() {
 
         when (c.get(Calendar.DAY_OF_WEEK)) {
             2 -> {
+                chip_senin.isChecked = true
                 return "senin"
             }
             3 -> {
+                chip_selasa.isChecked = true
                 return "selasa"
             }
             4 -> {
+                chip_rabu.isChecked = true
                 return "rabu"
             }
             5 -> {
+                chip_kamis.isChecked = true
                 return "kamis"
             }
             6 -> {
+                chip_jumat.isChecked = true
                 return "jumat"
             } else -> {
-                return "sabtu"
+                chip_senin.isChecked = false
+                return "libur"
             }
         }
     }
