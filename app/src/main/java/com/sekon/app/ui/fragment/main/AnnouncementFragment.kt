@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -37,6 +38,8 @@ class AnnouncementFragment : Fragment() {
 
         announcementViewModel = ViewModelProvider(this).get(AnnouncementViewModel::class.java)
 
+        onBackPressed()
+
         setupViewModel()
 
         Preference.addNotif(0, requireContext())
@@ -50,7 +53,7 @@ class AnnouncementFragment : Fragment() {
                 is Resource.Success -> {
                     val announcements = response.data?.result
 
-                    if (announcements != null && announcements.size > 1) {
+                    if (announcements != null && announcements.isNotEmpty()) {
                         setupAdapter(announcements)
                         showLoading(false)
                     } else {
@@ -93,5 +96,24 @@ class AnnouncementFragment : Fragment() {
         rv_announcment.setHasFixedSize(true)
         rv_announcment.layoutManager = layoutManager
         rv_announcment.adapter = AnnouncementAdapter(list)
+    }
+
+    private fun onBackPressed() {
+        activity?.onBackPressedDispatcher?.addCallback(
+            viewLifecycleOwner,
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    activity?.supportFragmentManager
+                        ?.beginTransaction()
+                        ?.replace(
+                            R.id.frame_container,
+                            HomeFragment(),
+                            HomeFragment::class.java.simpleName
+                        )
+                        ?.commit()
+
+                    activity?.bottomNavigationView?.selectedItemId = R.id.bottom_nav_home
+                }
+            })
     }
 }
