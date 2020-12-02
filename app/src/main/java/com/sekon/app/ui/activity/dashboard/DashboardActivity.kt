@@ -61,5 +61,10 @@ class DashboardActivity : AppCompatActivity() {
             val intent = Intent(this, DashboardReferenceActivity::class.java)
             startActivity(intent)
         }
+
+        mcv_absen.setOnClickListener {
+            val intent = Intent(this, DashboardAbsenActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
