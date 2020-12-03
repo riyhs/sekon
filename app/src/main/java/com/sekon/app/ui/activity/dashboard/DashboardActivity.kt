@@ -64,7 +64,7 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         mcv_absen.setOnClickListener {
-            val url = "https://sekon.netlify.app"
+            val url = "https://sekon.netlify.app/absen/xi-rpl-1"
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(url)
             
