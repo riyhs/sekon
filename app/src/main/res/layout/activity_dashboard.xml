@@ -179,7 +179,7 @@
                     android:text="Absen"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    app:drawableRightCompat="@drawable/ic_referensi_icon" />
+                    app:drawableRightCompat="@drawable/ic_absen_menu_icon" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
