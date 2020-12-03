@@ -1,6 +1,7 @@
 package com.sekon.app.ui.activity.dashboard
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -63,7 +64,10 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         mcv_absen.setOnClickListener {
-            val intent = Intent(this, DashboardAbsenActivity::class.java)
+            val url = "https://sekon.netlify.app"
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            
             startActivity(intent)
         }
     }
