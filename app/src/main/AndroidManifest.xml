@@ -19,7 +19,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup"
         tools:targetApi="n">
-        <activity android:name=".ui.activity.dashboard.DashboardAbsenActivity"></activity>
+        <activity android:name=".ui.activity.AboutAppActivity"></activity>
+        <activity android:name=".ui.activity.dashboard.DashboardAbsenActivity" />
         <activity android:name=".ui.activity.AnnouncementDetailActivity" />
         <activity android:name=".ui.activity.RefWebActivity" />
         <activity android:name=".ui.activity.EditProfileActivity" />
