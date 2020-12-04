@@ -90,7 +90,7 @@ class DashboardAnnouncementActivity : AppCompatActivity() {
             when(it) {
                 is Resource.Success -> {
                     if (it.data != null) {
-                        val fcmBody = PostFCMBody(to = "/topics/pengumuman", notification = PostFCMBodyDetail(
+                        val fcmBody = PostFCMBody(to = "/topics/pengumuman", data = PostFCMBodyDetail(
                             body = it.data.result.deskripsi,
                             title = it.data.result.judul,
                             image = it.data.result.photo
@@ -100,6 +100,7 @@ class DashboardAnnouncementActivity : AppCompatActivity() {
 
                         Toast.makeText(this, "Sukses Menambah Pengumuman", Toast.LENGTH_SHORT).show()
                         resetInputText()
+                        this.finish()
                         showLoading(false)
                     }
                 }
