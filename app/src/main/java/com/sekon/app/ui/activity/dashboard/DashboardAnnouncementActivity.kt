@@ -100,8 +100,8 @@ class DashboardAnnouncementActivity : AppCompatActivity() {
 
                         Toast.makeText(this, "Sukses Menambah Pengumuman", Toast.LENGTH_SHORT).show()
                         resetInputText()
-                        this.finish()
                         showLoading(false)
+                        this.finish()
                     }
                 }
 
