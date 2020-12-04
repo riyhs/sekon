@@ -33,6 +33,9 @@ class DashboardAnnouncementActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard_pengumuman)
 
+        supportActionBar?.title = "Pengumuman"
+        actionBar?.title = "Pengumuman"
+
         dashboardAnnouncementViewModel = ViewModelProvider(this).get(DashboardAnnouncementViewModel::class.java)
 
         tv_add_photo_pengumuman.setOnClickListener {

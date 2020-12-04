@@ -12,6 +12,9 @@ class AboutAppActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about_app)
 
+        supportActionBar?.title = "Tentang Aplikasi"
+        actionBar?.title = "Tentang Aplikasi"
+
         tv_email.setOnClickListener {
             sendEmail()
         }

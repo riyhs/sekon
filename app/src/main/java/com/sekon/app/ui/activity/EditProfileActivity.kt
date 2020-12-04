@@ -34,6 +34,9 @@ class EditProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
 
+        supportActionBar?.title = "Edit Profil"
+        actionBar?.title = "Edit Profil"
+
         editProfileViewModel = ViewModelProvider(this).get(EditProfileViewModel::class.java)
 
         val id = getId(this)

@@ -27,6 +27,9 @@ class JadwalActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_jadwal)
 
+        supportActionBar?.title = "Jadwal"
+        actionBar?.title = "Jadwal"
+
         showLoading(true)
         jadwalViewModel = ViewModelProvider(this).get(JadwalViewModel::class.java)
 

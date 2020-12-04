@@ -25,6 +25,9 @@ class AbsenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_absen)
 
+        supportActionBar?.title = "Absen"
+        actionBar?.title = "Absen"
+
         absenViewModel = ViewModelProvider(this).get(AbsenViewModel::class.java)
 
         getCheckedRadioButton()
