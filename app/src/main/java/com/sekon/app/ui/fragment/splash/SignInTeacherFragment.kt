@@ -50,9 +50,12 @@ class SignInTeacherFragment : Fragment() {
                     if (response.data != null && response.data.status == "sukses") {
                         val nama = response.data.guru.nama
                         val id = response.data.guru._id
+                        val kelas = response.data.guru.wali
 
                         Preference.saveName(nama, requireContext())
                         Preference.saveId(id, requireContext())
+                        Preference.saveKelas(kelas, requireContext())
+
                         saveToken(response.data.token)
                         Toast.makeText(context, response.data.message, Toast.LENGTH_SHORT).show()
                         isSignInSuccess(true)

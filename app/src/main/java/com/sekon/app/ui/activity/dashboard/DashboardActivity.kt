@@ -17,7 +17,7 @@ class DashboardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        btOnClick()
+        btOnClick(getKelas())
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -47,7 +47,12 @@ class DashboardActivity : AppCompatActivity() {
         return true
     }
 
-    private fun btOnClick() {
+    private fun getKelas(): String {
+        val sharedPref = Preference.initPref(this, "onSignIn")
+        return sharedPref.getString("kelas", "kelas").toString()
+    }
+
+    private fun btOnClick(kelas: String) {
         mcv_saran.setOnClickListener {
             val intent = Intent(this, DashboardSaranActivity::class.java)
             startActivity(intent)
@@ -64,7 +69,7 @@ class DashboardActivity : AppCompatActivity() {
         }
 
         mcv_absen.setOnClickListener {
-            val url = "https://sekon.netlify.app/absen/xi-rpl-1"
+            val url = "https://sekon.netlify.app/absen/$kelas"
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse(url)
             
