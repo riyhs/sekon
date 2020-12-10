@@ -33,6 +33,9 @@ class DashboardReferenceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard_reference)
 
+        supportActionBar?.title = "Referensi Belajar"
+        actionBar?.title = "Referensi Belajar"
+
         dashboardReferenceViewModel = ViewModelProvider(this).get(DashboardReferenceViewModel::class.java)
 
         autoCompleteTextView()

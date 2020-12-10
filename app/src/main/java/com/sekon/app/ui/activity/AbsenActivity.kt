@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelProvider
@@ -24,14 +25,24 @@ class AbsenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_absen)
 
+        supportActionBar?.title = "Absen"
+        actionBar?.title = "Absen"
+
         absenViewModel = ViewModelProvider(this).get(AbsenViewModel::class.java)
 
         getCheckedRadioButton()
 
         bt_post_absen.setOnClickListener {
-            val deskripsi = et_deskripsi_absen.text.toString()
+            var deskripsi = "Hadir"
+
+            if (absenStatus != "Hadir") {
+                deskripsi = et_deskripsi_absen.text.toString()
+            }
 
             if (getData("id", this, false) != null) {
+                if (deskripsi.isEmpty()) {
+                    deskripsi = "Tidak ada keterangan"
+                }
                 val absenBody = PostAbsenBody(
                     nama = getData("name", this, false).toString(),
                     kelas = getData("kelas", this, false).toString(),
@@ -83,14 +94,17 @@ class AbsenActivity : AppCompatActivity() {
             when (radio) {
                 rb_hadir -> {
                     absenStatus = "Hadir"
+                    ti_deskripsi_absen.isGone = true
                 }
 
                 rb_sakit -> {
                     absenStatus = "Sakit"
+                    ti_deskripsi_absen.isVisible = true
                 }
 
                 rb_izin -> {
                     absenStatus = "Izin"
+                    ti_deskripsi_absen.isVisible = true
                 }
             }
         }

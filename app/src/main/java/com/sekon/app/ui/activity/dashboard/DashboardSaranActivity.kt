@@ -8,5 +8,9 @@ class DashboardSaranActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard_saran)
+
+        supportActionBar?.title = "Saran"
+        actionBar?.title = "Saran"
+
     }
 }

@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.google.firebase.messaging.FirebaseMessaging
 import com.sekon.app.R
 import com.sekon.app.model.SiswaResponseDetail
+import com.sekon.app.ui.activity.AboutAppActivity
 import com.sekon.app.ui.activity.EditProfileActivity
 import com.sekon.app.ui.activity.SplashActivity
 import com.sekon.app.utils.Preference
@@ -57,6 +58,10 @@ class MoreFragment : Fragment() {
         mainViewModel = ViewModelProvider(requireActivity()).get(MainViewModel::class.java)
 
         val idSiswa: String = getId(requireContext()).toString()
+
+        tv_about_app.setOnClickListener {
+            startActivity(Intent(context, AboutAppActivity::class.java))
+        }
 
         getMainViewModel(idSiswa)
         onBackPressed()

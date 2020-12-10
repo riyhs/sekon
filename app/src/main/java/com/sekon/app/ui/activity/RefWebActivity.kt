@@ -20,6 +20,9 @@ class RefWebActivity : AppCompatActivity() {
 
         pb_wv_ref.isVisible = true
 
+        supportActionBar?.hide()
+        actionBar?.hide()
+
         val url = intent.getStringExtra("url")
         val name = intent.getStringExtra("name")
 

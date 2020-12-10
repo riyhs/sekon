@@ -22,6 +22,9 @@ class AnnouncementDetailActivity : AppCompatActivity() {
 
             tv_title_pengumuman.text = announcement.judul
             tv_detail_pengumumann.text = announcement.deskripsi
+
+            supportActionBar?.title = announcement.judul
+            actionBar?.title = announcement.judul
         } else {
             Toast.makeText(this, "Gagal mendapat data", Toast.LENGTH_SHORT).show()
         }

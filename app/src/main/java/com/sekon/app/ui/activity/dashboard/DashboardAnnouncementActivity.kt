@@ -33,6 +33,9 @@ class DashboardAnnouncementActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard_pengumuman)
 
+        supportActionBar?.title = "Pengumuman"
+        actionBar?.title = "Pengumuman"
+
         dashboardAnnouncementViewModel = ViewModelProvider(this).get(DashboardAnnouncementViewModel::class.java)
 
         tv_add_photo_pengumuman.setOnClickListener {
@@ -90,7 +93,7 @@ class DashboardAnnouncementActivity : AppCompatActivity() {
             when(it) {
                 is Resource.Success -> {
                     if (it.data != null) {
-                        val fcmBody = PostFCMBody(to = "/topics/pengumuman", notification = PostFCMBodyDetail(
+                        val fcmBody = PostFCMBody(to = "/topics/pengumuman", data = PostFCMBodyDetail(
                             body = it.data.result.deskripsi,
                             title = it.data.result.judul,
                             image = it.data.result.photo
@@ -101,6 +104,7 @@ class DashboardAnnouncementActivity : AppCompatActivity() {
                         Toast.makeText(this, "Sukses Menambah Pengumuman", Toast.LENGTH_SHORT).show()
                         resetInputText()
                         showLoading(false)
+                        this.finish()
                     }
                 }
 

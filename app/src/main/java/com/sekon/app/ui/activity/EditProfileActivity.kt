@@ -34,6 +34,9 @@ class EditProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
 
+        supportActionBar?.title = "Edit Profil"
+        actionBar?.title = "Edit Profil"
+
         editProfileViewModel = ViewModelProvider(this).get(EditProfileViewModel::class.java)
 
         val id = getId(this)
@@ -61,6 +64,25 @@ class EditProfileActivity : AppCompatActivity() {
         val body = SiswaUpdateBody(urlPhoto, tagline)
 
         editProfileViewModel.setUpdatePhoto(id, body)
+        editProfileViewModel.getSiswa().observe(this, {
+            when (it) {
+                is Resource.Loading -> {
+                    showLoading(true)
+                }
+                is Resource.Success -> {
+                    Toast.makeText(this, "Berhasil", Toast.LENGTH_SHORT).show()
+                    showLoading(false)
+                }
+                is Resource.Error -> {
+                    Toast.makeText(
+                        this,
+                        "Gagal, coba lagi, pastikan tersedia internet!",
+                        Toast.LENGTH_LONG
+                    ).show()
+                    showLoading(false)
+                }
+            }
+        })
     }
 
     private fun pickImage() {
@@ -164,9 +186,12 @@ class EditProfileActivity : AppCompatActivity() {
 
                     editProfileViewModel.setUpdatePhoto(id, body)
 
+                    Toast.makeText(this, "Berhasil", Toast.LENGTH_SHORT).show()
+
                     showLoading(false)
                 }
                 is Resource.Error -> {
+                    Toast.makeText(this, "Gagal, coba lagi, pastikan tersedia internet!", Toast.LENGTH_LONG).show()
                     showLoading(false)
                 }
             }

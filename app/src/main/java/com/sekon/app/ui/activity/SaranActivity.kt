@@ -12,12 +12,8 @@ class SaranActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_saran)
 
-    }
+        supportActionBar?.title = "Saran"
+        actionBar?.title = "Saran"
 
-    private fun setupFragment(fragment: Fragment) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_saran, fragment, fragment::class.java.simpleName)
-            .commit()
     }
 }

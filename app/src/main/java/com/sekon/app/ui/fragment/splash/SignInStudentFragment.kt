@@ -63,7 +63,7 @@ class SignInStudentFragment : Fragment() {
                         showLoading(false)
                     } else {
                         showLoading(false)
-                        Toast.makeText(activity, response.data?.message, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Password / NIS salah", Toast.LENGTH_SHORT).show()
                     }
                 }
 
@@ -73,7 +73,7 @@ class SignInStudentFragment : Fragment() {
 
                 is Resource.Error -> {
                     showLoading(false)
-                    Toast.makeText(activity, response.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, "Password / NIS salah", Toast.LENGTH_SHORT).show()
                 }
             }
         })
