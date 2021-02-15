@@ -1,30 +1,20 @@
 # Sekon
-Sekon adalah sebuah platform yang berguna untuk memudahkan komunikasi antara Siswa dengan Guru di masa Pandemi atau Pembelajaran Jarak Jauh
+Sekon adalah sebuah platform yang berguna untuk memudahkan komunikasi antara Siswa dengan Guru di masa Pandemi atau Pembelajaran Jarak Jauh, Ini adalah Karya yang ditujukan untuk KKSI 2020 bidang Smart App for School.
 
 ## Download
-[Download Sekon](https://github.com/riyhs/sekon/raw/master/app/build/outputs/apk/debug/app-debug.apk)
+[Download Sekon](https://s.id/sekon_app)
 
 ## How To Use
 - Download Aplikasinya
 - Instal
 - Login
   - Login Sebagai Siswa
-    - NIS = 10001
-    - Password = hadi1234
+    - NIS = 10014
+    - Password = nana1234
     
   - Login Sebagai Guru
-    - E-Mail = radif@gmail.com
-    - Password = radif1234
-- Beranda (Siswa)
-  - Absen
-    - Pilih menu `Absen` di halaman Beranda
-    - Pilih kategori absen
-    - Isi deskripsi bila perlu
-    - Tekan tombol Absen
-  - Jadwal
-    - Pilih menu `Jadwal` di halaman Beranda
-    - Pilih hari untuk menampilkan jadwal
-  - Saran
+    - E-Mail = rudi@gmail.com
+    - Password = rudi1234
   
     
 ## How To Contribute
