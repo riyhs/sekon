@@ -4,6 +4,9 @@ Sekon adalah sebuah platform yang berguna untuk memudahkan komunikasi antara Sis
 ## Download
 [Download Sekon](https://s.id/sekon_app)
 
+## Demo
+[Video Demo Aplikasi](https://youtu.be/L9E52SpOlLo?t=133)
+
 ## How To Use
 - Download Aplikasinya
 - Instal
